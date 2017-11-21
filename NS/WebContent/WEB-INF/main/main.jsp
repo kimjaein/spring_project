@@ -29,8 +29,8 @@
 </head>
 <body>
 메인임<br>
-아이디 : ${sessionScope.loginId}<br>
-멤버번호 :  ${sessionScope.memberNum}
+<%-- 아이디 : ${sessionScope.loginId}<br> --%>
+<%-- 멤버번호 :  ${sessionScope.memberNum} --%>
 	<form>
 		<input id="textMessage" type="text">
 		<input onclick="sendMessage()" value="Send" type="button">
