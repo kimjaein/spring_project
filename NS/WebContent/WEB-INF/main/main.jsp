@@ -35,5 +35,9 @@
 		<input id="textMessage" type="text">
 		<input onclick="sendMessage()" value="Send" type="button">
 	</form>
+	
+	<form action="iframetest.ns">
+		<button>test</button>
+	</form>
 </body>
 </html>

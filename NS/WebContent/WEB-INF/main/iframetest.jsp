@@ -10,5 +10,6 @@
 <iframe src="http://localhost:8888/NStest/login.ns"></iframe>
 <hr>
 테스트공간
+<a href="iframetest.ns">되려나</a>
 </body>
 </html>
