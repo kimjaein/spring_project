@@ -26,62 +26,67 @@
 		}
 	}
 </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script type="text/javascript">
-        //WebSocketEx는 프로젝트 이름
-        //websocket 클래스 이름
-        var webSocket = new WebSocket("ws://localhost:8888/NS/ws");
-        //웹 소켓이 연결되었을 때 호출되는 이벤트
-        webSocket.onopen = function(message){
-        	
-        };
-        //웹 소켓이 닫혔을 때 호출되는 이벤트
-        webSocket.onclose = function(message){
-        };
-        
-		function sendMessage(){
-			var message = document.getElementById("textMessage");
-			webSocket.send(message.value);
-			message.value = "";
-		}
-        
-        //웹소켓 종료
-        webSocket.close = function(message){
-        	
-        };
-        
-        
-    	$(function(){
-    		$(document).on('click','#btnComment',function(){
-    			$.ajax({
-    				type:'post',
-    				url:'iframetest.ns', 
-    				data:'',
-    				dataType:'text',
-    				success:function(resultData){
-    					var iframe;
-    					iframe= "<iframe src='http://localhost:8888/NS/'></iframe>";
-    					$('#test2').html(iframe);
-    				},
-    				error:function(){
-    					alert('ajax 요청 실패');
-    				}
-    				
-    			})
-    		})
-    		
-    		$('#srch-term').on('keyup', function(){
-    			
-			})
-    		
-    	})
-    	
-    	window.onload=function(){
-    		var iframe;
-			iframe= "<iframe src='http://localhost:8888/NS/'></iframe>";
-			$('#test2').html(iframe);
-    	}
-    </script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+	//WebSocketEx는 프로젝트 이름
+	//websocket 클래스 이름
+	var webSocket = new WebSocket("ws://localhost:8888/NS/ws");
+	//웹 소켓이 연결되었을 때 호출되는 이벤트
+	webSocket.onopen = function(message) {
+
+	};
+	//웹 소켓이 닫혔을 때 호출되는 이벤트
+	webSocket.onclose = function(message) {
+	};
+
+	function sendMessage() {
+		var message = document.getElementById("textMessage");
+		webSocket.send(message.value);
+		message.value = "";
+	}
+
+	//웹소켓 종료
+	webSocket.close = function(message) {
+
+	};
+
+	$(function() {
+		$(document)
+				.on(
+						'click',
+						'#btnComment',
+						function() {
+							$
+									.ajax({
+										type : 'post',
+										url : 'iframetest.ns',
+										data : '',
+										dataType : 'text',
+										success : function(resultData) {
+											var iframe;
+											iframe = "<iframe src='http://localhost:8888/NS/'></iframe>";
+											$('#test2').html(iframe);
+										},
+										error : function() {
+											alert('ajax 요청 실패');
+										}
+
+									})
+						})
+
+		$('#srch-term').on('keyup', function() {
+
+		})
+
+	})
+
+	window.onload = function() {
+		var iframe;
+		iframe = "<iframe src='http://localhost:8888/NS/'></iframe>";
+		$('#test2').html(iframe);
+	}
+</script>
 </head>
 
 
@@ -133,29 +138,27 @@
 					</div>
 					<!-- /top nav -->
 
+					<!-- single 페이지일 경우 프로필 등의 탭은 아래의 div에 뿌림  -->
+					<div id="singlePage"></div>
+					<!-- 아래 div에 iframe (슬라이드)-->
+					<div id="iframe">
+						아이디 : ${sessionScope.loginId}<br> 멤버번호 :
+						${sessionScope.memberNum}
+						<form>
+							<input id="textMessage" type="text"> <input
+								onclick="sendMessage()" value="Send" type="button">
+						</form>
 
+						<div id="test2"></div>
+						<input type="button" id="btnComment">
+					</div>
 				</div>
 				<!-- /main -->
 
 			</div>
 		</div>
 	</div>
-	<!-- single 페이지일 경우 프로필 등의 탭은 아래의 div에 뿌림  -->
-	<div id="singlePage">
-	
-	</div>
-	<!-- 아래 div에 iframe (슬라이드)-->
-	<div>
-		아이디 : ${sessionScope.loginId}<br> 멤버번호 :
-		${sessionScope.memberNum}
-		<form>
-			<input id="textMessage" type="text"> <input
-				onclick="sendMessage()" value="Send" type="button">
-		</form>
 
-		<div id="test2"></div>
-		<input type="button" id="btnComment">
-	</div>
 
 
 	<!--post modal-->
@@ -191,14 +194,12 @@
 			</div>
 		</div>
 	</div>
-	
-	
+
+
 	<!-- sidebar 접속한친구리스트 이 div 내부에 <a href="#">친구1</a> 형태로 뿌리면 됨-->
 	<div id="mySidenav" class="sidenav">
-		<a href="#">친구1</a>
-		<a href="#">친구2</a> 
-		<a href="#">친구3</a> 
-		<a href="#">친구4</a>
+		<a href="#">친구1</a> <a href="#">친구2</a> <a href="#">친구3</a> <a
+			href="#">친구4</a>
 	</div>
 
 	<script type="text/javascript" src="assets/js/jquery.js"></script>
