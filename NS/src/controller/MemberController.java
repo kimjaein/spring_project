@@ -40,4 +40,9 @@ public class MemberController {
 //		session.setAttribute("memberNum", member.getMemberNum());
 		return "main";
 	}
+	
+	@RequestMapping("iframetest.ns")
+	public String iframetest() {
+		return "iframetest";
+	}
 }
