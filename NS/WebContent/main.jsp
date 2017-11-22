@@ -84,9 +84,18 @@
 			</div>
 		</div>
 	</div>
+	<!-- single 페이지일 경우 프로필 등의 탭은 아래의 div에 뿌림  -->
+	<div id="singlePage">
+	
+	</div>
+	<!-- 아래 div에 iframe (슬라이드)-->
+	<div>
+	
+	</div>
 
 
 	<!--post modal-->
+	<!-- 글 작성 form -->
 	<div id="postModal" class="modal fade" tabindex="-1" role="dialog"
 		aria-hidden="true">
 		<div class="modal-dialog">
@@ -118,6 +127,9 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	<!-- sidebar 접속한친구리스트 이 div 내부에 <a href="#">친구1</a> 형태로 뿌리면 됨-->
 	<div id="mySidenav" class="sidenav">
 		<a href="#">친구1</a>
 		<a href="#">친구2</a> 
