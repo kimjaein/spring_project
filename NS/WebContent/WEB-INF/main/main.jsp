@@ -107,7 +107,7 @@
 								<span class="icon-bar"></span> <span class="icon-bar"></span>
 							</button>
 							<a href="http://usebootstrap.com/theme/facebook"
-								class="navbar-brand logo">b</a>
+								class="navbar-brand logo">N</a>
 						</div>
 						<nav class="collapse navbar-collapse" role="navigation">
 							<form class="navbar-form navbar-left">
