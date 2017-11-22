@@ -5,7 +5,7 @@
 <title>NS</title>
 </head>
 <body>
-수람이형바보
+<!-- 수람이형바보 -->
 	<form action="login.ns" method="post">
 		<table border="1">
 			<tr>
