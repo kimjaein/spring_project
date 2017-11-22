@@ -69,6 +69,25 @@
     				
     			})
     		})
+    		
+    		$('#srch-term').on('keyup', function(){
+    			$.ajax({
+    				type:'get',
+    				url:'searchUser.ns', 
+    				data:'',
+    				dataType:'text',
+    				success:function(resultData){
+    					var iframe;
+    					iframe= "<iframe src='http://localhost:8888/NS/'></iframe>";
+    					$('#test2').html(iframe);
+    				},
+    				error:function(){
+    					alert('ajax 요청 실패');
+    				}
+    				
+    			})
+			})
+    		
     	})
     	
     	window.onload=function(){
@@ -141,15 +160,15 @@
 	</div>
 	<!-- 아래 div에 iframe (슬라이드)-->
 	<div>
-								아이디 : ${sessionScope.loginId}<br>
-							멤버번호 :  ${sessionScope.memberNum}
-								<form>
-									<input id="textMessage" type="text">
-									<input onclick="sendMessage()" value="Send" type="button">
-								</form>
-								
-							<div id="test2"></div>
-								<input type="button" id="btnComment">
+		아이디 : ${sessionScope.loginId}<br> 멤버번호 :
+		${sessionScope.memberNum}
+		<form>
+			<input id="textMessage" type="text"> <input
+				onclick="sendMessage()" value="Send" type="button">
+		</form>
+
+		<div id="test2"></div>
+		<input type="button" id="btnComment">
 	</div>
 
 
