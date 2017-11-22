@@ -69,7 +69,7 @@
     				
     			})
     		})
-    		
+    		//tnwjdtnwjdtnwjd
     		$('#srch-term').on('keyup', function(){
     			$.ajax({
     				type:'get',
