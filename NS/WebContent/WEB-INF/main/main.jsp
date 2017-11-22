@@ -69,23 +69,9 @@
     				
     			})
     		})
-    		//tnwjdtnwjdtnwjd
+    		
     		$('#srch-term').on('keyup', function(){
-    			$.ajax({
-    				type:'get',
-    				url:'searchUser.ns', 
-    				data:'',
-    				dataType:'text',
-    				success:function(resultData){
-    					var iframe;
-    					iframe= "<iframe src='http://localhost:8888/NS/'></iframe>";
-    					$('#test2').html(iframe);
-    				},
-    				error:function(){
-    					alert('ajax 요청 실패');
-    				}
-    				
-    			})
+    			
 			})
     		
     	})
