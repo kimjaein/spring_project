@@ -3,6 +3,7 @@
 <html>
 <head>
 <title>Insert title here</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script type="text/javascript">
         //WebSocketEx는 프로젝트 이름
         //websocket 클래스 이름
@@ -25,7 +26,32 @@
         webSocket.close = function(message){
         	
         };
+        
+        
+    	$(function(){
+    		$(document).on('click','#btnComment',function(){
+    			$.ajax({
+    				type:'post',
+    				url:'iframetest.ns', 
+    				data:'',
+    				dataType:'text',
+    				success:function(resultData){
+    					alert("1234");
+    					var test;
+    					test= "<iframe src='http://localhost:8888/NS/'></iframe>";
+    					$('#test2').html(test);
+    				},
+    				error:function(){
+    					alert('ajax 요청 실패');
+    				}
+    				
+    			})
+    		})
+    	})
     </script>
+    
+    
+
 </head>
 <body>
 메인임<br>
@@ -36,8 +62,16 @@
 		<input onclick="sendMessage()" value="Send" type="button">
 	</form>
 	
-	<form action="iframetest.ns">
-		<button>test</button>
-	</form>
+	<iframe src='http://localhost:8888/NS/'>
+		
+	
+	</iframe>
+	
+	
+<!-- 	<form action="iframetest.ns"> -->
+<!-- 		<button i>test</button> -->
+<!-- 	</form> -->
+<div id="test2"></div>
+	<input type="button" id="btnComment">
 </body>
 </html>
