@@ -16,7 +16,6 @@
 <link href="assets/css/myNew.css" rel="stylesheet">
 <script type="text/javascript">
 	var flag = true;
-
 	function openNav() {
 		if (flag) {
 			document.getElementById("mySidenav").style.width = "200px";
@@ -26,9 +25,10 @@
 			flag = true;
 		}
 	}
-	
+	function
 </script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript">
 	//WebSocketEx는 프로젝트 이름
 	//websocket 클래스 이름
@@ -53,54 +53,31 @@
 	};
 
 	$(function() {
-		$(document).on('click','#btnComment',function() {
-			$.ajax({
-				type : 'post',
-				url : 'iframetest.ns',
-				data : '',
-				dataType : 'text',
-				success : function(resultData) {
-					var iframe;
-					iframe = "<iframe src='http://localhost:8888/NS/'></iframe>";
-					$('#test2').html(iframe);
-				},
-				error : function() {
-					alert('ajax 요청 실패');
-				}
+		$(document)
+				.on(
+						'click',
+						'#btnComment',
+						function() {
+							$
+									.ajax({
+										type : 'post',
+										url : 'iframetest.ns',
+										data : '',
+										dataType : 'text',
+										success : function(resultData) {
+											var iframe;
+											iframe = "<iframe src='http://localhost:8888/NS/'></iframe>";
+											$('#test2').html(iframe);
+										},
+										error : function() {
+											alert('ajax 요청 실패');
+										}
 
-			})
-		})
+									})
+						})
 
 		$('#srch-term').on('keyup', function() {
-			var flagFriend = $(this).val();
-			
-			if(flagFriend == ""){
-				document.getElementById("friend").style.display="none";
-			}else{
-				$.ajax({
-					type:'post',
-					url: 'searchfriend.ns',
-					data:'search='+flagFriend,
-					dataType:'json',
-					success:function(resultData){
-						if(resultData == ""){
-							document.getElementById("friend").style.display="none";
-						}else{
- 							
 
-							var searchFriendList = "";
-							$.each(resultData, function(index, item){
-								searchFriendList += "<a href='#'>" + item['id']+ "</a><br>";
-								$('#friend').html(searchFriendList);
-							})
-							document.getElementById("friend").style.display="block";
-						}
-					},
-					error:function(){
-						alert('ajax 요청 실패');
-					}
-				})
-			}
 		})
 
 	})
@@ -115,6 +92,7 @@
 
 
 <body>
+
 	<div class="wrapper">
 		<div class="box">
 			<div class="row row-offcanvas row-offcanvas-left">
@@ -138,8 +116,6 @@
 									style="max-width: 360px;">
 									<input class="form-control" placeholder="Search"
 										name="srch-term" id="srch-term" type="text">
-									<div class="dropdownsearch-content" id="friend">
-									</div>
 									<div class="input-group-btn">
 										<button class="btn btn-default" type="submit">
 											<i class="glyphicon glyphicon-search"></i>
@@ -195,7 +171,7 @@
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">x</button>
-					Update Status
+					asdsadsadsadasd
 				</div>
 				<div class="modal-body">
 					<form class="form center-block">
@@ -210,15 +186,16 @@
 						<button class="btn btn-primary btn-sm" data-dismiss="modal"
 							aria-hidden="true">Post</button>
 						<ul class="pull-left list-inline">
-							<li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li>
-							<li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li>
-							<li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li>
+							<li><input type="button" class="glyphicon glyphicon-upload" onclick="document.all.file.click()" src="Photo.JPG">
+								<input type="file" name="file" id="file" style="display: none;">
+ 							</li>
 						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
 
 	<!-- sidebar 접속한친구리스트 이 div 내부에 <a href="#">친구1</a> 형태로 뿌리면 됨-->
 	<div id="mySidenav" class="sidenav">

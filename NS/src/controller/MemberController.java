@@ -45,4 +45,9 @@ public class MemberController {
 	public String iframetest() {
 		return "iframetest";
 	}
+	
+	@RequestMapping("single.ns")
+	public String singlePage() {
+		return "single_post";
+	}
 }

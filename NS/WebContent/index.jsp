@@ -84,6 +84,7 @@
 				<!-- /main -->
 
 			</div>
+	<a href="single.ns">wodls</a> 
 		</div>
 	</div>
 
