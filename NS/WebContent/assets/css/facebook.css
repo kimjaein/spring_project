@@ -1,4 +1,7 @@
 /* custom template */
+.test h1{
+	border:1px solid red;
+}
 html, body {
    height: 100%;
    font-family:verdana,arial,sans-serif;

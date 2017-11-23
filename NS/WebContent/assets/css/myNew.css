@@ -1,4 +1,5 @@
 @charset "EUC-KR";
+
 .sidenav {
     height: 100%;
     width: 0;
@@ -151,3 +152,15 @@ h1 {
   text-align: center;
 }
 
+.name {
+	margin-bottom: 20px;
+	font-size: 13px;
+	font-weight: 200;
+	line-height: 1.4
+}
+
+@media ( min-width :768px) {
+	.name {
+		font-size: 21px
+	}
+}
