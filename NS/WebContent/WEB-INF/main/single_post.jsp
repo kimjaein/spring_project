@@ -12,13 +12,10 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
-<body>
-
+<body id="single">
 	<div class="padding">
 		<div class="full col-sm-9">
-			<!-- content -->
 			<div class="row">
-				<!-- main col left -->
 				<div class="col-sm-5">
 					<div class="panel panel-default">
 						<div class="panel-thumbnail">
@@ -36,14 +33,11 @@
 								<i class="fa fa-heart-o"></i> like, <i
 									class="fa fa-commenting-o"></i> Comment
 							</p>
-
-
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
 </body>
 </html>

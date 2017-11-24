@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="repository.mapper.HeaderMapper">
+	<select id="searchFriendList" parameterType="String" resultMap="memberResultMap">
+		SELECT ID, NAME, MEMBER_NUM FROM MEMBER WHERE NAME LIKE CONCAT(#{search},'%') 
+	</select>
+	
+	<resultMap type="MemberVO" id="memberResultMap">
+        <result column="member_num" property="memberNum"/>
+    </resultMap>
+</mapper>

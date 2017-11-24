@@ -16,7 +16,6 @@
 <link href="assets/css/myNew.css" rel="stylesheet">
 <script type="text/javascript">
 	var flag = true;
-
 	function openNav() {
 		if (flag) {
 			document.getElementById("mySidenav").style.width = "200px";
@@ -26,9 +25,10 @@
 			flag = true;
 		}
 	}
-	
+	function
 </script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript">
 	//WebSocketEx는 프로젝트 이름
 	//websocket 클래스 이름
@@ -53,61 +53,31 @@
 	};
 
 	$(function() {
-		$(document).on('click','#btnComment',function() {
-			$.ajax({
-				type : 'post',
-				url : 'iframetest.ns',
-				data : '',
-				dataType : 'text',
-				success : function(resultData) {
-					var iframe;
-					iframe = "<iframe src='http://localhost:8888/NS/'></iframe>";
-					$('#test2').html(iframe);
-				},
-				error : function() {
-					alert('ajax 요청 실패');
-				}
+		$(document)
+				.on(
+						'click',
+						'#btnComment',
+						function() {
+							$
+									.ajax({
+										type : 'post',
+										url : 'iframetest.ns',
+										data : '',
+										dataType : 'text',
+										success : function(resultData) {
+											var iframe;
+											iframe = "<iframe src='http://localhost:8888/NS/'></iframe>";
+											$('#test2').html(iframe);
+										},
+										error : function() {
+											alert('ajax 요청 실패');
+										}
 
-			})
-		})
+									})
+						})
 
-		$('#srchterm').on('keyup', function() {
-			var flagFriend = $(this).val();
-			
-			if(flagFriend == ""){
-				document.getElementById("friend").style.display="none";
-			}else{
-				$.ajax({
-					type:'post',
-					url: 'searchfriend.ns',
-					data:'search='+flagFriend,
-					dataType:'json',
-					success:function(resultData){
-						if(resultData == ""){
-							document.getElementById("friend").style.display="none";
-						}else{
- 							
+		$('#srch-term').on('keyup', function() {
 
-							var searchFriendList = "";
-							$.each(resultData, function(index, item){
-// 								searchFriendList += "<li style='background-color: red' id='searchUser' value="+item['memberNum'] +">" + item['name']+ "</li><br>";
-								searchFriendList += "<button id='searchUser' value="+item['memberNum'] +">" + item['name']+ "</button><br>";
-// 								searchFriendList += "<a href='#'>" + item['id']+ "</a><br>";
-								$('#friend').html(searchFriendList);
-							})
-							document.getElementById("friend").style.display="block";
-						}
-					},
-					error:function(){
-						alert('ajax 요청 실패');
-					}
-				})
-			}
-		})
-		
-		$(document).on('click','#searchUser',function() {
-			alert($(this).val());
-			return false;
 		})
 
 	})
@@ -144,9 +114,7 @@
 								<div class="input-group input-group-sm"
 									style="max-width: 360px;">
 									<input class="form-control" placeholder="Search"
-										id="srchterm" type="text" autocomplete="off">
-									<div class="dropdownsearch-content" id="friend">
-									</div>
+										name="srch-term" id="srch-term" type="text">
 									<div class="input-group-btn">
 										<button class="btn btn-default" type="submit">
 											<i class="glyphicon glyphicon-search"></i>
@@ -174,7 +142,7 @@
 					<div id="singlePage"></div>
 					<!-- 아래 div에 iframe (슬라이드)-->
 					<div id="iframe">
-						이름 : ${sessionScope.Name}<br> 멤버번호 :
+						아이디 : ${sessionScope.loginId}<br> 멤버번호 :
 						${sessionScope.memberNum}
 						<form>
 							<input id="textMessage" type="text"> <input
@@ -202,7 +170,7 @@
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">x</button>
-					Update Status
+					${loginId}
 				</div>
 				<div class="modal-body">
 					<form class="form center-block">
@@ -217,20 +185,21 @@
 						<button class="btn btn-primary btn-sm" data-dismiss="modal"
 							aria-hidden="true">Post</button>
 						<ul class="pull-left list-inline">
-							<li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li>
-							<li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li>
-							<li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li>
+							<li>
+							<form action="upload.ns" method="post" enctype="multipart/form-data">
+							<input type="file" name="photo"><br>
+							<input type="submit" value="업로드"></form></li>
 						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- 테스트용 -->
-	
+
+
 	<!-- sidebar 접속한친구리스트 이 div 내부에 <a href="#">친구1</a> 형태로 뿌리면 됨-->
 	<div id="mySidenav" class="sidenav">
-		<a href="userprofilepage.do">친구1</a> <a href="#">친구2</a> <a href="#">친구3</a> <a
+		<a href="#">친구1</a> <a href="#">친구2</a> <a href="#">친구3</a> <a
 			href="#">친구4</a>
 	</div>
 
