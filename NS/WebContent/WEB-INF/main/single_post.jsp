@@ -19,6 +19,23 @@
 		else if (event.wheelDelta >= 120)
 			window.scrollBy(-20, 0);
 	}
+	$('#next').click(function() {
+		var article ="<td> <div class='row' ><div class='article'>
+		           +"<div class='panel panel-default'><div class='panel-thumbnail'>"
+					+"<img src='assets/img/bg_5.jpg' class='img-responsive'>"
+				+"</div>"
+					+"<div class='panel-body'>"
+					+"<p class='name'>"
+						+"<img src='assets/img/uFp_tsTJboUY7kue5XAsGAs28.png'"
+							+"height='20px' width='20px'>Urbanization"
+					+"</p>"
+					+"<p>내용내용내용.....(길이 제한 필요)</p>"
+					+"<p>"
+					+"	<i class='fa fa-heart-o'></i> like, <i"
+					+"		class='fa fa-commenting-o'></i> Comment"
+					+"</p></div>	</div></div></div></td>"
+		$('this').html(article)
+	})
 </script>
 
 </head>
@@ -27,7 +44,7 @@
 		<button id="btn"></button>
 		<div class="full" onmousewheel="horizontalScroll()">
 		<table>
-		<tr>		
+		<tr id="this">		
 		<td>
 			<div class="row" >
 				<div class="article">
@@ -263,6 +280,7 @@
 			</td>
 			</tr>
 			</table>
+		<button id="next">다음</button>
 		</div>
 
 	</div>
