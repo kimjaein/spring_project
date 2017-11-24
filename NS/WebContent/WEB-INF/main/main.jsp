@@ -198,7 +198,7 @@
 
 	<!-- sidebar 立加茄模备府胶飘 捞 div 郴何俊 <a href="#">模备1</a> 屈怕肺 谎府搁 凳-->
 	<div id="mySidenav" class="sidenav">
-		<a href="#">模备1</a> <a href="#">模备2</a> <a href="#">模备3</a> <a
+		<a href="userprofilepage.do">模备1</a> <a href="#">模备2</a> <a href="#">模备3</a> <a
 			href="#">模备4</a>
 	</div>
 
