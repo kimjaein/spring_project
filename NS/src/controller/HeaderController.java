@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 
@@ -38,8 +39,13 @@ public class HeaderController {
 			}
 		}
 		
-		@RequestMapping(value="userPage.ns", method=RequestMethod.GET)
-		public void userPage(String id) {
-			System.out.println("get값"+id);
+//		@RequestMapping(value="userPage.ns", method=RequestMethod.POST)
+		@RequestMapping("userPage.ns")
+		public ModelAndView userPage(String memberNum) {
+			System.out.println("서버에서 받은 값 : "+memberNum);
+			ModelAndView mv = new ModelAndView();
+			mv.addObject("searchUserNum", memberNum);
+			mv.setViewName("userpage");
+			return mv;
 		}
 }

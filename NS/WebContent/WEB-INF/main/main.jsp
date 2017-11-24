@@ -62,7 +62,7 @@
 				success : function(resultData) {
 					var iframe;
 					iframe = "<iframe src='http://localhost:8888/NS/'></iframe>";
-					$('#test2').html(iframe);
+					$('#mainPage').html(iframe);
 				},
 				error : function() {
 					alert('ajax 夸没 角菩');
@@ -104,22 +104,65 @@
 				})
 			}
 		})
-		
-		$(document).on('click','#searchUser',function() {
-			alert($(this).val());
+
+		$(document).on('mousedown', '#searchUser', function() {
+			var searchUserNum = $(this).val();
+			var iframe;
+			iframe = "<iframe src='http://localhost:8888/NS/userPage.ns?memberNum=" + searchUserNum + "'width='100%' height='100%'></iframe>";
+			$('#mainPage').html(iframe);
+			
+			
 			return false;
 		})
+
+		$(document).on('focusin','#srchterm', function() {
+			var flagFriend = $(this).val();
+			
+			if(flagFriend == ""){
+				document.getElementById("friend").style.display="none";
+			}else{
+				$.ajax({
+					type:'post',
+					url: 'searchfriend.ns',
+					data:'search='+flagFriend,
+					dataType:'json',
+					success:function(resultData){
+						if(resultData == ""){
+							document.getElementById("friend").style.display="none";
+						}else{
+ 							
+
+							var searchFriendList = "";
+							$.each(resultData, function(index, item){
+// 								searchFriendList += "<li style='background-color: red' id='searchUser' value="+item['memberNum'] +">" + item['name']+ "</li><br>";
+								searchFriendList += "<button id='searchUser' value="+item['memberNum'] +">" + item['name']+ "</button><br>";
+// 								searchFriendList += "<a href='#'>" + item['id']+ "</a><br>";
+								$('#friend').html(searchFriendList);
+							})
+							document.getElementById("friend").style.display="block";
+						}
+					},
+					error:function(){
+						alert('ajax 夸没 角菩');
+					}
+				})
+			}
+		})
+		
+		$(document).on('focusout','#srchterm', function() {
+			document.getElementById("friend").style.display = "none";
+		})
+
 
 	})
 
 	window.onload = function() {
 		var iframe;
 		iframe = "<iframe src='http://localhost:8888/NS/'></iframe>";
-		$('#test2').html(iframe);
+		$('#mainPage').html(iframe);
 	}
 </script>
 </head>
-
 
 <body>
 	<div class="wrapper">
@@ -181,7 +224,7 @@
 								onclick="sendMessage()" value="Send" type="button">
 						</form>
 
-						<div id="test2"></div>
+						<div id="mainPage"></div>
 						<input type="button" id="btnComment">
 					</div>
 				</div>
@@ -230,7 +273,7 @@
 	
 	<!-- sidebar 立加茄模备府胶飘 捞 div 郴何俊 <a href="#">模备1</a> 屈怕肺 谎府搁 凳-->
 	<div id="mySidenav" class="sidenav">
-		<a href="userprofilepage.do">模备1</a> <a href="#">模备2</a> <a href="#">模备3</a> <a
+		<a href="#">模备1</a> <a href="#">模备2</a> <a href="#">模备3</a> <a
 			href="#">模备4</a>
 	</div>
 
