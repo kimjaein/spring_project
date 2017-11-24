@@ -158,11 +158,7 @@
 	})
 
 	window.onload = function() {
-		var iframe;
-		iframe = "<iframe src='http://localhost:8888/NS/'></iframe>";
-		$('#mainPage').html(iframe);
-		
-		var iframe = "<iframe src='http://localhost:8888/NS/single.ns' width='100%' height='500px'></iframe>";
+		var iframe = "<iframe src='http://localhost:8888/NS/single.ns' width='100%' height='800px'></iframe>";
 		$('#articlePage').html(iframe);
 	}
 </script>
@@ -223,20 +219,12 @@
 					<!-- single 페이지일 경우 프로필 등의 탭은 아래의 div에 뿌림  -->
 					<div id="singlePage"></div>
 					<!-- 아래 div에 iframe (슬라이드)-->
-					<div id="iframe">
-						이름 : ${sessionScope.Name}<br> 멤버번호 :
-						${sessionScope.memberNum}
-						<form>
-							<input id="textMessage" type="text"> <input
-								onclick="sendMessage()" value="Send" type="button">
-						</form>
-
-						<div id="mainPage"></div>
+						<div id="iframe">
+					<div id="articlePage"></div>
 						<input type="button" id="btnComment">
-						<div id="articlePage"></div>
-						<input type="button" id="btnComment">
-					</div>
 				</div>
+				</div>
+				
 				<!-- /main -->
 
 			</div>

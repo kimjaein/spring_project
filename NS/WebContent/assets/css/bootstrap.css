@@ -835,7 +835,8 @@ pre code {
 
 .row {
 	margin-right: -15px;
-	margin-left: -15px
+	margin-left: -15px;
+	width:100%;
 }
 
 .row:before, .row:after {
@@ -1279,7 +1280,7 @@ pre code {
 		width: 33.33333333333333%
 	}
 	.col-md-3 {
-		width: 25%
+		width: 60%
 	}
 	.col-md-2 {
 		width: 16.666666666666664%
@@ -1445,7 +1446,7 @@ pre code {
 		width: 25%
 	}
 	.col-lg-2 {
-		width: 16.666666666666664%
+		width: 60%
 	}
 	.col-lg-1 {
 		width: 8.333333333333332%

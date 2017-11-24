@@ -189,4 +189,16 @@ h1 {
     z-index: 1;
     color: black;
 }
-
+.article{
+	width:540px;
+	float:left;
+}
+#btn{
+position: fixed;
+}
+#test{
+	width:100%;
+}
+.padding{
+	width:400%;
+}
