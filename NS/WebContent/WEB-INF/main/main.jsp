@@ -114,7 +114,8 @@
 			
 			return false;
 		})
-
+		
+		
 		$(document).on('focusin','#srchterm', function() {
 			var flagFriend = $(this).val();
 			
@@ -160,6 +161,9 @@
 		var iframe;
 		iframe = "<iframe src='http://localhost:8888/NS/'></iframe>";
 		$('#mainPage').html(iframe);
+		
+		var iframe = "<iframe src='http://localhost:8888/NS/single.do' width='100%' height='500px'></iframe>";
+		$('#articlePage').html(iframe);
 	}
 </script>
 </head>
@@ -228,6 +232,8 @@
 						</form>
 
 						<div id="mainPage"></div>
+						<input type="button" id="btnComment">
+						<div id="articlePage"></div>
 						<input type="button" id="btnComment">
 					</div>
 				</div>
