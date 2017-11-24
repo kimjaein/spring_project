@@ -92,7 +92,6 @@
 
 
 <body>
-
 	<div class="wrapper">
 		<div class="box">
 			<div class="row row-offcanvas row-offcanvas-left">
@@ -171,7 +170,7 @@
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">x</button>
-					asdsadsadsadasd
+					${loginId}
 				</div>
 				<div class="modal-body">
 					<form class="form center-block">
@@ -186,9 +185,10 @@
 						<button class="btn btn-primary btn-sm" data-dismiss="modal"
 							aria-hidden="true">Post</button>
 						<ul class="pull-left list-inline">
-							<li><input type="button" class="glyphicon glyphicon-upload" onclick="document.all.file.click()" src="Photo.JPG">
-								<input type="file" name="file" id="file" style="display: none;">
- 							</li>
+							<li>
+							<form action="upload.ns" method="post" enctype="multipart/form-data">
+							<input type="file" name="photo"><br>
+							<input type="submit" value="¾÷·Îµå"></form></li>
 						</ul>
 					</div>
 				</div>

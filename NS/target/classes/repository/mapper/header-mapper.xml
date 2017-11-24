@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="repository.mapper.HeaderMapper">
 	<select id="searchFriendList" parameterType="String" resultMap="memberResultMap">
-		SELECT ID, NAME FROM MEMBER WHERE ID LIKE CONCAT(#{search},'%') 
+		SELECT ID, NAME, MEMBER_NUM FROM MEMBER WHERE NAME LIKE CONCAT(#{search},'%') 
 	</select>
 	
 	<resultMap type="MemberVO" id="memberResultMap">

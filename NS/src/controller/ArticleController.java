@@ -52,7 +52,7 @@ public class ArticleController {
 	// }
 	// return "upload_result";
 	// }
-	@RequestMapping("/upload.do")
+	@RequestMapping("/upload.ns")
 	public ModelAndView upload(ArticleVO articleNum, HttpServletRequest request,ArticlePhtoVO photo) {
 		ModelAndView mv = new ModelAndView();
 		String uploadPath = request.getServletContext().getRealPath("img");

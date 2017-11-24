@@ -71,7 +71,7 @@
 			})
 		})
 
-		$('#srch-term').on('keyup', function() {
+		$('#srchterm').on('keyup', function() {
 			var flagFriend = $(this).val();
 			
 			if(flagFriend == ""){
@@ -90,7 +90,9 @@
 
 							var searchFriendList = "";
 							$.each(resultData, function(index, item){
-								searchFriendList += "<a href='#'>" + item['id']+ "</a><br>";
+// 								searchFriendList += "<li style='background-color: red' id='searchUser' value="+item['memberNum'] +">" + item['name']+ "</li><br>";
+								searchFriendList += "<button id='searchUser' value="+item['memberNum'] +">" + item['name']+ "</button><br>";
+// 								searchFriendList += "<a href='#'>" + item['id']+ "</a><br>";
 								$('#friend').html(searchFriendList);
 							})
 							document.getElementById("friend").style.display="block";
@@ -101,6 +103,11 @@
 					}
 				})
 			}
+		})
+		
+		$(document).on('click','#searchUser',function() {
+			alert($(this).val());
+			return false;
 		})
 
 	})
@@ -137,7 +144,7 @@
 								<div class="input-group input-group-sm"
 									style="max-width: 360px;">
 									<input class="form-control" placeholder="Search"
-										name="srch-term" id="srch-term" type="text">
+										id="srchterm" type="text" autocomplete="off">
 									<div class="dropdownsearch-content" id="friend">
 									</div>
 									<div class="input-group-btn">
@@ -167,7 +174,7 @@
 					<div id="singlePage"></div>
 					<!-- 아래 div에 iframe (슬라이드)-->
 					<div id="iframe">
-						아이디 : ${sessionScope.loginId}<br> 멤버번호 :
+						이름 : ${sessionScope.Name}<br> 멤버번호 :
 						${sessionScope.memberNum}
 						<form>
 							<input id="textMessage" type="text"> <input
@@ -219,7 +226,8 @@
 			</div>
 		</div>
 	</div>
-
+	<!-- 테스트용 -->
+	
 	<!-- sidebar 접속한친구리스트 이 div 내부에 <a href="#">친구1</a> 형태로 뿌리면 됨-->
 	<div id="mySidenav" class="sidenav">
 		<a href="#">친구1</a> <a href="#">친구2</a> <a href="#">친구3</a> <a
