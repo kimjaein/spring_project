@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.google.gson.Gson;
 
@@ -35,5 +36,10 @@ public class HeaderController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
+		
+		@RequestMapping(value="userPage.ns", method=RequestMethod.GET)
+		public void userPage(String id) {
+			System.out.println("get°ª"+id);
 		}
 }

@@ -8,7 +8,7 @@
 	</insert>
 	
 	<select id="memberLogin" parameterType="String" resultMap="memberResultMap">
-		SELECT MEMBER_NUM, ID FROM MEMBER WHERE ID=#{id} AND PW=#{pw}
+		SELECT MEMBER_NUM, NAME FROM MEMBER WHERE ID=#{id} AND PW=#{pw}
 	</select>
 	
 	<resultMap type="MemberVO" id="memberResultMap">

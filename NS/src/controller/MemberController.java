@@ -36,7 +36,7 @@ public class MemberController {
 	@RequestMapping("login.ns")
 	public String login(String id, String pw, HttpSession session) {
 		MemberVO member = service.memberLogin(id, pw);
-		session.setAttribute("loginId", member.getId());
+		session.setAttribute("Name", member.getName());
 		session.setAttribute("memberNum", member.getMemberNum());
 		return "main";
 	}
