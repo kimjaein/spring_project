@@ -39,7 +39,6 @@ public class HeaderController {
 			}
 		}
 		
-//		@RequestMapping(value="userPage.ns", method=RequestMethod.POST)
 		@RequestMapping("userPage.ns")
 		public ModelAndView userPage(String memberNum) {
 			System.out.println("서버에서 받은 값 : "+memberNum);
