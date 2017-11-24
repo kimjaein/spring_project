@@ -90,10 +90,10 @@
 
 							var searchFriendList = "";
 							$.each(resultData, function(index, item){
-// 								searchFriendList += "<li style='background-color: red' id='searchUser' value="+item['memberNum'] +">" + item['name']+ "</li><br>";
-								searchFriendList += "<button id='searchUser' value="+item['memberNum'] +">" + item['name']+ "</button><br>";
+							searchFriendList += "<li id='searchUser' value="+item['memberNum'] +">" + item['name']+ "</li><br>";
+//								searchFriendList += "<button id='searchUser' value="+item['memberNum'] +">" + item['name']+ "</button><br>";
 // 								searchFriendList += "<a href='#'>" + item['id']+ "</a><br>";
-								$('#friend').html(searchFriendList);
+								$('#friend-under').html(searchFriendList);
 							})
 							document.getElementById("friend").style.display="block";
 						}
@@ -134,10 +134,10 @@
 
 							var searchFriendList = "";
 							$.each(resultData, function(index, item){
-// 								searchFriendList += "<li style='background-color: red' id='searchUser' value="+item['memberNum'] +">" + item['name']+ "</li><br>";
-								searchFriendList += "<button id='searchUser' value="+item['memberNum'] +">" + item['name']+ "</button><br>";
+							searchFriendList += "<li id='searchUser' value="+item['memberNum'] +">" + item['name']+ "</li><br>";
+//								searchFriendList += "<button id='searchUser' value="+item['memberNum'] +">" + item['name']+ "</button><br>";
 // 								searchFriendList += "<a href='#'>" + item['id']+ "</a><br>";
-								$('#friend').html(searchFriendList);
+								$('#friend-under').html(searchFriendList);
 							})
 							document.getElementById("friend").style.display="block";
 						}
@@ -189,6 +189,9 @@
 									<input class="form-control" placeholder="Search"
 										id="srchterm" type="text" autocomplete="off">
 									<div class="dropdownsearch-content" id="friend">
+										<ul id="friend-under">
+										
+										</ul>
 									</div>
 									<div class="input-group-btn">
 										<button class="btn btn-default" type="submit">
