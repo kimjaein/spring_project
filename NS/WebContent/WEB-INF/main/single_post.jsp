@@ -12,7 +12,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
-<body id="single">
+<body>
 	<div class="padding">
 		<div class="full col-sm-9">
 			<div class="row">

@@ -120,5 +120,12 @@ public class ArticleController {
 //		mv.addObject("fileCount", multi.getFileList().size());
 //		return mv;
 //	}
-
+	@RequestMapping("single.ns")
+	public String singlePage() {
+		return "single_post";
+	}
+	@RequestMapping("/testMain.ns")
+	public String test() {
+		return "testMain";
+	}
 }
