@@ -4,10 +4,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import repository.mapper.MemberMapper;
 import repository.mapper.UserPageMapper;
+import vo.AlarmVO;
 import vo.FriendVO;
-import vo.MemberVO;
 
 @Component("userpageDao")
 public class UserPageDao {
@@ -22,5 +21,10 @@ public class UserPageDao {
 	public int friendCheck(FriendVO friend) {
 		UserPageMapper mapper = session.getMapper(UserPageMapper.class);
 		return mapper.friendCheck(friend);
+	}
+	
+	public int alarmCheck(AlarmVO alarm) {
+		UserPageMapper mapper = session.getMapper(UserPageMapper.class);
+		return mapper.alarmCheck(alarm);		
 	}
 }

@@ -110,8 +110,7 @@
 			var iframe;
 			iframe = "<iframe src='http://localhost:8888/NS/userPage.ns?memberNum=" + searchUserNum + "'width='100%' height='500px'></iframe>";
 			$('#mainPage').html(iframe);
-			
-			
+			document.getElementById("friend").style.display="none";			
 			return false;
 		})
 		

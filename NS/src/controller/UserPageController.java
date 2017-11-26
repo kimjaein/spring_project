@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import service.UserPageService;
+import vo.AlarmVO;
 import vo.FriendVO;
 
 @Controller
@@ -22,17 +23,33 @@ public class UserPageController {
     }
     
     @RequestMapping("friendCheck.ns")
-    public void friendCheck(FriendVO friend, HttpServletRequest request, HttpServletResponse response) {
-    	System.out.println("나"+friend.getOne_member_num());
-    	System.out.println("너"+friend.getOther_member_num());
-    	int result = service.friendCheck(friend);
+    public void friendCheck(FriendVO friend, AlarmVO alarm, HttpServletRequest request, HttpServletResponse response) {
+    	System.out.println("친구나"+friend.getOne_member_num());
+    	System.out.println("친구너"+friend.getOther_member_num());
+    	alarm.setTo_member_num(friend.getOne_member_num());
+    	alarm.setFrom_member_num(friend.getOther_member_num());
+    	System.out.println("알람나"+alarm.getTo_member_num());
+    	System.out.println("알람나"+alarm.getFrom_member_num());
+    	
     	try {
-			PrintWriter writer = response.getWriter();
-			writer.print(result);
+    		PrintWriter writer = response.getWriter();
+    		
+    		if(friend.getOne_member_num() == friend.getOther_member_num()) {
+    			writer.print("mypage");
+    		}else {
+	    		if(service.friendCheck(friend) != 0) {
+	    			writer.print("friendDelete"); // 친구삭제버튼
+	    		}else {
+	    			if(service.alarmCheck(alarm) != 0) {
+	    				writer.print("friendRequest"); // 요청중
+	    			}else {
+	    				writer.print("friendInsert"); // 친구추가버튼
+	    			}
+	    		}
+    		}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-//    	return 1;
     }
     
 }
