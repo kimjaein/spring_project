@@ -6,10 +6,10 @@
 		useGeneratedKeys="true" keyProperty="memberNum">
 		INSERT INTO
 		ARTICLE(CONTENTS,WRITER,LIKE_COUNT,WRITE_TIME,MEMBER_NUM)
-		VALUES(#{contents},#{writer},0,${write_time},${member_num})
+		VALUES(#{contents},#{writer},0,now(),${member_num})
 	</insert>
 
-	<insert id="ArticlePhotoInsert" parameterType="String">
+	<insert id="ArticlePhotoInsert" parameterType="Map">
 		INSERT INTO
 		ARTICLE_PHOTO(ARTICLE_NUM,PHOTO)
 		VALUES(#{article_num},#{photo})
