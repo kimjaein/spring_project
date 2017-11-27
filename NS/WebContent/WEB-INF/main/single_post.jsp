@@ -28,16 +28,16 @@
 	})
 	function horizontalScroll() {
 		if (event.wheelDelta <= -120)
-			window.scrollBy(20, 0);
+			window.scrollBy(40, 0);
 		else if (event.wheelDelta >= 120)
-			window.scrollBy(-20, 0);
+			window.scrollBy(-40, 0);
 	}
+	
 	$(document).scroll(function () {
 	     var st = $(this).scrollLeft();
-	     var size2= $(document).width() - $(window).width()
+	     var size= $(document).width() - $(window).width();
 	     $('#btn').text(size)
-	     if(st == size2){
-	    	 
+	     if(st == size){
 	    	 next();
 	     }
 	    
