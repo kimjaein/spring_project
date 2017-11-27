@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 
 import service.HeaderService;
+import vo.AlarmVO;
 import vo.MemberVO;
 
 @Controller
@@ -46,5 +47,18 @@ public class HeaderController {
 			mv.addObject("searchUserNum", memberNum);
 			mv.setViewName("userpage");
 			return mv;
+		}
+		
+		@RequestMapping("badgeList.ns")
+		public void badgeList(int memberNum, HttpServletRequest request, HttpServletResponse response) {
+			List<AlarmVO> list = service.badgeList(memberNum);
+			try {
+				PrintWriter writer = response.getWriter();
+				Gson gson = new Gson();
+				System.out.println(gson.toJson(list));
+				writer.print(gson.toJson(list));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 }

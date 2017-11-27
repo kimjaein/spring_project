@@ -1,5 +1,6 @@
 package socket;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -24,8 +25,27 @@ public class SocketServer {
 	
 	@OnMessage
 	public void Message(Session session, String msg) {
-		
-		System.out.println(session.getId() + ":::" + msg);
+		String memberNum = (String)session.getUserProperties().get("memberNum");
+		if(memberNum == null) {
+			session.getUserProperties().put("memberNum", msg);
+			try {
+				session.getBasicRemote().sendText("memberNum OKOKOK");
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else {
+		System.out.println(session.getUserProperties().get("memberNum") + ":::" + msg);
+			try {
+				for(Session s : clients) {
+					if(s.getUserProperties().get("memberNum").equals(msg)) {
+						s.getBasicRemote().sendText("alarm");
+					}
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
 	@OnError

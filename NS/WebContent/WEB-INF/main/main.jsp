@@ -35,18 +35,27 @@
 	var webSocket = new WebSocket("ws://localhost:8888/NS/ws");
 	//웹 소켓이 연결되었을 때 호출되는 이벤트
 	webSocket.onopen = function(message) {
-
+		webSocket.send(${sessionScope.memberNum});
 	};
+	
 	//웹 소켓이 닫혔을 때 호출되는 이벤트
 	webSocket.onclose = function(message) {
 	};
-
-	function sendMessage() {
-		var message = document.getElementById("textMessage");
-		webSocket.send(message.value);
+	
+	function sendMessage(Msg) {
+// 		var message = document.getElementById("textMessage");
+		var message = Msg;
+		webSocket.send(message);
+// 		webSocket.send(message.value);
 		message.value = "";
 	}
-
+	
+	webSocket.onmessage = function(message){
+		if(message.data == 'alarm'){
+			alert("요청이 왔습니다.");
+		}
+	};
+	
 	//웹소켓 종료
 	webSocket.close = function(message) {
 
@@ -152,7 +161,31 @@
 		$(document).on('focusout','#srchterm', function() {
 			document.getElementById("friend").style.display = "none";
 		})
-
+		
+		
+		$('#badgeBtn').on('click', function() {
+			$.ajax({
+				type:'post',
+				url: 'badgeList.ns',
+				data:'memberNum='+${sessionScope.memberNum},
+				dataType:'json',
+				success:function(resultData){
+					var badgeList = "";
+					
+					if(resultData == ""){
+						badgeList += "<li><a href=''>알림 정보가 없습니다.</a></li>";
+					}else{
+						$.each(resultData, function(index, item){
+							badgeList += "<li><a href=''>"+item['to_member_num']+"님이 친구신청하였습니다.</a></li>";
+						})
+					}
+						$('#badge').html(badgeList);
+				},
+				error:function(){
+					alert('ajax 요청 실패');
+				}
+			})
+		})		
 
 	})
 
@@ -208,8 +241,18 @@
 										Home</a></li>
 								<li><a href="#postModal" role="button" data-toggle="modal"><i
 										class="glyphicon glyphicon-plus"></i> Post</a></li>
-								<li><a href="#"><span class="badge">badge</span></a></li>
-							</ul>
+							
+								<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="badge" id="badgeBtn">badge</span></a>
+								<ul class="dropdown-menu" id="badge">
+<!-- 								  <li><a href="">More</a></li> -->
+<!-- 								  <li><a href="">More</a></li> -->
+<!-- 								  <li><a href="">More</a></li> -->
+<!-- 								  <li><a href="">More</a></li> -->
+<!-- 								  <li><a href="">More</a></li> -->
+								</ul>
+							  </li>
+							  </ul>
 							<ul class="nav navbar-nav navbar-right">
 								<li class="dropdown"><a href="#" class="dropdown-toggle"
 									onclick="openNav()"> <i class="glyphicon glyphicon-user"></i></a>

@@ -60,9 +60,9 @@ public class UserPageController {
     	try {
     		PrintWriter writer = response.getWriter();
     		
-    		if(service.friendCheck(friend) == 0) {
+    		if(service.alarmCheck(alarm) == 0) {
     			if(service.alarmInsert(alarm) > 0) {
-    				writer.print("insertOK");
+    				writer.print(1);
     			}
     		}else {
     			writer.print("insertrequestttt");

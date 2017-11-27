@@ -46,8 +46,10 @@
 					data : 'one_member_num=' + ${sessionScope.memberNum} + '&other_member_num=' + ${searchUserNum},
 					dataType : 'text',
 					success : function(resultData) {
-						alert(resultData);
-						friendStatus ();
+						if(resultData == 1){
+							friendStatus ();
+							parent.sendMessage(${searchUserNum});
+						}
 					},
 					error : function() {
 						alert('ajax 요청 실패');
