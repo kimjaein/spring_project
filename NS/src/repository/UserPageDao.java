@@ -17,7 +17,7 @@ public class UserPageDao {
 	public void setSession(SqlSessionTemplate session) {
 		this.session = session;
 	}
-	    
+	
 	public int friendCheck(FriendVO friend) {
 		UserPageMapper mapper = session.getMapper(UserPageMapper.class);
 		return mapper.friendCheck(friend);
@@ -27,4 +27,15 @@ public class UserPageDao {
 		UserPageMapper mapper = session.getMapper(UserPageMapper.class);
 		return mapper.alarmCheck(alarm);		
 	}
+	
+	public int alarmInsert(AlarmVO alarm) {
+		UserPageMapper mapper = session.getMapper(UserPageMapper.class);
+		return mapper.alarmInsert(alarm);
+	}
+	
+	public int friendDelete(FriendVO friend) {
+		UserPageMapper mapper = session.getMapper(UserPageMapper.class);
+		return mapper.friendDelete(friend);
+	}
+	
 }

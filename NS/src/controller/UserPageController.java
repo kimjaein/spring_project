@@ -52,4 +52,40 @@ public class UserPageController {
 		}
     }
     
+    @RequestMapping("friendInsert.ns")
+    public void friendInsert(FriendVO friend, AlarmVO alarm, HttpServletRequest request, HttpServletResponse response) {
+    	alarm.setTo_member_num(friend.getOne_member_num());
+    	alarm.setFrom_member_num(friend.getOther_member_num());
+    	alarm.setType(1);
+    	try {
+    		PrintWriter writer = response.getWriter();
+    		
+    		if(service.friendCheck(friend) == 0) {
+    			if(service.alarmInsert(alarm) > 0) {
+    				writer.print("insertOK");
+    			}
+    		}else {
+    			writer.print("insertrequestttt");
+    		}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
+    
+    @RequestMapping("friendDelete.ns")
+    public void friendDelete(FriendVO friend, HttpServletRequest request, HttpServletResponse response) {
+    	try {
+    		PrintWriter writer = response.getWriter();
+    		
+    		if(service.friendCheck(friend) != 0) {
+    			if(service.friendDelete(friend) > 0) {
+    				writer.print("deleteOK");
+    			}
+    		}else {
+    			writer.print("deleterequestttt");
+    		}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
 }

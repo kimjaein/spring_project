@@ -40,24 +40,36 @@
 			var friendVal = $(this).val();
 			
 			if(friendVal == 'friendInsert'){
-				alert("inserttttt");
+				$.ajax({
+					type : 'post',
+					url : 'friendInsert.ns',
+					data : 'one_member_num=' + ${sessionScope.memberNum} + '&other_member_num=' + ${searchUserNum},
+					dataType : 'text',
+					success : function(resultData) {
+						alert(resultData);
+						friendStatus ();
+					},
+					error : function() {
+						alert('ajax 요청 실패');
+					}		
+				})
 			}else if(friendVal == 'friendDelete'){
-				alert("delete")
+				$.ajax({
+					type : 'post',
+					url : 'friendDelete.ns',
+					data : 'one_member_num=' + ${sessionScope.memberNum} + '&other_member_num=' + ${searchUserNum},
+					dataType : 'text',
+					success : function(resultData) {
+						alert(resultData);
+						friendStatus ();
+					},
+					error : function() {
+						alert('ajax 요청 실패');
+					}		
+				})
 			}else if(friendVal == 'friendRequest'){
-				alert("요청중입니다. 이게 필요한가?")
+				alert("요청중입니다. 이게 필요한가? 다른 좋은거없나?");
 			}
-			$.ajax({
-				type : 'post',
-				url : 'friendInsert.ns',
-				data : 'one_member_num=' + ${sessionScope.memberNum} + '&other_member_num=' + ${searchUserNum},
-				dataType : 'text',
-				success : function(resultData) {
-					alert("insert");
-				},
-				error : function() {
-					alert('ajax 요청 실패');
-				}		
-			})	
 		})
 		
 	})
