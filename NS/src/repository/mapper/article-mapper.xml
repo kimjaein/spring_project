@@ -3,15 +3,13 @@
 
 <mapper namespace="repository.mapper.ArticleMapper">
 	<insert id="ArticleInsert" parameterType="ArticleVO"
-		useGeneratedKeys="true" keyProperty="memberNum">
+		useGeneratedKeys="true" keyProperty="article_num">
 		INSERT INTO
 		ARTICLE(CONTENTS,WRITER,LIKE_COUNT,WRITE_TIME,MEMBER_NUM)
-		VALUES(#{contents},#{writer},0,now(),${member_num})
+		VALUES(#{contents},#{writer},0,now(),#{member_num})
 	</insert>
 
 	<insert id="ArticlePhotoInsert" parameterType="Map">
-		INSERT INTO
-		ARTICLE_PHOTO(ARTICLE_NUM,PHOTO)
-		VALUES(#{article_num},#{photo})
+		INSERT INTO ARTICLE_PHOTO(ARTICLE_NUM,PHOTO) VALUES(#{article_num},#{photo})
 	</insert>
 </mapper>

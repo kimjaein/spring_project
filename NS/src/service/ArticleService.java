@@ -18,7 +18,11 @@ public class ArticleService {
 	}
 
 	public int ArticleInsert(ArticleVO vo) {
-		return dao.ArticleInsert(vo);
+		if(dao.ArticleInsert(vo)>0) {
+			return vo.getArticle_num();
+		}else {
+			return -1;
+		}
 	}
 
 	public int ArticlePhotoInsert(int articleNum, String FileURL) {

@@ -3,14 +3,19 @@ package vo;
 import org.springframework.web.multipart.MultipartFile;
 
 public class ArticlePhotoVO {
-	private int articlt_num;
+	private int article_num;
 	private MultipartFile photo;
-	////////////////////////////////////////////
-	public int getArticlt_num() {
-		return articlt_num;
+
+	
+	public ArticlePhotoVO() {
+		// TODO Auto-generated constructor stub
 	}
-	public void setArticlt_num(int articlt_num) {
-		this.articlt_num = articlt_num;
+	////////////////////////////////////////////
+	public int getArticle_num() {
+		return article_num;
+	}
+	public void setArticle_num(int article_num) {
+		this.article_num = article_num;
 	}
 	public MultipartFile getPhoto() {
 		return photo;
@@ -19,6 +24,5 @@ public class ArticlePhotoVO {
 		this.photo = photo;
 	}
 
-	
-	
+
 }

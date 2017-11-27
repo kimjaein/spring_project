@@ -66,7 +66,6 @@ public class ArticleController {
 			int articleNum = service.ArticleInsert(article);
 			System.out.println("아티클 넘값" + articleNum);
 			if (articleNum > 0) {
-				
 				service.ArticlePhotoInsert(articleNum, FileURL);
 			}
 		} catch (IllegalStateException e) {
