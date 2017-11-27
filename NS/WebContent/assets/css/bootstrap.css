@@ -6803,6 +6803,14 @@ button.close {
 	background-clip: padding-box
 }
 
+.comment-content {
+	position: relative;
+	background-color: #fff;
+	border: 1px solid #999;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	border-radius: 6px;
+}
+
 .modal-backdrop {
 	position: fixed;
 	top: 0;
