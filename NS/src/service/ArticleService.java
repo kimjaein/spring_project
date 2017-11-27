@@ -9,16 +9,19 @@ import vo.ArticleVO;
 
 @Component
 public class ArticleService {
-	
+
 	@Autowired
 	private ArticleDao dao;
+
 	public void setDao(ArticleDao dao) {
 		this.dao = dao;
 	}
+
 	public int ArticleInsert(ArticleVO vo) {
 		return dao.ArticleInsert(vo);
 	}
-	public int ArticlePhotoInsert(int articleNum,String FileURL) {
+
+	public int ArticlePhotoInsert(int articleNum, String FileURL) {
 		System.out.println("서비스왔다2.");
 		return dao.ArticlePhotoInsert(articleNum, FileURL);
 	}

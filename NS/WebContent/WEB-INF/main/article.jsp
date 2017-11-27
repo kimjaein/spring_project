@@ -87,24 +87,22 @@
 		iframe = "<iframe src='http://localhost:8888/NS/'></iframe>";
 		$('#test2').html(iframe);
 	}
-	   $(function() {
-           $("#imgInp").on('change', function(){
-               readURL(this);
-           });
-       });
+	$(function() {
+		$("#imgInp").on('change', function() {
+			readURL(this);
+		});
+	});
 
-       function readURL(input) {
-           if (input.files && input.files[0]) {
-           var reader = new FileReader();
-			
-           reader.onload = function (e) {
-                   $('#blah').attr('src', e.target.result);
-               }
-             reader.readAsDataURL(input.files[0]);
-           }
-       }
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
 
-
+			reader.onload = function(e) {
+				$('#blah').attr('src', e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
 </script>
 
 </head>
@@ -190,24 +188,25 @@
 					<h2>로그인이름 : ${Name} 아이디 : ${id}</h2>
 				</div>
 				<div class="modal-body">
-					<form class="form center-block" action="upload.ns" enctype="multipart/form-data" method="post">
+					<form class="form center-block" action="upload.ns"
+						enctype="multipart/form-data" method="post">
 						<div class="form-group">
 							<textarea class="form-control input-lg" autofocus=""
 								placeholder="What do you want to share?" name="text"></textarea>
 						</div>
 						<div>
-							<img id="blah" src="#" alt="your image" width="50" height="50"/>
+							<img id="blah" src="#" alt="your image" width="50" height="50" />
 						</div>
 				</div>
 				<div class="modal-footer">
 					<div>
 						<ul class="pull-left list-inline">
 							<li>
-								<!--해당버튼 그림으로 대체하기 --> <input type='file' id="imgInp" name="photo"/> <!-- <a href="#" -->
-								<!-- onclick="window.open('fileUpload.ns','사진올리기','width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;">사진</a> -->
-								<input type="hidden" value="${sessionScope.memberNum}" name="memberNum">
-								<input type="hidden" value="${Name}" name="name">
-								<input type="submit" value="작성">			
+								<!--해당버튼 그림으로 대체하기 --> <input type='file' id="imgInp"
+								name="photo" /> <!-- <a href="#" --> <!-- onclick="window.open('fileUpload.ns','사진올리기','width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;">사진</a> -->
+								<input type="hidden" value="${sessionScope.memberNum}"
+								name="memberNum"> <input type="hidden" value="${Name}"
+								name="name"> <input type="submit" value="작성">
 							</li>
 						</ul>
 					</div>

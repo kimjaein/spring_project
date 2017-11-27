@@ -2,15 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="repository.mapper.ArticleMapper">
-	<insert id="ArticleInsert" parameterType="ArticleVO" useGeneratedKeys="true" keyProperty="memberNum">
-        INSERT INTO ARTICLE(CONTENTS,WRITER,LIKE_COUNT,WRITE_TIME,MEMBER_NUM)
-        VALUES(#{contents},#{writer},0,${write_time},${member_num})
+	<insert id="ArticleInsert" parameterType="ArticleVO"
+		useGeneratedKeys="true" keyProperty="memberNum">
+		INSERT INTO
+		ARTICLE(CONTENTS,WRITER,LIKE_COUNT,WRITE_TIME,MEMBER_NUM)
+		VALUES(#{contents},#{writer},0,${write_time},${member_num})
 	</insert>
-	
+
 	<insert id="ArticlePhotoInsert" parameterType="String">
-		INSERT INTO ARTICLE_PHOTO(ARTICLE_NUM,PHOTO)
+		INSERT INTO
+		ARTICLE_PHOTO(ARTICLE_NUM,PHOTO)
 		VALUES(#{article_num},#{photo})
 	</insert>
-	
-	<parameterMap type="" id=""></parameterMap>	
 </mapper>
