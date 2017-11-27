@@ -37,8 +37,10 @@ public class MemberController {
 	public String login(String id, String pw, HttpSession session) {
 		MemberVO member = service.memberLogin(id, pw);
 		session.setAttribute("Name", member.getName());
+		member.setId(id);
+		session.setAttribute("id", member.getId());
 		session.setAttribute("memberNum", member.getMemberNum());
-		return "main";
+		return "article";
 	}
 	
 	@RequestMapping("iframetest.ns")

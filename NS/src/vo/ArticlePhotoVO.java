@@ -2,14 +2,14 @@ package vo;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class ArticlePhtoVO {
-	private String articlt_num;
+public class ArticlePhotoVO {
+	private int articlt_num;
 	private MultipartFile photo;
 	////////////////////////////////////////////
-	public String getArticlt_num() {
+	public int getArticlt_num() {
 		return articlt_num;
 	}
-	public void setArticlt_num(String articlt_num) {
+	public void setArticlt_num(int articlt_num) {
 		this.articlt_num = articlt_num;
 	}
 	public MultipartFile getPhoto() {
@@ -18,7 +18,7 @@ public class ArticlePhtoVO {
 	public void setPhoto(MultipartFile photo) {
 		this.photo = photo;
 	}
-	
+
 	
 	
 }

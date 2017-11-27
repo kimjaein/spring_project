@@ -21,7 +21,6 @@ public class MemberService {
             return -1;
         }
     }
-    
     public MemberVO memberLogin(String id, String pw) {
     	return dao.memberLogin(id, pw);
     }

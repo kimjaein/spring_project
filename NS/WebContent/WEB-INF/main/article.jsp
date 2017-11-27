@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +26,6 @@
 			flag = true;
 		}
 	}
-	function
 </script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -87,9 +87,27 @@
 		iframe = "<iframe src='http://localhost:8888/NS/'></iframe>";
 		$('#test2').html(iframe);
 	}
-</script>
-</head>
+	   $(function() {
+           $("#imgInp").on('change', function(){
+               readURL(this);
+           });
+       });
 
+       function readURL(input) {
+           if (input.files && input.files[0]) {
+           var reader = new FileReader();
+			
+           reader.onload = function (e) {
+                   $('#blah').attr('src', e.target.result);
+               }
+             reader.readAsDataURL(input.files[0]);
+           }
+       }
+
+
+</script>
+
+</head>
 
 <body>
 	<div class="wrapper">
@@ -142,8 +160,7 @@
 					<div id="singlePage"></div>
 					<!-- 아래 div에 iframe (슬라이드)-->
 					<div id="iframe">
-						아이디 : ${sessionScope.loginId}<br> 멤버번호 :
-						${sessionScope.memberNum}
+						멤버번호 : ${sessionScope.memberNum}
 						<form>
 							<input id="textMessage" type="text"> <input
 								onclick="sendMessage()" value="Send" type="button">
@@ -170,28 +187,32 @@
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">x</button>
-					${loginId}
+					<h2>로그인이름 : ${Name} 아이디 : ${id}</h2>
 				</div>
 				<div class="modal-body">
-					<form class="form center-block">
+					<form class="form center-block" action="upload.ns" enctype="multipart/form-data" method="post">
 						<div class="form-group">
 							<textarea class="form-control input-lg" autofocus=""
-								placeholder="What do you want to share?"></textarea>
+								placeholder="What do you want to share?" name="text"></textarea>
 						</div>
-					</form>
+						<div>
+							<img id="blah" src="#" alt="your image" width="50" height="50"/>
+						</div>
 				</div>
 				<div class="modal-footer">
 					<div>
-						<button class="btn btn-primary btn-sm" data-dismiss="modal"
-							aria-hidden="true">Post</button>
 						<ul class="pull-left list-inline">
 							<li>
-							<form action="upload.ns" method="post" enctype="multipart/form-data">
-							<input type="file" name="photo"><br>
-							<input type="submit" value="업로드"></form></li>
+								<!--해당버튼 그림으로 대체하기 --> <input type='file' id="imgInp" name="photo"/> <!-- <a href="#" -->
+								<!-- onclick="window.open('fileUpload.ns','사진올리기','width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;">사진</a> -->
+								<input type="hidden" value="${sessionScope.memberNum}" name="memberNum">
+								<input type="hidden" value="${Name}" name="name">
+								<input type="submit" value="작성">			
+							</li>
 						</ul>
 					</div>
 				</div>
+				</form>
 			</div>
 		</div>
 	</div>

@@ -13,4 +13,6 @@
 	<mvc:view-resolvers>
 		<mvc:jsp prefix="/WEB-INF/main/"/>
 	</mvc:view-resolvers>
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 </beans>
