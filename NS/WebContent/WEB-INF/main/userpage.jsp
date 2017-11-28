@@ -4,7 +4,8 @@
 <html>
 <head>
 <title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function() {
 		friendStatus();
@@ -81,8 +82,9 @@
 <body>
 	userpageTest
 	<br> 유저페이지 번호 : ${searchUserNum}
-	<br> 내번호 : ${sessionScope.memberNum}<br>
+	<br> 내번호 : ${sessionScope.memberNum}
+	<br>
 	<div id="friendDiv"></div>
-	
+
 </body>
 </html>
