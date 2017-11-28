@@ -12,4 +12,8 @@
 	<insert id="ArticlePhotoInsert" parameterType="Map">
 		INSERT INTO ARTICLE_PHOTO(ARTICLE_NUM,PHOTO) VALUES(#{article_num},#{photo})
 	</insert>
+	
+	<select id="selectArticleList" parameterType="int" resultType="ArticleVO">
+		select article_num,contents,writer,like_count,Write_Time,member_num from article where member_num=#{member_num} order by write_time desc limit 0,10
+	</select>
 </mapper>

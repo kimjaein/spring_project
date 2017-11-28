@@ -1,6 +1,7 @@
 package vo;
 
 import java.util.Date;
+import java.util.List;
 
 public class ArticleVO {
 	private int article_num; //auto_increment
@@ -9,6 +10,7 @@ public class ArticleVO {
 	private int like_count; //좋아요 0 미필
 	private Date write_time; //작성시간 미필
 	private int member_num; //작성자번호 필
+	private List<ArticlePhotoVO> photoList;
 	//////////////////////////////////////////////////////////
 	public ArticleVO(int article_num, String contents, String writer, int like_count, Date write_time, int member_num) {
 		super();
@@ -59,7 +61,14 @@ public class ArticleVO {
 	public void setMember_num(int member_num) {
 		this.member_num = member_num;
 	}
-//////////////////////////////////////////////////////////
+	
+public List<ArticlePhotoVO> getPhotoList() {
+		return photoList;
+	}
+	public void setPhotoList(List<ArticlePhotoVO> photoList) {
+		this.photoList = photoList;
+	}
+	//////////////////////////////////////////////////////////
 	@Override
 	public String toString() {
 		return "ArticleVO [article_num=" + article_num + ", contents=" + contents + ", writer=" + writer

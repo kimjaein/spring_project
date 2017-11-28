@@ -4,9 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,6 +42,7 @@ public class ArticleController {
 		System.out.println("멤넘" + request.getParameter("memberNum"));
 		String stringNum = request.getParameter("memberNum");
 		int memberNum = Integer.parseInt(stringNum);
+		
 		String name = request.getParameter("name");
 		String text = request.getParameter("text");
 		System.out.println("네임1:" + name);
@@ -66,6 +69,7 @@ public class ArticleController {
 			int articleNum = service.ArticleInsert(article);
 			System.out.println("아티클 넘값" + articleNum);
 			if (articleNum > 0) {
+				
 				service.ArticlePhotoInsert(articleNum, FileURL);
 			}
 		} catch (IllegalStateException e) {
@@ -77,7 +81,12 @@ public class ArticleController {
 	}
 
 	@RequestMapping("single.ns")
-	public String singlePage() {
-		return "single_post";
+	public ModelAndView singlePage(HttpSession session) {
+		System.out.println("this?");
+		int memberNum= (int) session.getAttribute("memberNum");
+		List<ArticleVO> articleList=service.selectArticleList(memberNum);
+		ModelAndView mv = new ModelAndView("single_post");
+		mv.addObject("articleList",articleList);
+		return mv;
 	}
 }
