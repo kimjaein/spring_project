@@ -1,5 +1,7 @@
 package service;
 
+import java.util.*;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,11 +20,20 @@ public class ArticleService {
 	}
 
 	public int ArticleInsert(ArticleVO vo) {
-		return dao.ArticleInsert(vo);
+		if(dao.ArticleInsert(vo)>0) {
+			return vo.getArticle_num();
+		}else {
+			return -1;
+		}
 	}
 
 	public int ArticlePhotoInsert(int articleNum, String FileURL) {
 		System.out.println("서비스왔다2.");
 		return dao.ArticlePhotoInsert(articleNum, FileURL);
+	}
+	public List<ArticleVO> selectArticleList(int memberNum){
+		List<ArticleVO> articleList =new ArrayList<ArticleVO>();
+		articleList = dao.selectArticleList(memberNum);
+		return articleList;
 	}
 }

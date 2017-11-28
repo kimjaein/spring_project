@@ -4,9 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Writer;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,7 +33,7 @@ public class ArticleController {
 	@RequestMapping("/upload.ns")
 	public ModelAndView upload(HttpServletRequest request, ArticlePhotoVO photo, ArticleVO article) {
 		// main.jsp로 변경
-		ModelAndView mv = new ModelAndView("main.jsp");
+		ModelAndView mv = new ModelAndView("main");
 		String uploadPath = request.getServletContext().getRealPath("img");
 		System.out.println("주소" + uploadPath);
 		File dir = new File(uploadPath);
@@ -40,13 +42,13 @@ public class ArticleController {
 		System.out.println("멤넘" + request.getParameter("memberNum"));
 		String stringNum = request.getParameter("memberNum");
 		int memberNum = Integer.parseInt(stringNum);
+		
 		String name = request.getParameter("name");
 		String text = request.getParameter("text");
 		System.out.println("네임1:" + name);
 		article.setWriter(name);
 		System.out.println("네임2:" + article.getWriter());
 		article.setContents(text);
-		article.setWrite_time(new Date());
 		article.setMember_num(memberNum);
 		if (dir.exists() == false) {
 			dir.mkdir();
@@ -55,9 +57,9 @@ public class ArticleController {
 		File saveFile = new File(uploadPath + "/" + savedName);
 		mv.addObject("imgPath", "img/" + savedName);
 		mv.addObject("url", uploadPath);
-		System.out.println(saveFile);
+		
 		String FileURL = uploadPath + "/" + savedName;
-
+		System.out.println("url"+FileURL);
 		try {
 			photo.getPhoto().transferTo(saveFile);
 			System.out.println("여긴 디비작업영역");
@@ -67,6 +69,7 @@ public class ArticleController {
 			int articleNum = service.ArticleInsert(article);
 			System.out.println("아티클 넘값" + articleNum);
 			if (articleNum > 0) {
+				
 				service.ArticlePhotoInsert(articleNum, FileURL);
 			}
 		} catch (IllegalStateException e) {
@@ -78,7 +81,12 @@ public class ArticleController {
 	}
 
 	@RequestMapping("single.ns")
-	public String singlePage() {
-		return "single_post";
+	public ModelAndView singlePage(HttpSession session) {
+		System.out.println("this?");
+		int memberNum= (int) session.getAttribute("memberNum");
+		List<ArticleVO> articleList=service.selectArticleList(memberNum);
+		ModelAndView mv = new ModelAndView("single_post");
+		mv.addObject("articleList",articleList);
+		return mv;
 	}
 }

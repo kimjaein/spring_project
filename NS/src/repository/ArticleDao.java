@@ -1,5 +1,7 @@
 package repository;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,5 +28,10 @@ public class ArticleDao {
 		System.out.println("dao¿Ô´Ù2.");
 		ArticleMapper mapper = session.getMapper(ArticleMapper.class);
 		return mapper.ArticlePhotoInsert(articleNum, saveFile);
+	}
+
+	public List<ArticleVO> selectArticleList(int memberNum) {
+		ArticleMapper mapper = session.getMapper(ArticleMapper.class);
+		return mapper.selectArticleList(memberNum);
 	}
 }

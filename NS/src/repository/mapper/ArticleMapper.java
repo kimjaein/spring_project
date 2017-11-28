@@ -1,5 +1,7 @@
 package repository.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import vo.ArticleVO;
@@ -7,5 +9,7 @@ import vo.ArticleVO;
 public interface ArticleMapper {
 	public int ArticleInsert(ArticleVO article);
 
-	public int ArticlePhotoInsert(@Param("articlt_num") int articleNum, @Param("photo") String FileURL);
+	public int ArticlePhotoInsert(@Param("article_num") int articleNum, @Param("photo") String saveFile);
+
+	public List<ArticleVO> selectArticleList(int memberNum);
 }
