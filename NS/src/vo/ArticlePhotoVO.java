@@ -5,6 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class ArticlePhotoVO {
 	private int article_num;
 	private MultipartFile photo;
+	private String filePath;
 
 	
 	public ArticlePhotoVO() {
@@ -23,6 +24,17 @@ public class ArticlePhotoVO {
 	public void setPhoto(MultipartFile photo) {
 		this.photo = photo;
 	}
-
+	
+	public String getFilePath() {
+		return filePath;
+	}
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
+	@Override
+	public String toString() {
+		return "ArticlePhotoVO [article_num=" + article_num + ", photo=" + photo + ", filePath=" + filePath + "]";
+	}
+	
 
 }

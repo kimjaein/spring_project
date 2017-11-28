@@ -74,6 +74,7 @@
 		<button id="btn"></button>
 		<div class="full" onmousewheel="horizontalScroll()">
 			<table>
+			<tr><td>¸â¹ö¹øÈ£ : ${sessionScope.memberNum}<td></tr>
 				<tr id="here">
 					<c:forEach var="article" items="${articleList}">
 						<td>
@@ -81,7 +82,9 @@
 								<div class="article">
 									<div class="panel panel-default">
 										<div class="panel-thumbnail">
-											<img src="assets/img/bg_5.jpg" class="img-responsive">
+										<c:forEach var="photo" items="${article.photoList}">
+											<img src="${photo.filePath}" class="img-responsive">
+											</c:forEach>
 										</div>
 										<div class="panel-body">
 											<p class="name">
