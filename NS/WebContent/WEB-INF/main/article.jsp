@@ -84,20 +84,21 @@
 		iframe = "<iframe src='http://localhost:8888/NS/'></iframe>";
 		$('#test2').html(iframe);
 		
-		var iframe = "<iframe src='http://70.12.115.75:8888/NS/single.ns' width='100%' height='500px'></iframe>";
+		var iframe = "<iframe src='single.ns' width='100%' height='500px'></iframe>";
 		$('#articlePage').html(iframe);
 		
 		$("#imgInp").on('change', function() {
 			readURL(this);
 		});
 	});
-
 	function readURL(input) {
 		if (input.files && input.files[0]) {
 			var reader = new FileReader();
 
 			reader.onload = function(e) {
-				$('#blah').attr('src', e.target.result);
+				var st = $("#imgBox").html();
+					st +="<img id='blah' name='' src="+e.target.result+" alt='your image' width='50' height='50' />"
+				$('#imgBox').html(st);
 			}
 			reader.readAsDataURL(input.files[0]);
 		}
@@ -211,16 +212,19 @@
 							<textarea class="form-control input-lg" autofocus=""
 								placeholder="What do you want to share?" name="text"></textarea>
 						</div>
-						<div>
-							<img id="blah" src="#" alt="your image" width="50" height="50" />
+						<div id="imgBox">
+							
 						</div>
 				</div>
 				<div class="modal-footer">
 					<div>
 						<ul class="pull-left list-inline">
 							<li>
-								<!--해당버튼 그림으로 대체하기 --> <input type='file' id="imgInp"
-								name="photo" /> <!-- <a href="#" --> <!-- onclick="window.open('fileUpload.ns','사진올리기','width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;">사진</a> -->
+								<!--해당버튼 그림으로 대체하기 --> <input type='file'type="hidden" id="imgInp"
+								name="photo" />
+								
+								<div id="imgInput">
+								</div>
 								<input type="hidden" value="${sessionScope.memberNum}"
 								name="memberNum"> <input type="hidden" value="${Name}"
 								name="name"> <input type="submit" value="작성">

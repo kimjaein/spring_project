@@ -33,7 +33,6 @@
 		else if (event.wheelDelta >= 120)
 			window.scrollBy(-40, 0);
 	}
-
 	$(document).scroll(function() {
 		var st = $(this).scrollLeft();
 		var size = $(document).width() - $(window).width();

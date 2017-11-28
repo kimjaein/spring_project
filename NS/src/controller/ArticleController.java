@@ -33,6 +33,7 @@ public class ArticleController {
 	@RequestMapping("/upload.ns")
 	public ModelAndView upload(HttpServletRequest request, ArticlePhotoVO photo, ArticleVO article) {
 		// main.jsp로 변경
+		
 		ModelAndView mv = new ModelAndView("article");
 		String uploadPath = request.getServletContext().getRealPath("img");
 		System.out.println("주소" + uploadPath);
