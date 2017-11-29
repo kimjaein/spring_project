@@ -182,13 +182,13 @@
 					}
 						$('#badge').html(badgeList);
 				},
+					
 				error:function(){
 					alert('ajax 요청 실패');
 				}
+				
 			})
-		})		
-
-	})
+		})	
 
 	window.onload = function() {
 		var iframe;
@@ -246,6 +246,7 @@
 								<li class="dropdown"><a href="#" class="dropdown-toggle"
 									data-toggle="dropdown"><span class="badge" id="badgeBtn">badge</span></a>
 									<ul class="dropdown-menu" id="badge">
+									
 										<!-- 								  <li><a href="">More</a></li> -->
 										<!-- 								  <li><a href="">More</a></li> -->
 										<!-- 								  <li><a href="">More</a></li> -->

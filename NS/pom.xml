@@ -118,7 +118,6 @@
 			<artifactId>spring-boot-starter-websocket</artifactId>
 			<version>1.5.7.RELEASE</version>
 		</dependency>
-		<!-- Spring websocket -->
 
 	</dependencies>
 </project>
