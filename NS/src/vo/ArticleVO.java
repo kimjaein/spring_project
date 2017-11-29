@@ -72,6 +72,8 @@ public List<ArticlePhotoVO> getPhotoList() {
 	@Override
 	public String toString() {
 		return "ArticleVO [article_num=" + article_num + ", contents=" + contents + ", writer=" + writer
-				+ ", like_count=" + like_count + ", write_time=" + write_time + ", member_num=" + member_num + "]";
+				+ ", like_count=" + like_count + ", write_time=" + write_time + ", member_num=" + member_num
+				+ ", photoList=" + photoList + "]";
 	}
+
 }

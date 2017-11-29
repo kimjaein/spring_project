@@ -79,25 +79,26 @@
 
 		})
 
-	})
 
-	window.onload = function() {
 		var iframe;
 		iframe = "<iframe src='http://localhost:8888/NS/'></iframe>";
 		$('#test2').html(iframe);
-	}
-	$(function() {
+		
+		var iframe = "<iframe src='single.ns' width='100%' height='500px'></iframe>";
+		$('#articlePage').html(iframe);
+		
 		$("#imgInp").on('change', function() {
 			readURL(this);
 		});
 	});
-
 	function readURL(input) {
 		if (input.files && input.files[0]) {
 			var reader = new FileReader();
 
 			reader.onload = function(e) {
-				$('#blah').attr('src', e.target.result);
+				var st = $("#imgBox").html();
+					st +="<img id='blah' name='' src="+e.target.result+" alt='your image' width='50' height='50' />"
+				$('#imgBox').html(st);
 			}
 			reader.readAsDataURL(input.files[0]);
 		}
@@ -165,6 +166,8 @@
 
 						<div id="test2"></div>
 						<input type="button" id="btnComment">
+						<div id="articlePage"></div>
+						<input type="button" id="btnComment">
 					</div>
 				</div>
 				<!-- /main -->
@@ -174,7 +177,7 @@
 	</div>
 
 
-	<table id="postModal" border="1" class="modal fade" tabindex="-1" role="dialog"
+	<table border="1" class="modal fade" tabindex="-1" role="dialog"
 		aria-hidden="true">
 		<tr class="comment-content">
 			<td height="300" width="600" rowspan="4">사진란</td>
@@ -193,7 +196,7 @@
 	</table>
 	<!--post modal-->
 	<!-- 글 작성 form -->
-	<div  class="modal fade" tabindex="-1" role="dialog"
+	<div id="postModal" class="modal fade" tabindex="-1" role="dialog"
 		aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -209,16 +212,19 @@
 							<textarea class="form-control input-lg" autofocus=""
 								placeholder="What do you want to share?" name="text"></textarea>
 						</div>
-						<div>
-							<img id="blah" src="#" alt="your image" width="50" height="50" />
+						<div id="imgBox">
+							
 						</div>
 				</div>
 				<div class="modal-footer">
 					<div>
 						<ul class="pull-left list-inline">
 							<li>
-								<!--해당버튼 그림으로 대체하기 --> <input type='file' id="imgInp"
-								name="photo" /> <!-- <a href="#" --> <!-- onclick="window.open('fileUpload.ns','사진올리기','width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;">사진</a> -->
+								<!--해당버튼 그림으로 대체하기 --> <input type='file'type="hidden" id="imgInp"
+								name="photo" />
+								
+								<div id="imgInput">
+								</div>
 								<input type="hidden" value="${sessionScope.memberNum}"
 								name="memberNum"> <input type="hidden" value="${Name}"
 								name="name"> <input type="submit" value="작성">

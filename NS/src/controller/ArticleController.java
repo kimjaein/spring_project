@@ -33,7 +33,8 @@ public class ArticleController {
 	@RequestMapping("/upload.ns")
 	public ModelAndView upload(HttpServletRequest request, ArticlePhotoVO photo, ArticleVO article) {
 		// main.jsp로 변경
-		ModelAndView mv = new ModelAndView("main");
+		
+		ModelAndView mv = new ModelAndView("article");
 		String uploadPath = request.getServletContext().getRealPath("img");
 		System.out.println("주소" + uploadPath);
 		File dir = new File(uploadPath);
@@ -58,7 +59,7 @@ public class ArticleController {
 		mv.addObject("imgPath", "img/" + savedName);
 		mv.addObject("url", uploadPath);
 		
-		String FileURL = uploadPath + "/" + savedName;
+		String FileURL = "img/" + savedName;
 		System.out.println("url"+FileURL);
 		try {
 			photo.getPhoto().transferTo(saveFile);
@@ -82,9 +83,9 @@ public class ArticleController {
 
 	@RequestMapping("single.ns")
 	public ModelAndView singlePage(HttpSession session) {
-		System.out.println("this?");
 		int memberNum= (int) session.getAttribute("memberNum");
 		List<ArticleVO> articleList=service.selectArticleList(memberNum);
+		System.out.println(memberNum +"controller");
 		ModelAndView mv = new ModelAndView("single_post");
 		mv.addObject("articleList",articleList);
 		return mv;
