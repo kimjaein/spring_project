@@ -26,6 +26,9 @@
 		$('#next').click(function() {
 			next()
 		})
+		$('#test').click(function() {
+			var st="<input type=text class='test'>"; 
+		})
 	})
 	function horizontalScroll() {
 		if (event.wheelDelta <= -120)

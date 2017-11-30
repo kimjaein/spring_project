@@ -14,8 +14,11 @@
         <![endif]-->
 <link href="assets/css/facebook.css" rel="stylesheet">
 <link href="assets/css/myNew.css" rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script type="text/javascript">
 	var flag = true;
+	var imgflag = 2;
 	function openNav() {
 		if (flag) {
 			document.getElementById("mySidenav").style.width = "200px";
@@ -79,30 +82,33 @@
 
 		})
 
-
-		var iframe;
-		iframe = "<iframe src='http://localhost:8888/NS/'></iframe>";
-		$('#test2').html(iframe);
-		
-		var iframe = "<iframe src='single.ns' width='100%' height='500px'></iframe>";
+		var iframe = "<iframe src='single.ns' width='100%' height='800px'></iframe>";
 		$('#articlePage').html(iframe);
-		
-		$("#imgInp").on('change', function() {
-			readURL(this);
-		});
-	});
-	function readURL(input) {
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
 
-			reader.onload = function(e) {
-				var st = $("#imgBox").html();
-					st +="<img id='blah' name='' src="+e.target.result+" alt='your image' width='50' height='50' />"
-				$('#imgBox').html(st);
-			}
-			reader.readAsDataURL(input.files[0]);
+		
+		$('#add').click(function() {
+			$('.imgInp:nth-child(' + imgflag + ')').click();
+			$('.imgInp:nth-child(' + imgflag + ')').on('change', function() {
+				readURL(this)
+				
+			})
+		})
+
+		
+		
+		function readURL(input) {
+				var reader = new FileReader();
+
+				reader.onload = function(e) {
+					var st = $("#imgBox").html();
+					st += "<img id='blah' name='' src="+e.target.result+" alt='your image' width='50' height='50' />"
+					$('#imgBox').html(st);
+				}
+				reader.readAsDataURL(input.files[0]);
+				imgflag = imgflag + 1;
 		}
-	}
+
+	});
 </script>
 
 </head>
@@ -158,16 +164,7 @@
 					<div id="singlePage"></div>
 					<!-- 아래 div에 iframe (슬라이드)-->
 					<div id="iframe">
-						멤버번호 : ${sessionScope.memberNum}
-						<form>
-							<input id="textMessage" type="text"> <input
-								onclick="sendMessage()" value="Send" type="button">
-						</form>
-
-						<div id="test2"></div>
-						<input type="button" id="btnComment">
 						<div id="articlePage"></div>
-						<input type="button" id="btnComment">
 					</div>
 				</div>
 				<!-- /main -->
@@ -189,9 +186,10 @@
 		<tr class="comment-content">
 			<td>여긴 댓글들이 보이는 공란</td>
 		</tr>
-		<tr class="comment-content"	>
-		<td><textarea rows="2" cols="50"></textarea><button>작성</button></td>
-			
+		<tr class="comment-content">
+			<td><textarea rows="2" cols="50"></textarea>
+				<button>작성</button></td>
+
 		</tr>
 	</table>
 	<!--post modal-->
@@ -205,33 +203,35 @@
 						aria-hidden="true">x</button>
 					<h2>로그인이름 : ${Name} 아이디 : ${id}</h2>
 				</div>
-				<div class="modal-body">
-					<form class="form center-block" action="upload.ns"
-						enctype="multipart/form-data" method="post">
+				<form class="form center-block" action="upload.ns"
+					enctype="multipart/form-data" method="post">
+					<div class="modal-body">
 						<div class="form-group">
 							<textarea class="form-control input-lg" autofocus=""
 								placeholder="What do you want to share?" name="text"></textarea>
 						</div>
-						<div id="imgBox">
-							
-						</div>
-				</div>
-				<div class="modal-footer">
-					<div>
-						<ul class="pull-left list-inline">
-							<li>
-								<!--해당버튼 그림으로 대체하기 --> <input type='file'type="hidden" id="imgInp"
-								name="photo" />
-								
-								<div id="imgInput">
-								</div>
-								<input type="hidden" value="${sessionScope.memberNum}"
-								name="memberNum"> <input type="hidden" value="${Name}"
-								name="name"> <input type="submit" value="작성">
-							</li>
-						</ul>
+						<div id="imgBox"></div>
 					</div>
-				</div>
+					<div class="modal-footer">
+						<div>
+							<ul class="pull-left list-inline">
+								<li><i class="fa fa-upload" id="add"></i> <!--해당버튼 그림으로 대체하기 -->
+									<input type='file' class='imgInp' name='photo' style='display:none'/>
+									<input type='file' class='imgInp' name='photo' style='display:none'/>
+									<input type='file' class='imgInp' name='photo' style='display:none'/>
+									<input type='file' class='imgInp' name='photo' style='display:none'/>
+									<input type='file' class='imgInp' name='photo' style='display:none'/>
+									<input type='file' class='imgInp' name='photo' style='display:none'/>
+									<input type='file' class='imgInp' name='photo' style='display:none'/>
+									
+									
+									<input type="hidden"
+									value="${sessionScope.memberNum}" name="memberNum" id="before">
+									<input type="hidden" value="${Name}" name="name"> <input
+									type="submit" value="작성"></li>
+							</ul>
+						</div>
+					</div>
 				</form>
 			</div>
 		</div>

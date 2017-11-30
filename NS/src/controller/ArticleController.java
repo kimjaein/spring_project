@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import service.ArticleService;
@@ -31,9 +32,14 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/upload.ns")
-	public ModelAndView upload(HttpServletRequest request, ArticlePhotoVO photo, ArticleVO article) {
+	public ModelAndView upload(HttpServletRequest request,ArticlePhotoVO photoList, ArticleVO article) {
 		// main.jsp로 변경
-		
+		System.out.println("제발 : "+photoList.getPhoto().size());
+		for(MultipartFile f:photoList.getPhoto()) {
+			System.out.println(f.getOriginalFilename());
+		}
+		System.out.println("//////////////////////////////////////////////////////////////////////");
+		System.out.println(photoList.toString());
 		ModelAndView mv = new ModelAndView("article");
 		String uploadPath = request.getServletContext().getRealPath("img");
 		System.out.println("주소" + uploadPath);
@@ -54,15 +60,15 @@ public class ArticleController {
 		if (dir.exists() == false) {
 			dir.mkdir();
 		}
-		String savedName = new Random().nextInt(100) + photo.getPhoto().getOriginalFilename();
-		File saveFile = new File(uploadPath + "/" + savedName);
-		mv.addObject("imgPath", "img/" + savedName);
-		mv.addObject("url", uploadPath);
-		
-		String FileURL = "img/" + savedName;
-		System.out.println("url"+FileURL);
+	//	String savedName = new Random().nextInt(100) + photo.getPhoto().getOriginalFilename();
+//		File saveFile = new File(uploadPath + "/" + savedName);
+//		mv.addObject("imgPath", "img/" + savedName);
+//		mv.addObject("url", uploadPath);
+//		
+//		String FileURL = "img/" + savedName;
+	//	System.out.println("url"+FileURL);
 		try {
-			photo.getPhoto().transferTo(saveFile);
+		//	photo.getPhoto().transferTo(saveFile);
 			System.out.println("여긴 디비작업영역");
 			// article insert: 데이트는 다 new date하고 좋아요 = 0 writer,contents넣고
 			// insert 후 article_num값을 빼와서 saveFile과 함께 articlePhoto에 insert
@@ -71,11 +77,11 @@ public class ArticleController {
 			System.out.println("아티클 넘값" + articleNum);
 			if (articleNum > 0) {
 				
-				service.ArticlePhotoInsert(articleNum, FileURL);
+			//	service.ArticlePhotoInsert(articleNum, FileURL);
 			}
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
-		} catch (IOException e) {
+	//	} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return mv;
