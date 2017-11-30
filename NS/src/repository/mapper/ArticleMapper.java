@@ -15,4 +15,8 @@ public interface ArticleMapper {
 	public List<ArticleVO> selectArticleList(int memberNum);
 
 	public List<ArticlePhotoVO> selectArticlePhotoList(int article_num);
+
+	public ArticlePhotoVO articlePhotoView(int article_num);
+
+	public ArticleVO articleView(int article_num);
 }

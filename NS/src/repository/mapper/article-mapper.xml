@@ -22,4 +22,12 @@
 	<resultMap type="ArticlePhotoVO" id="photoResultMap">
         <result column="photo" property="filePath"/>
     </resultMap>
+    
+    <select id="articlePhotoView" resultType="articlePhotoVO" parameterType="int" resultMap="photoResultMap">
+    	select * from article_photo where article_num=#{article_num}
+    </select>
+    
+    <select id="articleView" resultType="articleVO" parameterType="int">
+    	select * from article where article_num=#{article_num}
+    </select>
 </mapper>

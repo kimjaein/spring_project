@@ -20,13 +20,11 @@ public class ArticleDao {
 	}
 
 	public int ArticleInsert(ArticleVO vo) {
-		System.out.println("dao왔다1.");
 		ArticleMapper mapper = session.getMapper(ArticleMapper.class);
 		return mapper.ArticleInsert(vo);
 	}
 
 	public int ArticlePhotoInsert(int articleNum, String saveFile) {
-		System.out.println("dao왔다2.");
 		ArticleMapper mapper = session.getMapper(ArticleMapper.class);
 		return mapper.ArticlePhotoInsert(articleNum, saveFile);
 	}
@@ -39,5 +37,15 @@ public class ArticleDao {
 	public List<ArticlePhotoVO> selectArticlePhoto(int article_num) {
 		ArticleMapper mapper = session.getMapper(ArticleMapper.class);
 		return mapper.selectArticlePhotoList(article_num);
+	}
+
+	public ArticlePhotoVO articlePhotoView(int article_num) {
+		ArticleMapper mapper = session.getMapper(ArticleMapper.class);
+		return mapper.articlePhotoView(article_num);
+	}
+
+	public ArticleVO articleView(int article_num) {
+		ArticleMapper mapper = session.getMapper(ArticleMapper.class);
+		return mapper.articleView(article_num);
 	}
 }

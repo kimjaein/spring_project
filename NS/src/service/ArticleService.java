@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import repository.ArticleDao;
+import vo.ArticlePhotoVO;
 import vo.ArticleVO;
 
 @Component
@@ -28,7 +29,6 @@ public class ArticleService {
 	}
 
 	public int ArticlePhotoInsert(int articleNum, String FileURL) {
-		System.out.println("서비스왔다2.");
 		return dao.ArticlePhotoInsert(articleNum, FileURL);
 	}
 	
@@ -40,8 +40,15 @@ public class ArticleService {
 			ArticleVO article = articleList.get(i);
 			article.setPhotoList(dao.selectArticlePhoto(article.getArticle_num()));
 			articleList.set(i, article);
-			System.out.println(articleList.get(i).toString());
 		}
 		return articleList;
+	}
+
+	public ArticlePhotoVO articlePhotoView(int article_num) {
+		return dao.articlePhotoView(article_num);
+	}
+
+	public ArticleVO articleView(int article_num) {
+		return dao.articleView(article_num);
 	}
 }

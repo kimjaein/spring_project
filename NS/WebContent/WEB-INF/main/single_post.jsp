@@ -15,9 +15,12 @@
 #next, #btn {
 	position: fixed;
 }
+#commentModal{
+	margin: 100px;
+}
 </style>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.js"></script>
+<script type="text/javascript" src="assets/js/bootstrap.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$('#btn').click(function() {
@@ -28,6 +31,11 @@
 		})
 		$('#test').click(function() {
 			var st="<input type=text class='test'>"; 
+		})
+		$(".article_num").click(function(){
+			var st = $(this).attr('value')
+			commentModal(st)
+			return false;
 		})
 	})
 	function horizontalScroll() {
@@ -67,11 +75,65 @@
 		$('#here').html(article)
 		count = count + 1;
 	}
+	function commentModal(st){
+		$.ajax({
+			type : 'get',
+			url : 'articleViewPhoto.ns?article_num='+st,
+			dataType : 'json',
+			success : function(data) {
+				var photoData='';
+				photoData = '<img src="'+data['filePath']+'" width="400" height="300">';
+				$('#commentModal tr').eq(1).find('td').eq(0).html(photoData);
+				//1번째tr안에 0번째td에 html적용
+			},
+			error : function() {
+				alert("fail")
+			}
+		})
+		
+		$.ajax({
+			type : 'get',
+			url : 'articleViewContents.ns?article_num='+st,
+			dataType : 'json',
+			success : function(data) {
+				var contentsData='';
+				contentsData = data['contents'];
+				var writer='';
+				writer = data['writer'];
+// 				alert($('#commentModal tr').eq(1).find('td').eq(0).text(ContentsData));
+				$('#commentModal tr').eq(2).find('td').eq(0).html(contentsData);
+				$('#commentModal tr').eq(1).find('td').eq(1).html(writer);
+			},
+			error : function() {
+				alert("fail2")
+			}
+		})
+		$("#commentModal").modal('show');
+	}
 </script>
 
 </head>
 <body>
-
+<table id="commentModal" border="1" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+	<tr class="comment-content"> 
+		<td colspan="2">틀</td>
+		<td><button type="button" class="close" data-dismiss="modal" aria-hidden="true">Close</button></td>
+	</tr>
+	<tr class="comment-content">
+		<td height="300" width="400" rowspan="4"><!-- 사진공간 --></td>
+		<td colspan="2"><!-- 작성자공간 --></td>
+	</tr>
+	<tr class="comment-content">
+		<td height="150" colspan="2" id="content"><!-- 내용공간 --></td>
+	</tr>
+	<tr class="comment-content">
+		<td colspan="2">댓글공간	<!-- 댓글공간 --></td>
+	</tr>
+	<tr class="comment-content"	>
+		<td><textarea rows="2" cols="50"></textarea></td>
+		<td><button>작성</button></td>
+	</tr>
+</table>
 	<div class="padding">
 		<button id="btn"></button>
 		<div class="full" onmousewheel="horizontalScroll()">
@@ -96,7 +158,7 @@
 											<p>${article.contents}</p>
 											<p>
 												<i class="fa fa-heart-o"></i> ${article.like_count}, <i
-													class="fa fa-commenting-o"></i> Comment
+													class="fa fa-commenting-o"></i> Comment &nbsp;<button class="article_num" value="${article.article_num}" >상세보기</button>
 											</p>
 										</div>
 									</div>

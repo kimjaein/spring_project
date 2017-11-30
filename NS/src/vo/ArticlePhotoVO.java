@@ -1,12 +1,10 @@
 package vo;
 
-import java.util.List;
-
 import org.springframework.web.multipart.MultipartFile;
 
 public class ArticlePhotoVO {
 	private int article_num;
-	private List<MultipartFile> photo;
+	private MultipartFile photo;
 	private String filePath;
 
 	
@@ -20,14 +18,13 @@ public class ArticlePhotoVO {
 	public void setArticle_num(int article_num) {
 		this.article_num = article_num;
 	}
-
-	
-	public List<MultipartFile> getPhoto() {
+	public MultipartFile getPhoto() {
 		return photo;
 	}
-	public void setPhoto(List<MultipartFile> photo) {
+	public void setPhoto(MultipartFile photo) {
 		this.photo = photo;
 	}
+	
 	public String getFilePath() {
 		return filePath;
 	}
@@ -39,4 +36,5 @@ public class ArticlePhotoVO {
 		return "ArticlePhotoVO [article_num=" + article_num + ", photo=" + photo + ", filePath=" + filePath + "]";
 	}
 	
+
 }
