@@ -28,7 +28,8 @@
 	}
 	
 </script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript">
 	//WebSocketEx는 프로젝트 이름
 	//websocket 클래스 이름
@@ -181,13 +182,13 @@
 					}
 						$('#badge').html(badgeList);
 				},
+					
 				error:function(){
 					alert('ajax 요청 실패');
 				}
+				
 			})
-		})		
-
-	})
+		})	
 
 	window.onload = function() {
 		var iframe;
@@ -222,11 +223,11 @@
 							<form class="navbar-form navbar-left">
 								<div class="input-group input-group-sm"
 									style="max-width: 360px;">
-									<input class="form-control" placeholder="Search"
-										id="srchterm" type="text" autocomplete="off">
+									<input class="form-control" placeholder="Search" id="srchterm"
+										type="text" autocomplete="off">
 									<div class="dropdownsearch-content" id="friend">
 										<ul id="friend-under">
-										
+
 										</ul>
 									</div>
 									<div class="input-group-btn">
@@ -241,18 +242,18 @@
 										Home</a></li>
 								<li><a href="#postModal" role="button" data-toggle="modal"><i
 										class="glyphicon glyphicon-plus"></i> Post</a></li>
-							
-								<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="badge" id="badgeBtn">badge</span></a>
-								<ul class="dropdown-menu" id="badge">
-<!-- 								  <li><a href="">More</a></li> -->
-<!-- 								  <li><a href="">More</a></li> -->
-<!-- 								  <li><a href="">More</a></li> -->
-<!-- 								  <li><a href="">More</a></li> -->
-<!-- 								  <li><a href="">More</a></li> -->
-								</ul>
-							  </li>
-							  </ul>
+
+								<li class="dropdown"><a href="#" class="dropdown-toggle"
+									data-toggle="dropdown"><span class="badge" id="badgeBtn">badge</span></a>
+									<ul class="dropdown-menu" id="badge">
+
+										<!-- 								  <li><a href="">More</a></li> -->
+										<!-- 								  <li><a href="">More</a></li> -->
+										<!-- 								  <li><a href="">More</a></li> -->
+										<!-- 								  <li><a href="">More</a></li> -->
+										<!-- 								  <li><a href="">More</a></li> -->
+									</ul></li>
+							</ul>
 							<ul class="nav navbar-nav navbar-right">
 								<li class="dropdown"><a href="#" class="dropdown-toggle"
 									onclick="openNav()"> <i class="glyphicon glyphicon-user"></i></a>
@@ -321,7 +322,7 @@
 		</div>
 	</div>
 	<!-- 테스트용 -->
-	
+
 	<!-- sidebar 접속한친구리스트 이 div 내부에 <a href="#">친구1</a> 형태로 뿌리면 됨-->
 	<div id="mySidenav" class="sidenav">
 		<a href="#">친구1</a> <a href="#">친구2</a> <a href="#">친구3</a> <a
