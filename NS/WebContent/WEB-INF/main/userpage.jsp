@@ -86,5 +86,60 @@
 	<br>
 	<div id="friendDiv"></div>
 
+	<div class="container">
+		<div class="row profile">
+			<div class="col-md-3">
+				<div class="profile-sidebar">
+					<!-- SIDEBAR USERPIC -->
+					<div class="profile-userpic">
+						<img
+							src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg"
+							class="img-responsive" alt="">
+					</div>
+					<!-- END SIDEBAR USERPIC -->
+					<!-- SIDEBAR USER TITLE -->
+					<div class="profile-usertitle">
+						<div class="profile-usertitle-name">${searchUserNum}</div>
+						<div class="profile-usertitle-job">${sessionScope.memberNum}</div>
+					</div>
+					<!-- END SIDEBAR USER TITLE -->
+					<!-- SIDEBAR BUTTONS -->
+					<div class="profile-userbuttons">
+						<a href="#" class="btn btn-info"><span
+							class="glyphicon glyphicon-user"></span>친구추가</a> <a href="#"
+							class="btn btn-danger"><span
+							class="glyphicon glyphicon-remove"></span>친구삭제</a>
+					</div>
+					<!-- END SIDEBAR BUTTONS -->
+					<!-- SIDEBAR MENU -->
+					<div class="profile-usermenu">
+						<ul class="nav">
+							<li class="active"><a href="#"> <i
+									class="glyphicon glyphicon-th-list"></i> 타임라인
+							</a></li>
+							<li><a href="#"> <i class="glyphicon glyphicon-user"></i>
+									친구리스트
+							</a></li>
+							<li><a href="#" target="_blank"> <i
+									class="glyphicon glyphicon-picture"></i> 사진
+							</a></li>
+							<li><a href="#"> <i class="glyphicon glyphicon-flag"></i>
+									Help
+							</a></li>
+						</ul>
+					</div>
+					<!-- END MENU -->
+				</div>
+			</div>
+			<div class="col-md-9">
+				<div class="profile-content">Some user related content goes
+					here...</div>
+			</div>
+		</div>
+	</div>
+	<center></center>
+	<br>
+	<br>
+
 </body>
 </html>
