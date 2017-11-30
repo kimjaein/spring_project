@@ -172,26 +172,6 @@
 			</div>
 		</div>
 	</div>
-
-
-	<table border="1" class="modal fade" tabindex="-1" role="dialog"
-		aria-hidden="true">
-		<tr class="comment-content">
-			<td height="300" width="600" rowspan="4">사진란</td>
-			<td colspan="4">작성자란</td>
-		</tr>
-		<tr class="comment-content">
-			<td height="150">여기가 글내용</td>
-		</tr>
-		<tr class="comment-content">
-			<td>여긴 댓글들이 보이는 공란</td>
-		</tr>
-		<tr class="comment-content">
-			<td><textarea rows="2" cols="50"></textarea>
-				<button>작성</button></td>
-
-		</tr>
-	</table>
 	<!--post modal-->
 	<!-- 글 작성 form -->
 	<div id="postModal" class="modal fade" tabindex="-1" role="dialog"
@@ -221,10 +201,7 @@
 									<input type='file' class='imgInp' name='photo' style='display:none'/>
 									<input type='file' class='imgInp' name='photo' style='display:none'/>
 									<input type='file' class='imgInp' name='photo' style='display:none'/>
-									<input type='file' class='imgInp' name='photo' style='display:none'/>
-									<input type='file' class='imgInp' name='photo' style='display:none'/>
-									
-									
+									최대5개
 									<input type="hidden"
 									value="${sessionScope.memberNum}" name="memberNum" id="before">
 									<input type="hidden" value="${Name}" name="name"> <input

@@ -37,6 +37,19 @@
 			commentModal(st)
 			return false;
 		})
+		//이부분은 좋아요영역 작업현황 = 불변경만 가능(새로고침시 리셋)
+		$(".likeChange").click(function(){
+			if(count!=1){
+				$("#like_i").removeClass("fa fa-heart-o").addClass("fa fa-heart")
+				count=1;
+			}else{
+				$("#like_i").removeClass("fa fa-heart").addClass("fa fa-heart-o")
+				count=-1;
+			}
+				
+			
+			
+		})
 	})
 	function horizontalScroll() {
 		if (event.wheelDelta <= -120)
@@ -81,10 +94,14 @@
 			url : 'articleViewPhoto.ns?article_num='+st,
 			dataType : 'json',
 			success : function(data) {
-				var photoData='';
-				photoData = '<img src="'+data['filePath']+'" width="400" height="300">';
-				$('#commentModal tr').eq(1).find('td').eq(0).html(photoData);
+				var photoData=[];
+				var count = 0;
+				for(i in data){
+				photoData[count] = '<img src="'+data[i]+'" width="400" height="200">';
 				//1번째tr안에 0번째td에 html적용
+				count++;
+				$('#commentModal tr').eq(1).find('td').eq(0).html(photoData);
+				}
 			},
 			error : function() {
 				alert("fail")
@@ -110,28 +127,50 @@
 		})
 		$("#commentModal").modal('show');
 	}
+	function commentAdd(){
+		var comment = $("#commentText").val();
+		$.ajax({
+			type : 'post',
+			url : 'articleViewComment.ns',
+			data : {comment:comment},
+			dataType : 'json',
+			success : function(data) {
+				var contentsData='';
+				contentsData = data['contents'];
+				var writer='';
+				writer = data['writer'];
+// 				alert($('#commentModal tr').eq(1).find('td').eq(0).text(ContentsData));
+				$('#commentModal tr').eq(2).find('td').eq(0).html(contentsData);
+				$('#commentModal tr').eq(1).find('td').eq(1).html(writer);
+			},
+			error : function() {
+				alert("fail2")
+			}
+		})
+	}
 </script>
 
 </head>
 <body>
 <table id="commentModal" border="1" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
 	<tr class="comment-content"> 
-		<td colspan="2">틀</td>
+		<td colspan="3">틀</td>
 		<td><button type="button" class="close" data-dismiss="modal" aria-hidden="true">Close</button></td>
 	</tr>
 	<tr class="comment-content">
 		<td height="300" width="400" rowspan="4"><!-- 사진공간 --></td>
-		<td colspan="2"><!-- 작성자공간 --></td>
+		<td colspan="3"><!-- 작성자공간 --></td>
 	</tr>
 	<tr class="comment-content">
-		<td height="150" colspan="2" id="content"><!-- 내용공간 --></td>
+		<td height="150" colspan="3" id="content"><!-- 내용공간 --></td>
 	</tr>
 	<tr class="comment-content">
-		<td colspan="2">댓글공간	<!-- 댓글공간 --></td>
+		<td colspan="3">댓글공간	<!-- 댓글공간 --></td>
 	</tr>
 	<tr class="comment-content"	>
-		<td><textarea rows="2" cols="50"></textarea></td>
-		<td><button>작성</button></td>
+		<td><a href="#" class="likeChange"><i id="like_i" class='fa fa-heart-o'></i>like</a></td>
+		<td><textarea rows="2" cols="50" id="commentText"></textarea></td>
+		<td rowspan="2"><button onclick="commentAdd()">작성</button></td>
 	</tr>
 </table>
 	<div class="padding">
@@ -147,7 +186,7 @@
 									<div class="panel panel-default">
 										<div class="panel-thumbnail">
 										<c:forEach var="photo" items="${article.photoList}">
-											<img src="${photo.filePath}" class="img-responsive">
+											<img src="${photo.filePath}" class="img-responsive" width="600" height="50">
 											</c:forEach>
 										</div>
 										<div class="panel-body">

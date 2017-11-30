@@ -39,7 +39,7 @@ public class ArticleDao {
 		return mapper.selectArticlePhotoList(article_num);
 	}
 
-	public ArticlePhotoVO articlePhotoView(int article_num) {
+	public List<ArticlePhotoVO> articlePhotoView(int article_num) {
 		ArticleMapper mapper = session.getMapper(ArticleMapper.class);
 		return mapper.articlePhotoView(article_num);
 	}

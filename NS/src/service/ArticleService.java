@@ -44,7 +44,7 @@ public class ArticleService {
 		return articleList;
 	}
 
-	public ArticlePhotoVO articlePhotoView(int article_num) {
+	public List<ArticlePhotoVO> articlePhotoView(int article_num) {
 		return dao.articlePhotoView(article_num);
 	}
 
