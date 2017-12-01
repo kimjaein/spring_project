@@ -19,6 +19,7 @@
 
 	function openNav() {
 		if (flag) {
+			webSocket.send("list");
 			document.getElementById("mySidenav").style.width = "200px";
 			flag = false;
 		} else {
@@ -43,16 +44,29 @@
 	};
 	
 	function sendMessage(Msg) {
-// 		var message = document.getElementById("textMessage");
-		var message = Msg;
-		webSocket.send(message);
-// 		webSocket.send(message.value);
+		var message = document.getElementById("textMessage");
+// 		var message = Msg;
+// 		webSocket.send(message);
+		webSocket.send(message.value);
 		message.value = "";
 	}
 	
 	webSocket.onmessage = function(message){
 		if(message.data == 'alarm'){
 			alert("夸没捞 吭嚼聪促.");
+		}else{
+			var onlineFriendList = "";
+			var jsonData = JSON.parse(message.data);
+			if(jsonData.listCount != 0){
+				for(i = 0; i<jsonData.listCount; i++){
+					var friendNum = "friendList"+i;
+					alert(jsonData.friendList0);
+// 					onlineFriendList += "<a href='#'>"+ jsonData. +"</a>";
+				}
+			}else{
+				onlineFriendList += "<a href='#'>立加茄 模备啊 绝嚼聪促.</a>"
+			}
+			$('#mySidenav').html(onlineFriendList);
 		}
 	};
 	
@@ -324,8 +338,7 @@
 	
 	<!-- sidebar 立加茄模备府胶飘 捞 div 郴何俊 <a href="#">模备1</a> 屈怕肺 谎府搁 凳-->
 	<div id="mySidenav" class="sidenav">
-		<a href="#">模备1</a> <a href="#">模备2</a> <a href="#">模备3</a> <a
-			href="#">模备4</a>
+<!-- 		<a href="#">模备1</a> -->
 	</div>
 
 	<script type="text/javascript" src="assets/js/jquery.js"></script>
