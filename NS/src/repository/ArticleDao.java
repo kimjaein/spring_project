@@ -48,4 +48,9 @@ public class ArticleDao {
 		ArticleMapper mapper = session.getMapper(ArticleMapper.class);
 		return mapper.articleView(article_num);
 	}
+
+	public int commentAdd(String article_num, String comment) {
+		ArticleMapper mapper = session.getMapper(ArticleMapper.class);
+		return mapper.commentAdd(article_num,comment);
+	}
 }

@@ -51,4 +51,8 @@ public class ArticleService {
 	public ArticleVO articleView(int article_num) {
 		return dao.articleView(article_num);
 	}
+
+	public int commentAdd(String article_num, String comment) {
+		return dao.commentAdd(article_num,comment);
+	}
 }

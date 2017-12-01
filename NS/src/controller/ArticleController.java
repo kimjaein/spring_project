@@ -134,9 +134,11 @@ public class ArticleController {
 	@RequestMapping(value = "articleViewComment", method = RequestMethod.POST)
 	public void articleViewCommetent(HttpServletRequest request) {
 		String comment = request.getParameter("comment");
-
+		String article_num = request.getParameter("article_num");
+		String commentId = request.getParameter("commentId");
+		System.out.println(commentId);
 		if (comment != null && comment.length() > 0) {
-			// service.commentAdd(comment)
+			 service.commentAdd(article_num,comment);
 		}
 
 	}

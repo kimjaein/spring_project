@@ -19,4 +19,6 @@ public interface ArticleMapper {
 	public List<ArticlePhotoVO> articlePhotoView(int article_num);
 
 	public ArticleVO articleView(int article_num);
+
+	public int commentAdd(String article_num, String comment);
 }

@@ -5,12 +5,13 @@
 <html lang="en">
 <head>
 <title>Facebook Theme Demo</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="assets/css/bootstrap.css" rel="stylesheet">
 <link href="assets/css/facebook.css" rel="stylesheet">
 <link href="assets/css/myNew.css" rel="stylesheet">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style type="text/css">
 #next, #btn {
 	position: fixed;
@@ -21,6 +22,7 @@
 </style>
 <script type="text/javascript" src="assets/js/jquery.js"></script>
 <script type="text/javascript" src="assets/js/bootstrap.js"></script>
+
 <script type="text/javascript">
 	$(function() {
 		$('#btn').click(function() {
@@ -34,6 +36,10 @@
 		})
 		$(".article_num").click(function(){
 			var st = $(this).attr('value')
+			$(".comment").val(st);
+			alert($(".loginId").text());
+			var id = $(".loginId").val();
+			$(".commentId").val(id);
 			commentModal(st)
 			return false;
 		})
@@ -88,6 +94,23 @@
 		$('#here').html(article)
 		count = count + 1;
 	}
+	var slideIndex = 1;
+	showDivs(slideIndex);
+
+	function plusDivs(n) {
+	  showDivs(slideIndex += n);
+	}
+
+	function showDivs(n) {
+	  var i;
+	  var x = document.getElementsByClassName("mySlides");
+	  if (n > x.length) {slideIndex = 1}    
+	  if (n < 1) {slideIndex = x.length}
+	  for (i = 0; i < x.length; i++) {
+	     x[i].style.display = "none";  
+	  }
+	  x[slideIndex-1].style.display = "block";  
+	}
 	function commentModal(st){
 		$.ajax({
 			type : 'get',
@@ -96,12 +119,33 @@
 			success : function(data) {
 				var photoData=[];
 				var count = 0;
+				var imgSlide = '';
+				var imgCount = '';
 				for(i in data){
-				photoData[count] = '<img src="'+data[i]+'" width="400" height="200">';
+				photoData[count] = '<img Class="mySlides" src="'+data[i]+'"style="width:100%">';
 				//1번째tr안에 0번째td에 html적용
 				count++;
-				$('#commentModal tr').eq(1).find('td').eq(0).html(photoData);
 				}
+					if(count>1){
+						for(i=0; i<count; i++){
+							imgCount += photoData[i];
+						}
+						alert("그림2개이상")
+						imgSlide = '<div class="w3-content w3-display-container">';
+						imgSlide += imgCount;
+						imgSlide += '<button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>'
+						imgSlide += '<button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button></div>'
+// 						$('#commentModal tr').eq(1).find('td').eq(0).html(photoData);
+						$('#commentModal tr').eq(1).find('td').eq(0).html(imgSlide);
+					}else if(count==1){
+						alert("그림이 1개")
+						photoData[0] = '';
+						photoData[0] = '<img Class="mySlides" src="'+data[i]+'" width="400" height="300">';
+						$('#commentModal tr').eq(1).find('td').eq(0).html(photoData);
+					}else{
+						var img = '<h2>첨부사진 없음</h2>';
+						$('#commentModal tr').eq(1).find('td').eq(0).html(img);
+					}
 			},
 			error : function() {
 				alert("fail")
@@ -128,11 +172,14 @@
 		$("#commentModal").modal('show');
 	}
 	function commentAdd(){
+		var article_num = $('.comment').val();
 		var comment = $("#commentText").val();
+		var commentId = $(".commentId").val();
+		alert(commentId)
 		$.ajax({
 			type : 'post',
 			url : 'articleViewComment.ns',
-			data : {comment:comment},
+			data : {comment:comment,article_num:article_num,commentId:commentId},
 			dataType : 'json',
 			success : function(data) {
 				var contentsData='';
@@ -165,12 +212,18 @@
 		<td height="150" colspan="3" id="content"><!-- 내용공간 --></td>
 	</tr>
 	<tr class="comment-content">
-		<td colspan="3">댓글공간	<!-- 댓글공간 --></td>
+		<td>작성자</td>
+		<td>댓글공간	<!-- 댓글공간 -->우측 맨뒤에 해당세션에 해당하는 수정,삭제버튼 추가하면 될듯</td>
+		<td>작성일</td>
 	</tr>
 	<tr class="comment-content"	>
 		<td><a href="#" class="likeChange"><i id="like_i" class='fa fa-heart-o'></i>like</a></td>
 		<td><textarea rows="2" cols="50" id="commentText"></textarea></td>
-		<td rowspan="2"><button onclick="commentAdd()">작성</button></td>
+		<td rowspan="2">
+			<button class="comment" onclick="commentAdd()" value="${article.article_num}">작성</button>
+			<input type="hidden" class="commentId" value="">
+		</td>
+	
 	</tr>
 </table>
 	<div class="padding">
@@ -197,7 +250,9 @@
 											<p>${article.contents}</p>
 											<p>
 												<i class="fa fa-heart-o"></i> ${article.like_count}, <i
-													class="fa fa-commenting-o"></i> Comment &nbsp;<button class="article_num" value="${article.article_num}" >상세보기</button>
+													class="fa fa-commenting-o"></i> Comment &nbsp;
+												<input type="hidden" name="loginId" value="${sessionScope.id}">
+												<button class="article_num" value="${article.article_num}">상세보기</button>
 											</p>
 										</div>
 									</div>

@@ -30,4 +30,8 @@
     <select id="articleView" resultType="articleVO" parameterType="int">
     	select * from article where article_num=#{article_num}
     </select>
+    
+    <insert id="commentAdd">
+    	INSERT INTO COMMENT(ARTICLE_NUM,)
+    </insert>
 </mapper>
