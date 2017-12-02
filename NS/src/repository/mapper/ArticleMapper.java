@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import vo.ArticlePhotoVO;
 import vo.ArticleVO;
+import vo.CommentVO;
 
 public interface ArticleMapper {
 	public int ArticleInsert(ArticleVO article);
@@ -20,5 +21,7 @@ public interface ArticleMapper {
 
 	public ArticleVO articleView(int article_num);
 
-	public int commentAdd(String article_num, String comment);
+	public int commentAdd(CommentVO vo);
+
+	public List<CommentVO> commentSelect(int article_num);
 }

@@ -3,6 +3,7 @@ package controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -23,6 +24,7 @@ import com.google.gson.Gson;
 import service.ArticleService;
 import vo.ArticlePhotoVO;
 import vo.ArticleVO;
+import vo.CommentVO;
 
 @Controller
 public class ArticleController {
@@ -105,8 +107,6 @@ public class ArticleController {
 	@RequestMapping(value = "articleViewPhoto.ns", method = RequestMethod.GET)
 	public void articleViewPhoto(int article_num, HttpServletResponse response) throws IOException {
 		List<ArticlePhotoVO> photoURL = service.articlePhotoView(article_num);
-		ModelAndView mv = new ModelAndView("single_post");
-		
 		
 		List<String> filePath = new ArrayList<>();
 		for(ArticlePhotoVO url:photoURL) {
@@ -122,7 +122,6 @@ public class ArticleController {
 	@RequestMapping(value = "articleViewContents.ns", method = RequestMethod.GET)
 	public void articleViewContents(int article_num, HttpServletResponse response) throws IOException {
 		ArticleVO contents = service.articleView(article_num);
-		ModelAndView mv = new ModelAndView("single_post");
 
 		response.setContentType("text/json;charset=euc-kr");
 		PrintWriter writer = response.getWriter();
@@ -130,17 +129,37 @@ public class ArticleController {
 		writer.print(gson.toJson(contents));
 
 	}
-
+	@RequestMapping(value = "articleComment.ns", method = RequestMethod.GET)
+	public void articleCommentView(int article_num,HttpServletResponse response) throws IOException {
+		List<CommentVO> comment = service.commentSelect(article_num);
+		System.out.println("----------댓글리스트-----------------");
+		System.out.println(comment);
+		
+		response.setContentType("text/json;charset=euc-kr");
+		PrintWriter writer = response.getWriter();
+		Gson gson = new Gson();
+		writer.println(gson.toJson(comment));
+	}
+	
+	
 	@RequestMapping(value = "articleViewComment", method = RequestMethod.POST)
-	public void articleViewCommetent(HttpServletRequest request) {
+	public void articleCommentSelect(HttpServletResponse response,HttpServletRequest request) throws IOException {
 		String comment = request.getParameter("comment");
-		String article_num = request.getParameter("article_num");
+		String article_number = request.getParameter("article_num");
 		String commentId = request.getParameter("commentId");
+		CommentVO commentVO = new CommentVO();
+		int article_num = Integer.parseInt(article_number);
+		commentVO.setArticle_num(article_num);
+		commentVO.setContent(comment);
+		commentVO.setWriter(commentId);
 		System.out.println(commentId);
 		if (comment != null && comment.length() > 0) {
-			 service.commentAdd(article_num,comment);
+			 service.commentAdd(commentVO);
+			 System.out.println("댓글 작성 완료");
 		}
-
+		PrintWriter writer = response.getWriter();
+		Gson gson = new Gson();
+//		writer.println(gson.dd);
 	}
 
 }

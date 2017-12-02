@@ -37,8 +37,8 @@
 		$(".article_num").click(function(){
 			var st = $(this).attr('value')
 			$(".comment").val(st);
-			alert($(".loginId").text());
-			var id = $(".loginId").val();
+			var id = $("#loginId").val();
+			alert(id);
 			$(".commentId").val(id);
 			commentModal(st)
 			return false;
@@ -169,6 +169,33 @@
 				alert("fail2")
 			}
 		})
+		
+		$.ajax({
+			type : 'get',
+			url : 'articleComment.ns?article_num='+st,
+			dataType : 'json',
+			success : function(data) {
+				var commentData ='';
+				var writer = '';
+				var comment = '';
+				var write_date = '';
+				$.each(data,function(index,item){
+					writer += item['writer']+"<br>";
+					comment += item['content']+"<br>";
+					write_date += item['write_date']+"<br>";
+					//작성자 작성내용 작성시간
+					$('#commentModal tr').eq(3).find('td').eq(0).html(writer);
+					$('#commentModal tr').eq(3).find('td').eq(1).html(comment);
+					$('#commentModal tr').eq(3).find('td').eq(2).html(write_date);
+				})
+				console.log(data)
+
+			},
+			error : function() {
+				alert("fail2")
+			}
+		})
+		
 		$("#commentModal").modal('show');
 	}
 	function commentAdd(){
@@ -194,6 +221,7 @@
 				alert("fail2")
 			}
 		})
+		$("#commentModal").modal('show'); 
 	}
 </script>
 
@@ -212,9 +240,9 @@
 		<td height="150" colspan="3" id="content"><!-- 내용공간 --></td>
 	</tr>
 	<tr class="comment-content">
-		<td>작성자</td>
-		<td>댓글공간	<!-- 댓글공간 -->우측 맨뒤에 해당세션에 해당하는 수정,삭제버튼 추가하면 될듯</td>
-		<td>작성일</td>
+		<td></td>
+		<td>	<!-- 댓글공간 --></td>
+		<td></td>
 	</tr>
 	<tr class="comment-content"	>
 		<td><a href="#" class="likeChange"><i id="like_i" class='fa fa-heart-o'></i>like</a></td>
@@ -247,11 +275,11 @@
 												<img src="assets/img/uFp_tsTJboUY7kue5XAsGAs28.png"
 													height="20px" width="20px">${article.writer}
 											</p>
-											<p>${article.contents}</p>
+											<p>${article.contents}로그인한 아이디 : ${sessionScope.id}</p>
 											<p>
 												<i class="fa fa-heart-o"></i> ${article.like_count}, <i
 													class="fa fa-commenting-o"></i> Comment &nbsp;
-												<input type="hidden" name="loginId" value="${sessionScope.id}">
+												<input type="hidden" id="loginId" value="${sessionScope.id}">
 												<button class="article_num" value="${article.article_num}">상세보기</button>
 											</p>
 										</div>

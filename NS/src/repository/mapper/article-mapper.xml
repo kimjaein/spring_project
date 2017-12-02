@@ -31,7 +31,11 @@
     	select * from article where article_num=#{article_num}
     </select>
     
-    <insert id="commentAdd">
-    	INSERT INTO COMMENT(ARTICLE_NUM,)
+    <insert id="commentAdd" parameterType="commentVO">
+    	INSERT INTO COMMENT(ARTICLE_NUM,CONTENT,WRITER,WRITE_DATE) VALUES(#{article_num},#{content},#{writer},now())
     </insert>
+    
+    <select id="commentSelect" resultType="commentVO">
+		select * from comment where article_num=#{article_num}
+    </select>
 </mapper>

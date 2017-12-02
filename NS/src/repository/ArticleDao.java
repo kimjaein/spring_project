@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import repository.mapper.ArticleMapper;
 import vo.ArticlePhotoVO;
 import vo.ArticleVO;
+import vo.CommentVO;
 
 @Component("ArticleDao")
 public class ArticleDao {
@@ -49,8 +50,13 @@ public class ArticleDao {
 		return mapper.articleView(article_num);
 	}
 
-	public int commentAdd(String article_num, String comment) {
+	public int commentAdd(CommentVO vo) {
 		ArticleMapper mapper = session.getMapper(ArticleMapper.class);
-		return mapper.commentAdd(article_num,comment);
+		return mapper.commentAdd(vo);
+	}
+
+	public List<CommentVO> commentSelect(int article_num) {
+		ArticleMapper mapper = session.getMapper(ArticleMapper.class);
+		return mapper.commentSelect(article_num);
 	}
 }

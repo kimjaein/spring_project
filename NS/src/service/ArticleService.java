@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import repository.ArticleDao;
 import vo.ArticlePhotoVO;
 import vo.ArticleVO;
+import vo.CommentVO;
 
 @Component
 public class ArticleService {
@@ -52,7 +53,11 @@ public class ArticleService {
 		return dao.articleView(article_num);
 	}
 
-	public int commentAdd(String article_num, String comment) {
-		return dao.commentAdd(article_num,comment);
+	public int commentAdd(CommentVO vo) {
+		return dao.commentAdd(vo);
+	}
+
+	public List<CommentVO> commentSelect(int article_num) {
+		return dao.commentSelect(article_num);
 	}
 }
