@@ -59,4 +59,10 @@ public class ArticleDao {
 		ArticleMapper mapper = session.getMapper(ArticleMapper.class);
 		return mapper.commentSelect(article_num);
 	}
+
+	public ArticleVO selectArticle(int count,int memberNum) {
+		System.out.println("dao in");
+		ArticleMapper mapper = session.getMapper(ArticleMapper.class);
+		return mapper.selectArticle(memberNum,count);
+	}
 }

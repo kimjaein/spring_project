@@ -24,4 +24,6 @@ public interface ArticleMapper {
 	public int commentAdd(CommentVO vo);
 
 	public List<CommentVO> commentSelect(int article_num);
+
+	public ArticleVO selectArticle(@Param("memberNum")int memberNum,@Param("count")int count);
 }

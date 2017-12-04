@@ -11,6 +11,7 @@ import java.util.Random;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.swing.plaf.synth.SynthSpinnerUI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -139,10 +140,9 @@ public class ArticleController {
 		PrintWriter writer = response.getWriter();
 		Gson gson = new Gson();
 		writer.println(gson.toJson(comment));
+	
 	}
-	
-	
-	@RequestMapping(value = "articleViewComment", method = RequestMethod.POST)
+	@RequestMapping(value = "articleViewComment.ns", method = RequestMethod.POST)
 	public void articleCommentSelect(HttpServletResponse response,HttpServletRequest request) throws IOException {
 		String comment = request.getParameter("comment");
 		String article_number = request.getParameter("article_num");
@@ -160,6 +160,26 @@ public class ArticleController {
 		PrintWriter writer = response.getWriter();
 		Gson gson = new Gson();
 //		writer.println(gson.dd);
+	}
+	
+	@RequestMapping("moreArticle.ns")
+	public void getMoreArticle(int count,HttpServletResponse response,HttpSession session) {
+		int memberNum = (int) session.getAttribute("memberNum");
+		System.out.println(memberNum+ " : "+count);
+		ArticleVO article =service.selectArticle(count,memberNum);
+		
+		PrintWriter writer;
+		try {
+			writer = response.getWriter();
+			Gson gson = new Gson();
+			
+			writer.println(gson.toJson(article));
+			System.out.println(gson.toJson(article));
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

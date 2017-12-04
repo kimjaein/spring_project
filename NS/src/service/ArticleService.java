@@ -60,4 +60,14 @@ public class ArticleService {
 	public List<CommentVO> commentSelect(int article_num) {
 		return dao.commentSelect(article_num);
 	}
+
+	public ArticleVO selectArticle(int count,int memberNum) {
+		System.out.println("service in");
+		ArticleVO article = dao.selectArticle(count, memberNum);
+		
+		System.out.println("service : "+article.toString());
+		article.setPhotoList(dao.selectArticlePhoto(article.getArticle_num()));
+		System.out.println("service2 : "+article.getPhotoList().toString());
+		return article;
+	}
 }

@@ -38,4 +38,11 @@ public class ArticlePhotoVO {
 		this.filePath = filePath;
 	}
 
+	@Override
+	public String toString() {
+		return "ArticlePhotoVO [article_num=" + article_num + ", photo=" + photo + ", filePath=" + filePath + "]";
+	}
+	
+	
+
 }

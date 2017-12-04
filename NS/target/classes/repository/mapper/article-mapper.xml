@@ -24,18 +24,22 @@
     </resultMap>
     
     <select id="articlePhotoView" resultType="articlePhotoVO" parameterType="int" resultMap="photoResultMap">
-    	select * from article_photo where article_num=#{article_num}
+    	select * from article_photo where article_num=#{article_num} limit 0,4
     </select>
     
     <select id="articleView" resultType="articleVO" parameterType="int">
     	select * from article where article_num=#{article_num}
     </select>
     
-    <insert id="commentAdd" parameterType="commentVO">
+    <insert id="commentAdd" parameterType="CommentVO">
     	INSERT INTO COMMENT(ARTICLE_NUM,CONTENT,WRITER,WRITE_DATE) VALUES(#{article_num},#{content},#{writer},now())
     </insert>
     
-    <select id="commentSelect" resultType="commentVO">
+    <select id="commentSelect" resultType="CommentVO">
 		select * from comment where article_num=#{article_num}
+    </select>
+    
+    <select id="selectArticle" resultType="ArticleVO">
+    	select article_num,contents,writer,like_count,Write_Time,member_num from article where member_num=#{memberNum} order by write_time desc limit #{count},1
     </select>
 </mapper>
