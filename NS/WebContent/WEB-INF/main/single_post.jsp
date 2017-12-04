@@ -72,28 +72,41 @@
 		}
 
 	})
-	var count = 1;
+	var count = 11;
 	function next() {
 		var article = $('#here').html()
-		article += "<td> <div class='row' ><div class='article'>"
-				+ "<div class='panel panel-default'><div class='panel-thumbnail'>"
-				+ "<img src='assets/img/bg_5.jpg' class='img-responsive'>"
-				+ "</div>"
-				+ "<div class='panel-body'>"
-				+ "<p class='name'>"
-				+ "<img src='assets/img/uFp_tsTJboUY7kue5XAsGAs28.png'"
-								+"height='20px' width='20px'>test"
-				+ count
-				+ "</p>"
-				+ "<p>내용내용내용.....(길이 제한 필요)</p>"
-				+ "<p>"
-				+ "	<i class='fa fa-heart-o'></i> like, <i"
-						+"		class='fa fa-commenting-o'></i> Comment"
-				+ "</p></div>	</div></div></div></td>"
+		$.ajax({
+			type : 'get',
+			url : 'moreArticle.ns?nextArticle='+count,
+			dataType : 'json',
+			success : function(data) {
+				article += "<td> <div class='row' ><div class='article'>"
+					+ "<div class='panel panel-default'><div class='panel-thumbnail'>"
+					/////////////////////////////////for 문으로 여러개 뽑기
+					+ "<img src='assets/img/bg_5.jpg' class='img-responsive'>"
+					///////////////////////////////////////////////////
+					+ "</div>"
+					+ "<div class='panel-body'>"
+					+ "<p class='name'>"
+					+ "<img src='assets/img/uFp_tsTJboUY7kue5XAsGAs28.png'"
+									+"height='20px' width='20px'>"+data[writer]
+					+ "</p>"
+					+ "<p>"+ data[contents]+"</p>"
+					+ "<p>"
+					+ "	<i class='fa fa-heart-o'></i> like"+data[like]
+					+", <i"
+							+"		class='fa fa-commenting-o'></i> Comment"
+					+ "</p></div></div></div></div></td>"
 
-		$('#here').html(article)
-		count = count + 1;
+			$('#here').html(article)
+			count = count + 1;
+			},
+			error : function() {
+				alert("fail2")
+			}
+		})
 	}
+	
 	var slideIndex = 1;
 	showDivs(slideIndex);
 
@@ -119,7 +132,6 @@
 			success : function(data) {
 				var photoData=[];
 				var count = 0;
-				var imgSlide = '';
 				var imgCount = '';
 				for(i in data){
 				photoData[count] = '<img Class="mySlides" src="'+data[i]+'"style="width:100%">';
@@ -137,6 +149,7 @@
 						imgSlide += '<button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button></div>'
 // 						$('#commentModal tr').eq(1).find('td').eq(0).html(photoData);
 						$('#commentModal tr').eq(1).find('td').eq(0).html(imgSlide);
+						plusDivs(-1)
 					}else if(count==1){
 						alert("그림이 1개")
 						photoData[0] = '';
@@ -202,6 +215,7 @@
 		var article_num = $('.comment').val();
 		var comment = $("#commentText").val();
 		var commentId = $(".commentId").val();
+		var writer=$('#commentModal tr').eq(1).find('td').eq(1).html();
 		alert(commentId)
 		$.ajax({
 			type : 'post',
@@ -211,8 +225,8 @@
 			success : function(data) {
 				var contentsData='';
 				contentsData = data['contents'];
-				var writer='';
-				writer = data['writer'];
+				writer+='';
+				writer += data['writer'];
 // 				alert($('#commentModal tr').eq(1).find('td').eq(0).text(ContentsData));
 				$('#commentModal tr').eq(2).find('td').eq(0).html(contentsData);
 				$('#commentModal tr').eq(1).find('td').eq(1).html(writer);
