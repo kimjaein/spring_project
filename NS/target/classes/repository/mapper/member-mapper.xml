@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="repository.mapper.MemberMapper">
+
+	<insert id="memberInsert" parameterType="MemberVO" useGeneratedKeys="true" keyProperty="memberNum">
+		INSERT INTO MEMBER(ID, PW, NAME, BIRTH, GENDER, ADDRESS, PHOTO)
+        VALUES(#{id}, #{pw}, #{name}, #{birth}, 1, #{address}, '0')
+	</insert>
+	
+	<select id="memberLogin" parameterType="String" resultMap="memberResultMap">
+		SELECT MEMBER_NUM, NAME FROM MEMBER WHERE ID=#{id} AND PW=#{pw}
+	</select>
+	
+	<resultMap type="MemberVO" id="memberResultMap">
+        <result column="member_num" property="memberNum"/>
+    </resultMap>
+</mapper>
