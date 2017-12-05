@@ -72,7 +72,7 @@ public class ArticleVO {
 	public void setPhotoList(List<ArticlePhotoVO> photoList) {
 		this.photoList = photoList;
 	}
-	public boolean isLike() {
+	public boolean getisLike() {
 		return isLike;
 	}
 	public void setLike(boolean isLike) {

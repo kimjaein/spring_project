@@ -60,14 +60,15 @@ $(function(){
 	})
 	
 })
+
 	function increaseLikeCount(article_num,here){
 		$.ajax({
 			type : 'get',
 			url : 'updateLikeCount.ns?article_num='+article_num+"&task=increase",
 			dataType : 'json',
 			success : function(data) {
-				here.find('span').text(data)
-				here.find('i').removeClass("fa fa-heart-o").addClass("fa fa-heart")
+				here.find('span').text(data);
+				here.find('i').removeClass("fa fa-heart-o").addClass("fa fa-heart");
 			},
 			error : function() {
 			}
@@ -79,8 +80,9 @@ $(function(){
 		url : 'updateLikeCount.ns?article_num=' + article_num+"&task=decrease",
 		dataType : 'json',
 		success : function(data) {
-				here.find('span').text(data)
-				here.find('i').removeClass("fa fa-heart").addClass("fa fa-heart-o")
+			
+				here.find('span').text(data);
+				here.find('i').removeClass("fa fa-heart").addClass("fa fa-heart-o");
 		},
 		error : function() {
 		}
@@ -251,13 +253,13 @@ $(function(){
 						}else{
 							article	+= data['contents']
 						}
-								
+						
 						article	+= "</p>"
 								+ "<p class='like'>"
 						if(data['isLike']){
 						 article+="<i class='fa fa-heart'></i>"
-						}esle{
-							"<i class='fa fa-heart-o'></i>"
+						}else{
+							 article+="<i class='fa fa-heart-o'></i>"
 						} 
 								
 						article	+="<span>"+data['like_count']
@@ -471,7 +473,7 @@ $(function(){
 											</p>
 											<p class='like'>
 											<c:choose>
-												<c:when test="${article.Like == true}">
+												<c:when test="${article.isLike == true}">
 												<i class="fa fa-heart"></i>
 												</c:when>
 												<c:otherwise>
