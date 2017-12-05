@@ -34,4 +34,6 @@ public interface ArticleMapper {
 	public int insertLikeWho(@Param("memberNum")int memberNum,@Param("article_num")int article_num);
 
 	public int deleteLikeWho(@Param("memberNum")int memberNum,@Param("article_num")int article_num);
+
+	public int selectLoginIdisLike(@Param("article_num")int article_num,@Param("memberNum")int memberNum);
 }

@@ -85,4 +85,9 @@ public class ArticleDao {
 		ArticleMapper mapper = session.getMapper(ArticleMapper.class);
 		return mapper.deleteLikeWho(memberNum,article_num);
 	}
+
+	public int selectLoginIdisLike(int article_num, int memberNum) {
+		ArticleMapper mapper = session.getMapper(ArticleMapper.class);
+		return mapper.selectLoginIdisLike(article_num,memberNum);
+	}
 }

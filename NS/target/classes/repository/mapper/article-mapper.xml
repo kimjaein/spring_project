@@ -62,4 +62,8 @@
     <delete id="deleteLikeWho">
     DELETE FROM ARTICLE_LIKE WHERE article_num=#{article_num} and member_num = #{memberNum}
     </delete>
+    
+    <select id="selectLoginIdisLike" resultType="int">
+    SELECT COUNT(*) FROM ARTICLE_LIKE WHERE article_num=#{article_num} and member_num = #{memberNum}
+    </select>
 </mapper>

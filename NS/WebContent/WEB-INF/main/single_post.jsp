@@ -254,8 +254,13 @@ $(function(){
 								
 						article	+= "</p>"
 								+ "<p class='like'>"
-								+ "	<i id='like_i' class='fa fa-heart-o'></i> like <span>"
-								+ data['like_count']
+						if(data['isLike']){
+						 article+="<i class='fa fa-heart'></i>"
+						}esle{
+							"<i class='fa fa-heart-o'></i>"
+						} 
+								
+						article	+="<span>"+data['like_count']
 								+ "</span>, <i	class='fa fa-commenting-o'></i> Comment"
 								+ "<button class=article_num value="+data['article_num']+">상세보기</button>"
 								+ "</p></div></div></div></div></td>"
@@ -465,7 +470,15 @@ $(function(){
 											로그인한아이디 : ${sessionScope.id}
 											</p>
 											<p class='like'>
-												<i class="fa fa-heart-o"></i> <span class="likecount">${article.like_count}</span>, <i
+											<c:choose>
+												<c:when test="${article.Like == true}">
+												<i class="fa fa-heart"></i>
+												</c:when>
+												<c:otherwise>
+												<i class="fa fa-heart-o"></i>
+												</c:otherwise>
+											</c:choose>
+												<span >${article.like_count}</span>, <i
 													class="fa fa-commenting-o"></i> Comment &nbsp; <input
 													type="hidden" id="loginId" value="${sessionScope.id}">
 												<button class="article_num" value="${article.article_num}">상세보기</button>

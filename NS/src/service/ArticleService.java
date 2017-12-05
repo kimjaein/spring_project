@@ -40,6 +40,11 @@ public class ArticleService {
 		for(int i=0;i<articleList.size();i++) {
 			ArticleVO article = articleList.get(i);
 			article.setPhotoList(dao.selectArticlePhoto(article.getArticle_num()));
+			if(dao.selectLoginIdisLike(article.getArticle_num(), memberNum)==1) {
+				article.setLike(true);
+			}else {
+				article.setLike(false);
+			}
 			articleList.set(i, article);
 		}
 		return articleList;
@@ -65,9 +70,12 @@ public class ArticleService {
 		System.out.println("service in");
 		ArticleVO article = dao.selectArticle(count, memberNum);
 		
-		System.out.println("service : "+article.toString());
 		article.setPhotoList(dao.selectArticlePhoto(article.getArticle_num()));
-		System.out.println("service2 : "+article.getPhotoList().toString());
+		if(dao.selectLoginIdisLike(article.getArticle_num(), memberNum)==1) {
+			article.setLike(true);
+		}else {
+			article.setLike(false);
+		}
 		return article;
 	}
 
