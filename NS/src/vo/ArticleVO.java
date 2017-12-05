@@ -10,18 +10,22 @@ public class ArticleVO {
 	private int like_count; //좋아요 0 미필
 	private Date write_time; //작성시간 미필
 	private int member_num; //작성자번호 필
+	private boolean isLike;
 	private List<ArticlePhotoVO> photoList;
 	//////////////////////////////////////////////////////////
-	public ArticleVO(int article_num, String contents, String writer, int like_count, Date write_time, int member_num) {
-		super();
+	
+	public ArticleVO() {
+	}
+	public ArticleVO(int article_num, String contents, String writer, int like_count, Date write_time, int member_num,
+			boolean isLike, List<ArticlePhotoVO> photoList) {
 		this.article_num = article_num;
 		this.contents = contents;
 		this.writer = writer;
 		this.like_count = like_count;
 		this.write_time = write_time;
 		this.member_num = member_num;
-	}
-	public ArticleVO() {
+		this.isLike = isLike;
+		this.photoList = photoList;
 	}
 	//////////////////////////////////////////////////////////
 	public int getArticle_num() {
@@ -62,18 +66,23 @@ public class ArticleVO {
 		this.member_num = member_num;
 	}
 	
-public List<ArticlePhotoVO> getPhotoList() {
+	public List<ArticlePhotoVO> getPhotoList() {
 		return photoList;
 	}
 	public void setPhotoList(List<ArticlePhotoVO> photoList) {
 		this.photoList = photoList;
 	}
-	//////////////////////////////////////////////////////////
+	public boolean isLike() {
+		return isLike;
+	}
+	public void setLike(boolean isLike) {
+		this.isLike = isLike;
+	}
 	@Override
 	public String toString() {
 		return "ArticleVO [article_num=" + article_num + ", contents=" + contents + ", writer=" + writer
 				+ ", like_count=" + like_count + ", write_time=" + write_time + ", member_num=" + member_num
-				+ ", photoList=" + photoList + "]";
+				+ ", isLike=" + isLike + ", photoList=" + photoList + "]";
 	}
 
 }

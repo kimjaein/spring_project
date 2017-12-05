@@ -131,24 +131,29 @@ $(function(){
 				})
 
 		$.ajax({
-					type : 'get',
-					url : 'articleViewContents.ns?article_num=' + st,
-					dataType : 'json',
-					success : function(data) {
-						var contentsData = '';
-						contentsData = data['contents'];
-						var writer = '';
-						writer = data['writer'];
-						//	             alert($('#commentModal tr').eq(1).find('td').eq(0).text(ContentsData));
-						$('#commentModal tr').eq(2).find('td').eq(0).html(
-								contentsData);
-						$('#commentModal tr').eq(1).find('td').eq(1).html(
-								writer);
-					},
-					error : function() {
-						alert("fail2")
-					}
-				})
+               type : 'get',
+               url : 'articleViewContents.ns?article_num=' + st,
+               dataType : 'json',
+               success : function(data) {
+                  var contentsData = '';
+                  contentsData = data['contents'];
+                  var writer = '';
+                  writer = data['writer'];
+                  var like_count = '';
+                  //like_count += '<div class="like"><i id="like_i" class='fa fa-heart-o'></i>like<span></span></div>' +  data['like_count'];
+                  //                alert($('#commentModal tr').eq(1).find('td').eq(0).text(ContentsData));
+                  $('.like').find('span').text(data['like_count'])
+                  $('#commentModal tr').eq(2).find('td').eq(0).html(
+                        contentsData);
+                  $('#commentModal tr').eq(1).find('td').eq(1).html(
+                        writer);
+//                   $('#commentModal tr').eq(4).find('td').eq(0).html(
+//                         like_count);
+               },
+               error : function() {
+                  alert("fail2")
+               }
+            })
 
 		$.ajax({
 					type : 'get',
@@ -380,8 +385,7 @@ $(function(){
 			</td>
 		</tr>
 		<tr class="comment-content">
-			<td height="20"><a href="#" class="like"><i
-					id="like_i" class='fa fa-heart-o'></i>like<span></span></a></td>
+			<td height="20"><div class="like"><i id="like_i" class='fa fa-heart-o'></i><span></span></div></td>
 			<td height="40"><textarea rows="2" cols="40" id="commentText"></textarea></td>
 			<td rowspan="2" height="20">&nbsp;
 				<button class="comment" onclick="commentAdd()"
