@@ -267,6 +267,17 @@ $(function(){
 									commentModal(st)
 									return false;
 								})
+								$(".like").click(function() {
+									if ($(this).find('i').attr('class') == "fa fa-heart-o") {
+										//update likecount++
+										var article_num = $(this).find('button').attr('value')
+										increaseLikeCount(article_num,$(this));
+									} else {
+										//update likecount--
+										var article_num = $(this).find('button').attr('value')
+										var likecount=decreaseLikeCount(article_num,$(this));
+									}
+								})
 					},
 					error : function() {
 					}
