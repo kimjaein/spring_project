@@ -58,4 +58,8 @@
     <insert id="insertLikeWho" parameterType="Map">
      INSERT INTO ARTICLE_LIKE(ARTICLE_NUM,MEMBER_NUM) VALUES(#{article_num},#{memberNum})
     </insert>
+    
+    <delete id="deleteLikeWho">
+    DELTE FROM ARTICLE_LIKE WHERE 
+    </delete>
 </mapper>

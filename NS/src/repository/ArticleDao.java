@@ -80,4 +80,9 @@ public class ArticleDao {
 		ArticleMapper mapper = session.getMapper(ArticleMapper.class);
 		return mapper.insertLikeWho(memberNum,article_num);
 	}
+
+	public int deleteLikeWho(int memberNum, int article_num) {
+		ArticleMapper mapper = session.getMapper(ArticleMapper.class);
+		return mapper.deleteLikeWho(memberNum,article_num);
+	}
 }
