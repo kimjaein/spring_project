@@ -368,7 +368,7 @@ $(function(){
 				</div>
 			</td>
 		</tr>
-		<tr class="comment-content like">
+		<tr class="comment-content">
 			<td height="20"><a href="#" class="like"><i
 					id="like_i" class='fa fa-heart-o'></i>like<span></span></a></td>
 			<td height="40"><textarea rows="2" cols="40" id="commentText"></textarea></td>

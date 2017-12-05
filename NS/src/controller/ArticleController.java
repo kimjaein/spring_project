@@ -131,36 +131,41 @@ public class ArticleController {
 
 	}
 	@RequestMapping(value = "articleComment.ns", method = RequestMethod.GET)
-	public void articleCommentView(int article_num,HttpServletResponse response) throws IOException {
-		List<CommentVO> comment = service.commentSelect(article_num);
-		System.out.println("----------댓글리스트-----------------");
-		System.out.println(comment);
-		
-		response.setContentType("text/json;charset=euc-kr");
-		PrintWriter writer = response.getWriter();
-		Gson gson = new Gson();
-		writer.println(gson.toJson(comment));
-	
-	}
-	@RequestMapping(value = "articleViewComment.ns", method = RequestMethod.POST)
-	public void articleCommentSelect(HttpServletResponse response,HttpServletRequest request) throws IOException {
-		String comment = request.getParameter("comment");
-		String article_number = request.getParameter("article_num");
-		String commentId = request.getParameter("commentId");
-		CommentVO commentVO = new CommentVO();
-		int article_num = Integer.parseInt(article_number);
-		commentVO.setArticle_num(article_num);
-		commentVO.setContent(comment);
-		commentVO.setWriter(commentId);
-		System.out.println(commentId);
-		if (comment != null && comment.length() > 0) {
-			 service.commentAdd(commentVO);
-			 System.out.println("댓글 작성 완료");
-		}
-		PrintWriter writer = response.getWriter();
-		Gson gson = new Gson();
-//		writer.println(gson.dd);
-	}
+	   public void articleCommentView(int article_num,HttpServletResponse response) throws IOException {
+	      List<CommentVO> commentList = service.commentSelect(article_num);
+	      System.out.println("----------댓글리스트-----------------");
+	      System.out.println(commentList);
+	      
+	      response.setContentType("text/json;charset=euc-kr");
+	      PrintWriter writer = response.getWriter();
+	      Gson gson = new Gson();
+	      writer.println(gson.toJson(commentList));
+	   
+	   }
+	   @RequestMapping(value = "articleViewComment.ns", method = RequestMethod.POST)
+	   public void articleCommentSelect(HttpServletResponse response,HttpServletRequest request) throws IOException {
+	      String comment = request.getParameter("comment");
+	      String article_number = request.getParameter("article_num");
+	      String commentId = request.getParameter("commentId");
+	      CommentVO commentVO = new CommentVO();
+	      int article_num = Integer.parseInt(article_number);
+	      commentVO.setArticle_num(article_num);
+	      commentVO.setContent(comment);
+	      commentVO.setWriter(commentId);
+	      System.out.println(commentId);
+	      if (comment != null && comment.length() > 0) {
+	          service.commentAdd(commentVO);
+	          System.out.println("댓글 작성 완료");
+	          List<CommentVO> commentList = service.commentSelect(article_num);
+	          response.setContentType("text/json;charset=euc-kr");
+	          PrintWriter writer = response.getWriter();
+	          Gson gson = new Gson();
+	          writer.println(gson.toJson(commentList));
+	      }else {
+	         // 이 영역에는 댓글을 공백으로 입력했을 경우의 상황을 처리하면 됌!
+	         System.out.println("댓글 값 없다!");
+	      }
+	   }
 	
 	@RequestMapping("moreArticle.ns")
 	public void getMoreArticle(int count,HttpServletResponse response,HttpSession session) {

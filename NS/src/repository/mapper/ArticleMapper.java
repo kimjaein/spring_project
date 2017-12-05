@@ -33,5 +33,5 @@ public interface ArticleMapper {
 
 	public int insertLikeWho(@Param("memberNum")int memberNum,@Param("article_num")int article_num);
 
-	public int deleteLikeWho(int memberNum, int article_num);
+	public int deleteLikeWho(@Param("memberNum")int memberNum,@Param("article_num")int article_num);
 }

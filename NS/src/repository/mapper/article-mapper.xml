@@ -60,6 +60,6 @@
     </insert>
     
     <delete id="deleteLikeWho">
-    DELTE FROM ARTICLE_LIKE WHERE 
+    DELETE FROM ARTICLE_LIKE WHERE article_num=#{article_num} and member_num = #{memberNum}
     </delete>
 </mapper>
