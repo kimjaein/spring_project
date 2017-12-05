@@ -181,5 +181,30 @@ public class ArticleController {
 			e.printStackTrace();
 		}
 	}
+	
+	@RequestMapping("updateLikeCount.ns")
+	public void updateLikeCount(int article_num,String task,HttpServletResponse response,HttpSession session) {
+		String str="";
+		int memberNum = (int) session.getAttribute("memberNum");
+		if(task.equals("increase")) {
+			System.out.println("increse");
+			str=service.updateLikeCount(article_num,1,memberNum);
+		}else{
+			str= service.updateLikeCount(article_num,-1,memberNum);
+		}
+		
+		PrintWriter writer;
+		try {
+			writer = response.getWriter();
+			Gson gson = new Gson();
+			
+			writer.println(gson.toJson(str));
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 }

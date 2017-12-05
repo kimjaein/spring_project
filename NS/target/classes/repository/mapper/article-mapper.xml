@@ -14,7 +14,7 @@
 	</insert>
 	
 	<select id="selectArticleList" parameterType="int" resultType="ArticleVO">
-		select article_num,contents,writer,like_count,Write_Time,member_num from article where member_num=#{member_num} order by write_time desc limit 0,10
+		select article_num,contents,writer,like_count,Write_Time,member_num from article where member_num=#{member_num} order by write_time desc limit 0,5
 	</select>
 	<select id="selectArticlePhotoList" parameterType="int" resultMap="photoResultMap">
 		select article_num,photo from article_photo where article_num=#{article_num}
@@ -24,7 +24,7 @@
     </resultMap>
     
     <select id="articlePhotoView" resultType="articlePhotoVO" parameterType="int" resultMap="photoResultMap">
-    	select * from article_photo where article_num=#{article_num} limit 0,4
+    	select * from article_photo where article_num=#{article_num}
     </select>
     
     <select id="articleView" resultType="articleVO" parameterType="int">
@@ -42,4 +42,20 @@
     <select id="selectArticle" resultType="ArticleVO">
     	select article_num,contents,writer,like_count,Write_Time,member_num from article where member_num=#{memberNum} order by write_time desc limit #{count},1
     </select>
+    
+    <update id="updateLikeCount" parameterType="Map">
+    	UPDATE ARTICLE
+		SET 
+		LIKE_COUNT = #{like_count}
+		WHERE
+		ARTICLE_NUM =#{article_num}
+    </update>
+    
+    <select id="selectLikeCount" resultType="int">
+    	SELECT LIKE_COUNT FROM ARTICLE WHERE ARTICLE_NUM = #{article_num}
+    </select>
+    
+    <insert id="insertLikeWho" parameterType="Map">
+     INSERT INTO ARTICLE_LIKE(ARTICLE_NUM,MEMBER_NUM) VALUES(#{article_num},#{memberNum})
+    </insert>
 </mapper>

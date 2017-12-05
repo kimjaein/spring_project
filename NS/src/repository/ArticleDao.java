@@ -65,4 +65,19 @@ public class ArticleDao {
 		ArticleMapper mapper = session.getMapper(ArticleMapper.class);
 		return mapper.selectArticle(memberNum,count);
 	}
+
+	public int updateLikeCount(int article_num, int like_count) {
+		ArticleMapper mapper = session.getMapper(ArticleMapper.class);
+		return mapper.updateLikeCount(article_num,like_count); 
+	}
+
+	public int selectLikeCount(int article_num) {
+		ArticleMapper mapper = session.getMapper(ArticleMapper.class);
+		return mapper.selectLikeCount(article_num); 
+	}
+
+	public int insertLikeWho(int memberNum, int article_num) {
+		ArticleMapper mapper = session.getMapper(ArticleMapper.class);
+		return mapper.insertLikeWho(memberNum,article_num);
+	}
 }

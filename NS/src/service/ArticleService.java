@@ -70,4 +70,22 @@ public class ArticleService {
 		System.out.println("service2 : "+article.getPhotoList().toString());
 		return article;
 	}
+
+	public String updateLikeCount(int article_num,int changeCount,int memberNum) {
+		System.out.println("service");
+		int like_count = dao.selectLikeCount(article_num);
+		like_count = like_count + changeCount;
+			System.out.println(like_count);
+		if(dao.updateLikeCount(article_num,like_count) == 1) {
+			if(changeCount > 0) {
+				dao.insertLikeWho(memberNum,article_num);
+			}else {
+				dao.deleteLikeWho(memberNum,article_num);
+			}
+			return like_count+"";
+		}else {
+			return (like_count-changeCount)+"";
+		}
+		
+	}
 }

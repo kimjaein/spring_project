@@ -46,20 +46,48 @@ $(function(){
 		return false;
 	})
 	//이부분은 좋아요영역 작업현황 = 불변경만 가능(새로고침시 리셋)
-	$(".likeChange").click(function() {
-		if (count != 1) {
-			$("#like_i").removeClass("fa fa-heart-o").addClass("fa fa-heart")
-			count = 1;
+
+	$(".like").click(function() {
+		if ($(this).find('i').attr('class') == "fa fa-heart-o") {
+			//update likecount++
+			var article_num = $(this).find('button').attr('value')
+			increaseLikeCount(article_num,$(this));
 		} else {
-			$("#like_i").removeClass("fa fa-heart").addClass("fa fa-heart-o")
-			count = -1;
+			//update likecount--
+			var article_num = $(this).find('button').attr('value')
+			var likecount=decreaseLikeCount(article_num,$(this));
 		}
 	})
 	
 })
+	function increaseLikeCount(article_num,here){
+		$.ajax({
+			type : 'get',
+			url : 'updateLikeCount.ns?article_num='+article_num+"&task=increase",
+			dataType : 'json',
+			success : function(data) {
+				here.find('span').text(data)
+				here.find('i').removeClass("fa fa-heart-o").addClass("fa fa-heart")
+			},
+			error : function() {
+			}
+		})
+	}
+	function decreaseLikeCount(article_num,here){
+	$.ajax({
+		type : 'get',
+		url : 'updateLikeCount.ns?article_num=' + article_num+"&task=decrease",
+		dataType : 'json',
+		success : function(data) {
+				here.find('span').text(data)
+				here.find('i').removeClass("fa fa-heart").addClass("fa fa-heart-o")
+		},
+		error : function() {
+		}
+	})
+}
 	function commentModal(st) {
-		$
-				.ajax({
+		$.ajax({
 					type : 'get',
 					url : 'articleViewPhoto.ns?article_num=' + st,
 					dataType : 'json',
@@ -77,7 +105,7 @@ $(function(){
 							for (i = 0; i < count; i++) {
 								imgCount += photoData[i];
 							}
-							if(count==2)
+							alert(imgCount)
 							alert("그림2개이상")
 							imgSlide = '<div class="w3-content w3-display-container">';
 							imgSlide += imgCount;
@@ -91,12 +119,10 @@ $(function(){
 							alert("그림이 1개")
 							photoData[0] = '';
 							photoData[0] = '<img Class="mySlides" src="'+data[i]+'" width="400" height="300">';
-							$('#commentModal tr').eq(1).find('td').eq(0).html(
-									photoData);
+							$('#commentModal tr').eq(1).find('td').eq(0).html(photoData);
 						} else {
 							var img = '<h2>첨부사진 없음</h2>';
-							$('#commentModal tr').eq(1).find('td').eq(0).html(
-									img);
+							$('#commentModal tr').eq(1).find('td').eq(0).html(img);
 						}
 					},
 					error : function() {
@@ -104,8 +130,7 @@ $(function(){
 					}
 				})
 
-		$
-				.ajax({
+		$.ajax({
 					type : 'get',
 					url : 'articleViewContents.ns?article_num=' + st,
 					dataType : 'json',
@@ -125,8 +150,7 @@ $(function(){
 					}
 				})
 
-		$
-				.ajax({
+		$.ajax({
 					type : 'get',
 					url : 'articleComment.ns?article_num=' + st,
 					dataType : 'json',
@@ -134,10 +158,7 @@ $(function(){
 						var writer = '';
 						var comment = '';
 						var write_date = '';
-						$
-								.each(
-										data,
-										function(index, item) {
+						$.each(data,function(index, item) {
 											comment += '<tr>';
 											comment += '<div id="Layer1" style="position:absolute; left:35px; top:200x; width:435px; height:150px; z-index:0; overflow-x:hidden; overflow-y:auto;">';
 											comment += '<td>' + item['writer']
@@ -176,7 +197,7 @@ $(function(){
 			next();
 		}
 	})
-	var count = 11;
+	var count = 6;
 	function next() {
 		var article = $('#here').html()
 		$.ajax({
@@ -192,18 +213,25 @@ $(function(){
 						for (i in data['photoList']) {
 							listSize++;
 						}
-						if(listSize==1){
-							classStr="img-responsive";
-						}else if(listSize > 1){
-							classStr="img-responsive-multi";
-						}
-						var count=0;
-						$.each(data['photoList'],function(index, item) {
-								article += "<img src='"+ item['filePath']+"' class='"+classStr+"'>"
-								if(index == 3){
-								//////	break;
+						if(listSize == 0){
+							article += "<img src='assets/img/150x150.gif' class='img-responsive'>"
+						}else{
+							if(listSize==1){
+								classStr="img-responsive";
+							}else if(listSize ==2){
+								classStr="img-responsive-multi-two";
+							}else if(listSize > 2){
+								classStr="img-responsive-multi";
+							}
+							
+							var list = data['photoList'];
+							for (item in list) {
+								article += "<img src='"+ list[item].filePath +"' class='"+classStr+"'>"
+								if(item == 3){
+									break;
 								}
-						})
+							}
+						}
 						///////////////////////////////////////////////////
 						article += "</div>"
 								+ "<div class='panel-body'>"
@@ -213,13 +241,17 @@ $(function(){
 								+ data['writer']
 								+ "</p>"
 								+ "<p>"
-								+ data['contents']
-								+ "</p>"
-								+ "<p>"
-								+ "	<i class='fa fa-heart-o'></i> like"
+						if(data['contents'].length > 60){
+							article	+= data['contents'].substr(0,60) +"..."
+						}else{
+							article	+= data['contents']
+						}
+								
+						article	+= "</p>"
+								+ "<p class='like'>"
+								+ "	<i id='like_i' class='fa fa-heart-o'></i> like <span>"
 								+ data['like_count']
-								+ ", <i"
-							+"		class='fa fa-commenting-o'></i> Comment"
+								+ "</span>, <i	class='fa fa-commenting-o'></i> Comment"
 								+ "<button class=article_num value="+data['article_num']+">상세보기</button>"
 								+ "</p></div></div></div></div></td>"
 
@@ -268,8 +300,7 @@ $(function(){
 		var article_num = $('.comment').val();
 		var comment = $("#commentText").val();
 		var commentId = $(".commentId").val();
-		$
-				.ajax({
+		$.ajax({
 					type : 'post',
 					url : 'articleViewComment.ns',
 					data : {
@@ -281,25 +312,22 @@ $(function(){
 					success : function(data) {
 						console.log(data)
 						var comment = '';
-						$
-								.each(
-										data,
-										function(index, item) {
-											comment += '<tr>';
-											comment += '<div id="Layer1" style="position:absolute; left:35px; top:200x; width:435px; height:150px; z-index:0; overflow-x:hidden; overflow-y:auto;">';
-											comment += '<td>' + item['writer']
-													+ '</td>';
-											comment += '<td valign="top" style="word-break:break-all">'
-													+ item['content'] + '</td>';
-											comment += '<td>'
-													+ item['write_date']
-													+ '</td>';
-											comment += '</div>'
-											comment += '</tr>';
+						$.each(data,function(index, item) {
+									comment += '<tr>';
+									comment += '<div id="Layer1" style="position:absolute; left:35px; top:200x; width:435px; height:150px; z-index:0; overflow-x:hidden; overflow-y:auto;">';
+									comment += '<td>' + item['writer']
+											+ '</td>';
+									comment += '<td valign="top" style="word-break:break-all">'
+											+ item['content'] + '</td>';
+									comment += '<td>'
+											+ item['write_date']
+											+ '</td>';
+									comment += '</div>'
+									comment += '</tr>';
 											//작성자 작성내용 작성시간
-											$('#commentTable').html(comment);
-											$("#commentText").val("");
-										})
+									$('#commentTable').html(comment);
+									$("#commentText").val("");
+						})
 					},
 					error : function() {
 						alert("fail2")
@@ -336,14 +364,13 @@ $(function(){
 				<div style="width: 100%; height: 200px; overflow: auto">
 					<table id="commentTable" border="1" width="100%" cellspacing="0"
 						cellpadding="0" style="table-layout: fixed">
-
 					</table>
 				</div>
 			</td>
 		</tr>
-		<tr class="comment-content">
-			<td height="20"><a href="#" class="likeChange"><i
-					id="like_i" class='fa fa-heart-o'></i>like</a></td>
+		<tr class="comment-content like">
+			<td height="20"><a href="#" class="like"><i
+					id="like_i" class='fa fa-heart-o'></i>like<span></span></a></td>
 			<td height="40"><textarea rows="2" cols="40" id="commentText"></textarea></td>
 			<td rowspan="2" height="20">&nbsp;
 				<button class="comment" onclick="commentAdd()"
@@ -369,8 +396,19 @@ $(function(){
 									<div class="panel panel-default">
 										<div class="panel-thumbnail">
 											<c:choose>
+												<c:when test="${article.photoList.size() == 0}">
+													<img src="assets/img/150x150.gif" class="img-responsive"
+															width="600" height="50">
+												</c:when>
 												<c:when test="${article.photoList.size() > 1}">
 													<c:choose>
+														<c:when test="${article.photoList.size() == 2}">
+															<c:forEach var="photo" varStatus="status"
+																items="${article.photoList}">
+																<img src="${photo.filePath}"
+																	class="img-responsive-multi-two" width="600" height="50">
+															</c:forEach>
+														</c:when>
 														<c:when test="${article.photoList.size() <= 4}">
 															<c:forEach var="photo" varStatus="status"
 																items="${article.photoList}">
@@ -378,14 +416,12 @@ $(function(){
 																	class="img-responsive-multi" width="600" height="50">
 															</c:forEach>
 														</c:when>
-														<c:otherwise>
+														<c:otherwise><!-- 사진이 5개 이상 -->
 															<c:forEach var="photo" begin="0" end="3"
 																varStatus="status" items="${article.photoList}">
 																<img src="${photo.filePath}"
-																	class="img-responsive-multi-more" width="600"
-																	height="50">
+																	class="img-responsive-multi-more" width="600" height="50">
 															</c:forEach>
-
 														</c:otherwise>
 													</c:choose>
 												</c:when>
@@ -402,9 +438,19 @@ $(function(){
 												<img src="assets/img/uFp_tsTJboUY7kue5XAsGAs28.png"
 													height="20px" width="20px">${article.writer}
 											</p>
-											<p>${article.contents}로그인한아이디 : ${sessionScope.id}</p>
 											<p>
-												<i class="fa fa-heart-o"></i> ${article.like_count}, <i
+											<c:choose>
+												<c:when test="${article.contents.length() > 60 }">
+													${article.contents.substring(0,60)} ...
+												</c:when>
+												<c:otherwise>
+													${article.contents}
+												</c:otherwise>
+											</c:choose>
+											로그인한아이디 : ${sessionScope.id}
+											</p>
+											<p class='like'>
+												<i class="fa fa-heart-o"></i> <span class="likecount">${article.like_count}</span>, <i
 													class="fa fa-commenting-o"></i> Comment &nbsp; <input
 													type="hidden" id="loginId" value="${sessionScope.id}">
 												<button class="article_num" value="${article.article_num}">상세보기</button>
@@ -419,7 +465,6 @@ $(function(){
 			</table>
 			<button id="next">다음</button>
 		</div>
-
 	</div>
 </body>
 </html>

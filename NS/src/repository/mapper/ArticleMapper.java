@@ -26,4 +26,10 @@ public interface ArticleMapper {
 	public List<CommentVO> commentSelect(int article_num);
 
 	public ArticleVO selectArticle(@Param("memberNum")int memberNum,@Param("count")int count);
+
+	public int updateLikeCount(@Param("article_num")int article_num,@Param("like_count")int like_count);
+
+	public int selectLikeCount(int article_num);
+
+	public int insertLikeWho(int memberNum, int article_num);
 }
