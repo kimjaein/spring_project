@@ -106,8 +106,7 @@ public class ArticleController {
 		return mv;
 	}
 	@RequestMapping("userSingle.ns")
-	public ModelAndView userSinglePage(HttpSession session) {
-		int memberNum = (int) session.getAttribute("memberNum");
+	public ModelAndView userSinglePage(int memberNum) {
 		List<ArticleVO> articleList = service.selectArticleListWithFriends(memberNum);
 		ModelAndView mv = new ModelAndView("single_post");
 		mv.addObject("articleList", articleList);

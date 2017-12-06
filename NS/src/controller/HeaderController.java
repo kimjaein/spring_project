@@ -43,6 +43,7 @@ public class HeaderController {
 		@RequestMapping("userPage.ns")
 		public ModelAndView userPage(String memberNum) {
 			ModelAndView mv = new ModelAndView();
+			mv.addObject("member",service.selectMember(memberNum));
 			mv.addObject("searchUserNum", memberNum);
 			mv.setViewName("userpage");
 			return mv;

@@ -147,10 +147,9 @@ public class UserPageController {
     }
     
     @RequestMapping("friendList.ns")
-    public ModelAndView friendList(HttpSession session) {
+    public ModelAndView friendList(int memberNum) {
     	ModelAndView mv = new ModelAndView("myFriendList");
     	
-    	int memberNum = (int) session.getAttribute("memberNum");
     	List<MemberVO> friendList = service.selectFriendList(memberNum);
     	
     	mv.addObject("friendList",friendList);
