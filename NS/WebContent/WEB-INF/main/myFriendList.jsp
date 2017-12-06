@@ -10,10 +10,18 @@
 <link href="assets/css/facebook.css" rel="stylesheet">
 <link href="assets/css/myNew.css" rel="stylesheet">
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script type="text/javascript">
+function horizontalScroll() {
+	if (event.wheelDelta <= -120)
+		window.scrollBy(40, 0);
+	else if (event.wheelDelta >= 120)
+		window.scrollBy(-40, 0);
+}
+</script>
 </head>
 <body>
-	<table>
+	<table onmousewheel="horizontalScroll()">
 		<tr class="friendList">
 		
 		<c:forEach var="friend" items="${friendList}">

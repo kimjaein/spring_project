@@ -33,6 +33,7 @@
 	<select id="photoGallery" parameterType="int" resultMap="photoResultMap">
 	select article_photo.article_num,article_photo.photo from article left join article_photo on article.article_num = article_photo.article_num where member_num = ${member_num}
 	</select>
+	
 	<resultMap type="ArticlePhotoVO" id="photoResultMap">
         <result column="photo" property="filePath"/>
     </resultMap>
