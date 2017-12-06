@@ -16,7 +16,11 @@
 <link href="assets/css/myNew.css" rel="stylesheet">
 
 </head>
-
+<script type="text/javascript">
+	window.onload = function(){
+		session.invalidate();
+	}
+</script>
 
 <body>
 
