@@ -5333,8 +5333,7 @@ border-top-left-radius
 }
 
 .navbar-nav>li>a {
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-top: 15px;
 	line-height: 20px
 }
 
@@ -5371,7 +5370,7 @@ border-top-left-radius
 	}
 	.navbar-nav>li>a {
 		padding-top: 15px;
-		padding-bottom: 15px
+		padding-bottom: 5px
 	}
 }
 

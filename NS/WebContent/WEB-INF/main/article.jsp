@@ -18,7 +18,6 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script type="text/javascript">
 	var flag = true;
-	var imgflag = 2;
 	function openNav() {
 		if (flag) {
 			document.getElementById("mySidenav").style.width = "200px";
@@ -85,7 +84,7 @@
 		var iframe = "<iframe src='single.ns' width='100%' height='800px'></iframe>";
 		$('#articlePage').html(iframe);
 
-		
+		var imgflag;
 		$('#add').click(function() {
 			$('.imgInp:nth-child(' + imgflag + ')').click();
 			$('.imgInp:nth-child(' + imgflag + ')').on('change', function() {
@@ -93,8 +92,6 @@
 				
 			})
 		})
-
-		
 		
 		function readURL(input) {
 				var reader = new FileReader();

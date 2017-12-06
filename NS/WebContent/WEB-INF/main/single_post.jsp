@@ -465,7 +465,6 @@ $(function(){
 													${article.contents}
 												</c:otherwise>
 											</c:choose>
-											로그인한아이디 : ${sessionScope.id}
 											</p>
 											<div>
 											<div class='like'>

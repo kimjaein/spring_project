@@ -16,6 +16,7 @@
 <link href="assets/css/myNew.css" rel="stylesheet">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script type="text/javascript">
 	var flag = true;
 
@@ -79,8 +80,6 @@
 		var iframe = "<iframe src='single.ns' width='100%' height='800px'></iframe>";
 		$('#articlePage').html(iframe);
 		
-		
-		
 		$(document).on('click','#btnComment',function() {
 			$.ajax({
 				type : 'post',
@@ -138,7 +137,6 @@
 			return false;
 		})
 		
-		
 		$(document).on('focusin','#srchterm', function() {
 			var flagFriend = $(this).val();
 			
@@ -173,7 +171,6 @@
 			document.getElementById("friend").style.display = "none";
 		})
 		
-		
 		$('#badgeBtn').on('click', function() {
 			$.ajax({
 				type:'post',
@@ -184,10 +181,10 @@
 					var badgeList = "";
 					
 					if(resultData == ""){
-						badgeList += "<li><a href=''>알림 정보가 없습니다.</a></li>";
+						badgeList += "<li><a>알림 정보가 없습니다.</a></li>";
 					}else{
 						$.each(resultData, function(index, item){
-							badgeList += "<li><a href=''>"+item['to_member_num']+"님이 친구신청하였습니다.</a></li>";
+							badgeList += "<li><a>"+item['to_member_num']+"님이 친구신청하였습니다.</a></li>";
 						})
 					}
 						$('#badge').html(badgeList);
@@ -218,12 +215,6 @@
 		}
 	})
 
-	window.onload = function() {
-		
-		
-	}
-	
-	
 	
 </script>
 </head>
@@ -264,22 +255,19 @@
 								</div>
 							</form>
 							<ul class="nav navbar-nav">
-								<li><a href="#"><i class="glyphicon glyphicon-home"></i>
+								<li><a><i class="glyphicon glyphicon-home"></i>
 										Home</a></li>
 								<li><a href="#postModal" role="button" data-toggle="modal"><i
 										class="glyphicon glyphicon-plus"></i> Post</a></li>
 							
 								<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="badge" id="badgeBtn">badge</span></a>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span id="badgeBtn"><i class="material-icons">notifications_active</i></span></a>
 								<ul class="dropdown-menu" id="badge">
 								</ul>
 							  </li>
-							  </ul>
-
-							
-							<ul class="nav navbar-nav">
+							 				
 								<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="badge" id="badgeBtn">config</span></a>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span  id="badgeBtn"><i class="fa fa-cog" style="font-size:24px"></i></span></a>
 								<ul class="dropdown-menu" id="badge">
 								  <li><a href="">마이페이지</a></li>
 								  <li><a href="/NS/">로그아웃</a></li>
@@ -288,7 +276,7 @@
 							  </ul>
 							<ul class="nav navbar-nav navbar-right">
 								<li class="dropdown"><a href="#" class="dropdown-toggle"
-									onclick="openNav()"> <i class="glyphicon glyphicon-user"></i></a>
+									onclick="openNav()"> <i class="material-icons" style="font-size:28px">people</i></a>
 								</li>
 							</ul>
 						</nav>
