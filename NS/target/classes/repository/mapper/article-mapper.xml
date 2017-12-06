@@ -14,7 +14,7 @@
 	</insert>
 	
 	<select id="selectArticleList" parameterType="int" resultType="ArticleVO">
-		select article_num,contents,writer,like_count,Write_Time,member_num from article where member_num=#{member_num} order by write_time desc limit 0,5
+		select article_num,contents,writer,like_count,Write_Time,member_num from article where member_num=#{member_num} order by write_time desc limit 0,10
 	</select>
 	<select id="selectArticlePhotoList" parameterType="int" resultMap="photoResultMap">
 		select article_num,photo from article_photo where article_num=#{article_num}
@@ -66,4 +66,8 @@
     <select id="selectLoginIdisLike" resultType="int">
    	 SELECT COUNT(*) FROM ARTICLE_LIKE WHERE article_num=#{article_num} and member_num = #{memberNum}
     </select>
+    
+    <select id="selectArticleListWithFriends" parameterType="int" resultType="ArticleVO">
+		select article_num,contents,writer,like_count,Write_Time,member_num from article where member_num in (select other_member_num from friend where one_member_num = #{memberNum}) limit 0,10
+	</select>
 </mapper>

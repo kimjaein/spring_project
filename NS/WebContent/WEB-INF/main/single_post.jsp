@@ -58,6 +58,11 @@ $(function(){
 		}
 	})
 	
+		$('.name').click(function(){
+			var member_num = $(this).find('input').attr('value')
+			parent.innerFrame(member_num);
+		})
+	
 })
 
 	function increaseLikeCount(article_num,here){
@@ -453,6 +458,7 @@ $(function(){
 										</div>
 										<div class="panel-body">
 											<p class="name">
+											<input type="hidden" value="${article.member_num}">
 												<img src="assets/img/uFp_tsTJboUY7kue5XAsGAs28.png"
 													height="20px" width="20px">${article.writer}
 											</p>

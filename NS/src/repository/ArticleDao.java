@@ -90,4 +90,9 @@ public class ArticleDao {
 		ArticleMapper mapper = session.getMapper(ArticleMapper.class);
 		return mapper.selectLoginIdisLike(article_num,memberNum);
 	}
+
+	public List<ArticleVO> selectArticleListWithFriends(int memberNum) {
+		ArticleMapper mapper = session.getMapper(ArticleMapper.class);
+		return mapper.selectArticleListWithFriends(memberNum);
+	}
 }

@@ -76,9 +76,14 @@
 
 	};
 	var imgflag=2;
-	$(function() {
-		var iframe = "<iframe src='single.ns' width='100%' height='800px'></iframe>";
+	
+	function home(){
+		var iframe = "<iframe src='single.ns' width='100%' height='800px' id='innerFrame'></iframe>";
 		$('#articlePage').html(iframe);
+	}
+	
+	$(function() {
+		home();
 		
 		$(document).on('click','#btnComment',function() {
 			$.ajax({
@@ -212,8 +217,13 @@
 				reader.readAsDataURL(input.files[0]);
 				imgflag = imgflag + 1;
 		}
+		
+		
 	})
-
+	function innerFrame(member_num){
+			iframe = "<iframe src='userPage.ns?memberNum=" + member_num + "'width='100%' height='830px'></iframe>";
+			$('#articlePage').html(iframe);
+		}
 	
 </script>
 </head>
@@ -254,7 +264,7 @@
 								</div>
 							</form>
 							<ul class="nav navbar-nav">
-								<li><a><i class="glyphicon glyphicon-home"></i>
+								<li><a onclick="home()"><i class="glyphicon glyphicon-home"></i>
 										Home</a></li>
 								<li><a href="#postModal" role="button" data-toggle="modal"><i
 										class="glyphicon glyphicon-plus"></i> Post</a></li>

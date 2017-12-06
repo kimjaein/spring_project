@@ -9,9 +9,11 @@
 <link href="assets/css/myNew.css" rel="stylesheet">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+<link rel='stylesheet prefetch'
+	href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function() {
 		var iframe = "<iframe src='single.ns' width='100%' height='600px'></iframe>";
@@ -80,58 +82,64 @@
 			}
 		})
 		
+		$('#icon').click(function(){
+			alert("ddd")
+		})
+		
 	})
 
 </script>
 </head>
 <body>
-                <header id="header">
+	<header id="header">
+		<div class="slider">
+			<div id="carousel-example-generic" class="carousel slide"
+				data-ride="carousel">
+				<!-- Wrapper for slides -->
+				<div class="carousel-inner">
+					<div class="item active">
+						<img src="assets/img/bg_5.jpg">
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--slider-->
+		<nav class="navbar navbar-default">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
 
-  <div class="slider">
-  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner" >
-    <div class="item active">
-      <img src="assets/img/bg_5.jpg">
-    </div>
-  </div>
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#mainNav">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand2" href="#">
+				<img id="profileImg" class="img-responsive"
+					src="assets/img/bg_4.jpg">
+					<i id="icon" class="fa fa-camera" style="font-size:24px"></i> </a>
+				<span class="site-name"><b>Roland</b> Maruntelu</span>
+				
+			</div>
 
-  <!-- Controls -->
- 
-</div>
-                	</div><!--slider-->
-                	<nav class="navbar navbar-default">
-                        <!-- Brand and toggle get grouped for better mobile display -->
-                        <div class="navbar-header">
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="mainNav">
+				<ul class="nav main-menu navbar-nav">
+					<li><a href="#"><i class="fa fa-home"></i> HOME</a></li>
+					<li><a href="#">Link</a></li>
+					<li><a href="#">Link</a></li>
+				</ul>
 
-                          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainNav">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                          </button>
-                          <a class="navbar-brand2" href="#"><img class="img-responsive" src="http://rolyart.ro/wp-content/uploads/2016/07/roland-maruntelu-freelancer-romania.jpg"></a>
-                          <span class="site-name"><b>Roland</b> Maruntelu</span>
-                          <button>친구추가</button>
-                        </div>
-                    
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse" id="mainNav" >
-                          <ul class="nav main-menu navbar-nav">
-                            <li><a href="#"><i class="fa fa-home"></i> HOME</a></li>
-                            <li><a href="#">Link</a></li>
-                            <li><a href="#">Link</a></li>
-                          </ul>
-                          
-                           <ul class="nav  navbar-nav navbar-right">
-                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                            <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                          </ul>
-                        </div><!-- /.navbar-collapse -->
-					</nav>
-                    
-                </header><!--/#HEADER-->
-                <div id="articlePage"></div>
+				<ul class="nav  navbar-nav navbar-right">
+					<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+					<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+					<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</nav>
+	</header>
+	<!--/#HEADER-->
+	<div id="articlePage"></div>
 </body>
 </html>

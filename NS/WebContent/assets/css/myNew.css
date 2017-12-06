@@ -245,6 +245,13 @@ img.img-responsive-multi-two {
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,400,700);
 
+#icon{
+	position: absolute;
+    top: -3px;
+    left: 27px;
+}
+
+
 body{
     background:#e9eaed;
 	}
@@ -337,7 +344,7 @@ font-size:2em;
 position: absolute;
 top: 50%;
 font-size:2em;
-z-index: 5;
+z-index: 4;
 display: inline-block;
 }
 

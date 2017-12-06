@@ -105,6 +105,14 @@ public class ArticleController {
 		mv.addObject("articleList", articleList);
 		return mv;
 	}
+	@RequestMapping("userSingle.ns")
+	public ModelAndView userSinglePage(HttpSession session) {
+		int memberNum = (int) session.getAttribute("memberNum");
+		List<ArticleVO> articleList = service.selectArticleListWithFriends(memberNum);
+		ModelAndView mv = new ModelAndView("single_post");
+		mv.addObject("articleList", articleList);
+		return mv;
+	}
 
 	@RequestMapping(value = "articleViewPhoto.ns", method = RequestMethod.GET)
 	public void articleViewPhoto(int article_num, HttpServletResponse response) throws IOException {

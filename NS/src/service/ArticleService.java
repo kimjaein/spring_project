@@ -96,4 +96,20 @@ public class ArticleService {
 		}
 		
 	}
+
+	public List<ArticleVO> selectArticleListWithFriends(int memberNum) {
+		List<ArticleVO> articleList =new ArrayList<ArticleVO>();
+		articleList = dao.selectArticleListWithFriends(memberNum);
+		for(int i=0;i<articleList.size();i++) {
+			ArticleVO article = articleList.get(i);
+			article.setPhotoList(dao.selectArticlePhoto(article.getArticle_num()));
+			if(dao.selectLoginIdisLike(article.getArticle_num(), memberNum)==1) {
+				article.setLike(true);
+			}else {
+				article.setLike(false);
+			}
+			articleList.set(i, article);
+		}
+		return articleList;
+	}
 }
