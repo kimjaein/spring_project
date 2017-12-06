@@ -29,4 +29,9 @@ public class HeaderDao {
     	HeaderMapper mapper = session.getMapper(HeaderMapper.class);
         return mapper.badgeList(memberNum);
     }
+
+	public MemberVO selectMember(String memberNum) {
+		HeaderMapper mapper = session.getMapper(HeaderMapper.class);
+        return mapper.selectMember(memberNum);
+	}
 }

@@ -10,4 +10,5 @@ import vo.MemberVO;
 public interface HeaderMapper {
 	public List<MemberVO> searchFriendList(@Param("search")String search);
 	public List<AlarmVO> badgeList(@Param("memberNum")int memberNum);
+	public MemberVO selectMember(String memberNum);
 }

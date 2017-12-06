@@ -25,4 +25,8 @@ public class HeaderService {
     public List<AlarmVO> badgeList(@Param("memberNum")int memberNum) {
     	return dao.badgeList(memberNum);
     }
+
+	public MemberVO selectMember(String memberNum) {
+		return dao.selectMember(memberNum);
+	}
 }

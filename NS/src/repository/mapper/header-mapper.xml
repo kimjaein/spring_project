@@ -12,4 +12,8 @@
     <select id="badgeList" parameterType="int" resultType="AlarmVO">
     	SELECT * FROM ALARM WHERE FROM_MEMBER_NUM=#{memberNum}
     </select>
+    
+    <select id="selectMember" resultType="MemberVO">
+		SELECT ID,NAME,BIRTH,GENDER,ADDRESS,PHOTO FROM MEMBER WHERE MEMBER_NUM = #{memberNum}
+	</select>
 </mapper>

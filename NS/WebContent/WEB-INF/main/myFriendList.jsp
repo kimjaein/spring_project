@@ -9,7 +9,7 @@
 <link href="assets/css/bootstrap.css" rel="stylesheet">
 <link href="assets/css/facebook.css" rel="stylesheet">
 <link href="assets/css/myNew.css" rel="stylesheet">
-<script type="text/javascript" src="assets/js/friend.js"></script>
+
 
 </head>
 <body>
@@ -28,7 +28,7 @@
 							class="img-responsive" alt="">
 						</c:when>
 						<c:otherwise>
-						<img src="${friend.photo}"
+						<img src="userPhoto/${friend.photo}"
 							class="img-responsive" alt="">
 						</c:otherwise>
 					</c:choose>
