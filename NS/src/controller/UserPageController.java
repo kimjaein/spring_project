@@ -136,7 +136,7 @@ public class UserPageController {
     		if(photo.length() != 0) {
     			writer.print(photo);
     		}else {
-    			writer.println("nono");
+    			writer.print("no");
     		}
 		} catch (IOException e) {
 			e.printStackTrace();

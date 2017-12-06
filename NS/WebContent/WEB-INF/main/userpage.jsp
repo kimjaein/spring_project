@@ -57,9 +57,13 @@
 				data : 'memberNum=' + ${searchUserNum},
 				dataType : 'text',
 				success : function(resultData) {
-					var photo = "<img id='userPhoto' class='img-responsive' src='userPhoto/"+resultData+"'>";
+					var photo = "";
+					if(resultData == "0"){
+						photo += "<img id='userPhoto' class='img-responsive' src='assets/img/uFp_tsTJboUY7kue5XAsGAs28.png'>";
+					}else{
+						photo += "<img id='userPhoto' class='img-responsive' src='userPhoto/"+resultData+"'>";
+					}
 					$('.navbar-brand2').html(photo);
-// 					$('.navbar-brand2').after(photo);
 				},
 				error : function() {
 					alert('ajax 요청 실패');
@@ -118,6 +122,7 @@
 </script>
 </head>
 <body>
+	<div id="friendDiv"></div>
 	<header id="header">
 		<div class="slider">
 			<div id="carousel-example-generic" class="carousel slide"
