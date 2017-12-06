@@ -40,7 +40,7 @@ public class ArticleController {
 	@RequestMapping("/upload.ns")
 	public ModelAndView upload(HttpServletRequest request, ArticlePhotoVO photo, ArticleVO article) {
 		// main.jsp·Î º¯°æ
-		ModelAndView mv = new ModelAndView("article");
+		ModelAndView mv = new ModelAndView("main");
 		String uploadPath = request.getServletContext().getRealPath("img");
 		File dir = new File(uploadPath);
 		System.out.println(uploadPath);
