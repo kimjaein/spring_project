@@ -415,3 +415,7 @@ display: inline-block;
 	margin-left:125px;
 	}
 }
+
+#userPhotoUploadArea{
+	display : none;	
+}

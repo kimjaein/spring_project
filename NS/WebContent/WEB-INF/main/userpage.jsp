@@ -20,6 +20,7 @@
 		$('#articlePage').html(iframe);
 		
 		friendStatus();
+		userPhoto();
 		
 		function friendStatus (){
 			$.ajax({
@@ -29,14 +30,36 @@
 				dataType : 'text',
 				success : function(resultData) {
 					var friendStatus = "";
+					var photoBtn = "";
 					if(resultData == 'friendDelete'){
 						friendStatus += "<button id='friendBtn' value='"+resultData+"'>친구삭제</button>";
 					}else if(resultData == 'friendRequest'){
 						friendStatus += "<button id='friendBtn' value='"+resultData+"'>요청중</button>";
 					}else if(resultData == 'friendInsert'){
 						friendStatus += "<button id='friendBtn' value='"+resultData+"'>친구추가</button>";
+					}else{
+						photoBtn += '<i id="icon" class="fa fa-camera" style="font-size:24px"></i>';
 					}
+					
 					$('#friendDiv').html(friendStatus);
+					$('.navbar-brand2').after(photoBtn);
+				},
+				error : function() {
+					alert('ajax 요청 실패');
+				}		
+			})	
+		}
+		
+		function userPhoto (){
+			$.ajax({
+				type : 'post',
+				url : 'userPhoto.ns',
+				data : 'memberNum=' + ${searchUserNum},
+				dataType : 'text',
+				success : function(resultData) {
+					var photo = "<img id='userPhoto' class='img-responsive' src='userPhoto/"+resultData+"'>";
+					$('.navbar-brand2').html(photo);
+// 					$('.navbar-brand2').after(photo);
 				},
 				error : function() {
 					alert('ajax 요청 실패');
@@ -82,8 +105,12 @@
 			}
 		})
 		
-		$('#icon').click(function(){
-			alert("ddd")
+		$('input[name=photoFile]').on('change', function(){
+			document.userPhotoForm.submit();
+		})
+		
+		$(document).on('click', '#icon', function() {
+			$('input[type=file]').click();
 		})
 		
 	})
@@ -114,10 +141,17 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
+				
 				<a class="navbar-brand2" href="#">
-				<img id="profileImg" class="img-responsive"
-					src="assets/img/bg_4.jpg">
-					<i id="icon" class="fa fa-camera" style="font-size:24px"></i> </a>
+<!-- 				<img id="profileImg" class="img-responsive" src="assets/img/bg_4.jpg"> -->
+				</a>
+<!-- 					<i id="icon" class="fa fa-camera" style="font-size:24px"></i> -->
+						<div id="userPhotoUploadArea">
+							<form action="userPhotoUpload.ns" method="post" enctype="multipart/form-data" name="userPhotoForm">
+                          		<input type="hidden" name="memberNum" value="${sessionScope.memberNum}">
+                          		<input type="file" name="photoFile">
+                          	</form>
+						</div>
 				<span class="site-name"><b>Roland</b> Maruntelu</span>
 				
 			</div>
