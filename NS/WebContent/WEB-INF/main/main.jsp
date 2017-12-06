@@ -243,7 +243,7 @@
 								<span class="sr-only">Toggle</span> <span class="icon-bar"></span>
 								<span class="icon-bar"></span> <span class="icon-bar"></span>
 							</button>
-							<a href="http://usebootstrap.com/theme/facebook"
+							<a onclick="home()"
 								class="navbar-brand logo">N</a>
 						</div>
 						<nav class="collapse navbar-collapse" role="navigation">

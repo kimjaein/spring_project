@@ -14,4 +14,9 @@
 	<resultMap type="MemberVO" id="memberResultMap">
         <result column="member_num" property="memberNum"/>
     </resultMap>
+    
+    <insert id="insertFriend" parameterType="int">
+		INSERT INTO FRIEND(ONE_MEMBER_NUM,Other_MEMBER_NUM)
+        VALUES(#{memberNum},#{memberNum})
+	</insert>
 </mapper>

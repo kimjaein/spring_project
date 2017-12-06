@@ -25,4 +25,8 @@
 	<select id="userPhotoSelect" parameterType="MemberVO" resultType="String">
 		SELECT PHOTO FROM MEMBER WHERE MEMBER_NUM=#{memberNum}
 	</select>
+	
+	<select id="selectFriendList" resultType="MemberVO">
+		SELECT ID,NAME,BIRTH,GENDER,ADDRESS,PHOTO FROM MEMBER WHERE MEMBER_NUM IN (SELECT OTHER_MEMBER_NUM FROM FRIEND WHERE ONE_MEMBER_NUM = #{memberNum})
+	</select>
 </mapper>

@@ -3,10 +3,12 @@ package controller;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -141,5 +143,16 @@ public class UserPageController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+    }
+    
+    @RequestMapping("friendList.ns")
+    public ModelAndView friendList(HttpSession session) {
+    	ModelAndView mv = new ModelAndView("myFriendList");
+    	
+    	int memberNum = (int) session.getAttribute("memberNum");
+    	List<MemberVO> friendList = service.selectFriendList(memberNum);
+    	
+    	mv.addObject("friendList",friendList);
+    	return mv;
     }
 }

@@ -21,7 +21,10 @@
 		
 		friendStatus();
 		userPhoto();
-		
+		$('#friendList').click(function(){
+			var iframe = "<iframe src='friendList.ns' width='100%' height='600px'></iframe>";
+			$('#articlePage').html(iframe);
+		})
 		function friendStatus (){
 			$.ajax({
 				type : 'post',
@@ -32,11 +35,11 @@
 					var friendStatus = "";
 					var photoBtn = "";
 					if(resultData == 'friendDelete'){
-						friendStatus += "<button id='friendBtn' value='"+resultData+"'>模备昏力</button>";
+						friendStatus += "<a id='friendBtn' value='"+resultData+"'>模备昏力</a>";
 					}else if(resultData == 'friendRequest'){
-						friendStatus += "<button id='friendBtn' value='"+resultData+"'>夸没吝</button>";
+						friendStatus += "<a id='friendBtn' value='"+resultData+"'>夸没吝</a>";
 					}else if(resultData == 'friendInsert'){
-						friendStatus += "<button id='friendBtn' value='"+resultData+"'>模备眠啊</button>";
+						friendStatus += "<a id='friendBtn' value='"+resultData+"'>模备眠啊</a>";
 					}else{
 						photoBtn += '<i id="icon" class="fa fa-camera" style="font-size:24px"></i>';
 					}
@@ -150,7 +153,7 @@
 				<a class="navbar-brand2" href="#">
 <!-- 				<img id="profileImg" class="img-responsive" src="assets/img/bg_4.jpg"> -->
 				</a>
-<!-- 					<i id="icon" class="fa fa-camera" style="font-size:24px"></i> -->
+					<i id="icon" class="fa fa-camera" style="font-size:24px"></i>
 						<div id="userPhotoUploadArea">
 							<form action="userPhotoUpload.ns" method="post" enctype="multipart/form-data" name="userPhotoForm">
                           		<input type="hidden" name="memberNum" value="${sessionScope.memberNum}">
@@ -166,7 +169,8 @@
 				<ul class="nav main-menu navbar-nav">
 					<li><a href="#"><i class="fa fa-home"></i> HOME</a></li>
 					<li><a href="#">Link</a></li>
-					<li><a href="#">Link</a></li>
+					<li><a id="friendList">模备府胶飘</a></li>
+					<li><a id="friendDiv">Link</a></li>
 				</ul>
 
 				<ul class="nav  navbar-nav navbar-right">

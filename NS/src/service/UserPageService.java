@@ -1,5 +1,7 @@
 package service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -39,5 +41,9 @@ public class UserPageService {
 	
 	public String userPhotoSelect(MemberVO member) {
 		return dao.userPhotoSelect(member);
+	}
+
+	public List<MemberVO> selectFriendList(int memberNum) {
+		return dao.selectFriendList(memberNum);
 	}
 }

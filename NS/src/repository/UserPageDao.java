@@ -1,5 +1,7 @@
 package repository;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -47,6 +49,11 @@ public class UserPageDao {
 	public String userPhotoSelect(MemberVO member) {
 		UserPageMapper mapper = session.getMapper(UserPageMapper.class);
 		return mapper.userPhotoSelect(member);
+	}
+
+	public List<MemberVO> selectFriendList(int memberNum) {
+		UserPageMapper mapper = session.getMapper(UserPageMapper.class);
+		return mapper.selectFriendList(memberNum);
 	}
 	
 }

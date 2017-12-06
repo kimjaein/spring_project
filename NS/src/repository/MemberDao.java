@@ -27,4 +27,10 @@ public class MemberDao {
                 session.getMapper(MemberMapper.class);
         return mapper.memberLogin(id, pw);
     }
+
+	public int insertFriend(int memberNum) {
+		 MemberMapper mapper = 
+	                session.getMapper(MemberMapper.class);
+	        return mapper.insertFriend(memberNum);
+	}
 }

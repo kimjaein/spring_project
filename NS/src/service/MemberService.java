@@ -16,6 +16,7 @@ public class MemberService {
     
     public int memberJoin(MemberVO member) {
         if(dao.memberJoin(member) > 0) {
+        	dao.insertFriend(member.getMemberNum());
             return member.getMemberNum();
         }else {
             return -1;
