@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import repository.mapper.UserPageMapper;
 import vo.AlarmVO;
+import vo.ArticlePhotoVO;
 import vo.FriendVO;
 import vo.MemberVO;
 
@@ -54,6 +55,11 @@ public class UserPageDao {
 	public List<MemberVO> selectFriendList(int memberNum) {
 		UserPageMapper mapper = session.getMapper(UserPageMapper.class);
 		return mapper.selectFriendList(memberNum);
+	}
+	
+	public List<ArticlePhotoVO> photoGallery(int membernum) {
+		UserPageMapper mapper = session.getMapper(UserPageMapper.class);
+		return mapper.photoGallery(membernum);
 	}
 	
 }

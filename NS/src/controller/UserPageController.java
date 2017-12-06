@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import service.UserPageService;
 import vo.AlarmVO;
+import vo.ArticlePhotoVO;
 import vo.FriendVO;
 import vo.MemberVO;
 
@@ -155,4 +156,17 @@ public class UserPageController {
     	mv.addObject("friendList",friendList);
     	return mv;
     }
+    
+    @RequestMapping("photoGallery.ns")
+  	public ModelAndView phtoGallery(HttpServletRequest request,ArticlePhotoVO photo) {
+      	ModelAndView mv = new ModelAndView("photoGallery");
+  		String member_num = request.getParameter("memberNum");
+  		int memberNum = Integer.parseInt(member_num);
+  		List<ArticlePhotoVO> vo = service.photoGallery(memberNum);
+  		System.out.println("asdasdasasdasdasd"+vo);
+  		
+  		mv.addObject("photoList",vo);
+  		return mv;
+  		
+  	}
 }

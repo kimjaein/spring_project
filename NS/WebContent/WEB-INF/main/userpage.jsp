@@ -16,6 +16,10 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function() {
+		$(".photoGallery").click(function(){
+			var iframe = "<iframe src='photoGallery.ns?memberNum="+${sessionScope.memberNum}+"'width='100%' height='600px'></iframe>";
+			$('#articlePage').html(iframe);
+		})
 		var iframe = "<iframe src='single.ns' width='100%' height='600px'></iframe>";
 		$('#articlePage').html(iframe);
 		
@@ -168,7 +172,7 @@
 			<div class="collapse navbar-collapse" id="mainNav">
 				<ul class="nav main-menu navbar-nav">
 					<li><a href="#"><i class="fa fa-home"></i> HOME</a></li>
-					<li><a href="#">Link</a></li>
+					<li><a href="#" class="photoGallery"><i class="fa fa-photo"></i>사진첩</a></li>
 					<li><a id="friendList">친구리스트</a></li>
 					<li><a id="friendDiv">Link</a></li>
 				</ul>

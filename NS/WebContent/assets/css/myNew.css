@@ -1,5 +1,13 @@
 @charset "EUC-KR";
-
+.img{
+	width:100px !important;
+	height:80px !important;
+	float:left !important;
+	margin: 5px;
+}
+.img img{
+	width:100%;
+}
 .sidenav {
     height: 100%;
     width: 0;

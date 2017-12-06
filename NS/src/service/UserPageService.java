@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import repository.UserPageDao;
-import repository.mapper.UserPageMapper;
 import vo.AlarmVO;
+import vo.ArticlePhotoVO;
 import vo.FriendVO;
 import vo.MemberVO;
 
@@ -45,5 +45,9 @@ public class UserPageService {
 
 	public List<MemberVO> selectFriendList(int memberNum) {
 		return dao.selectFriendList(memberNum);
+	}
+	
+	public List<ArticlePhotoVO> photoGallery(int membernum) {
+		return dao.photoGallery(membernum);
 	}
 }

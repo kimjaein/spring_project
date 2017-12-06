@@ -34,12 +34,12 @@ $(function(){
 	$('#test').click(function() {
 		var st = "<input type=text class='test'>";
 	})
-	$(".article_num").click(function() {
-		var st = $(this).attr('value')
-		$(".comment").val(st);
-		var id = $("#loginId").val();
-		$(".commentId").val(id);
-		commentModal(st)
+	$('.img').click(function() {
+			var st = $(this).find("input").attr('value');
+			$(".comment").val(st);
+			var id = $("#loginId").val();
+			$(".commentId").val(id);
+			commentModal(st)
 		return false;
 	})
 	//이부분은 좋아요영역 작업현황 = 불변경만 가능(새로고침시 리셋)
@@ -378,6 +378,7 @@ $(function(){
 		<tr class="comment-content">
 			<td colspan="3" height="60">
 				<div style="width: 100%; height: 100px; overflow: auto">
+<!-- 				댓글영역 -->
 					<table id="commentTable" border="1" width="100%" cellspacing="0"
 						cellpadding="0" style="table-layout: fixed">
 					</table>
@@ -395,99 +396,11 @@ $(function(){
 
 		</tr>
 	</table>
-	<div class="padding">
-		<div class="full" onmousewheel="horizontalScroll()">
-			<table>
-				<tr>
-					<td>멤버번호 : ${sessionScope.memberNum}
-					<td>
-				</tr>
-				<tr id="here">
-					<c:forEach var="article" items="${articleList}">
-						<td>
-							<div class="row">
-								<div class="article">
-									<div class="panel panel-default">
-										<div class="panel-thumbnail">
-											<c:choose>
-												<c:when test="${article.photoList.size() == 0}">
-													<img src="assets/img/150x150.gif" class="img-responsive"
-															width="600" height="50">
-												</c:when>
-												<c:when test="${article.photoList.size() > 1}">
-													<c:choose>
-														<c:when test="${article.photoList.size() == 2}">
-															<c:forEach var="photo" varStatus="status"
-																items="${article.photoList}">
-																<img src="${photo.filePath}"
-																	class="img-responsive-multi-two" width="600" height="50">
-															</c:forEach>
-														</c:when>
-														<c:when test="${article.photoList.size() <= 4}">
-															<c:forEach var="photo" varStatus="status"
-																items="${article.photoList}">
-																<img src="${photo.filePath}"
-																	class="img-responsive-multi" width="600" height="50">
-															</c:forEach>
-														</c:when>
-														<c:otherwise><!-- 사진이 5개 이상 -->
-															<c:forEach var="photo" begin="0" end="3"
-																varStatus="status" items="${article.photoList}">
-																<img src="${photo.filePath}"
-																	class="img-responsive-multi-more" width="600" height="50">
-															</c:forEach>
-														</c:otherwise>
-													</c:choose>
-												</c:when>
-												<c:otherwise>
-													<c:forEach var="photo" items="${article.photoList}">
-														<img src="${photo.filePath}" class="img-responsive"
-															width="600" height="50">
-													</c:forEach>
-												</c:otherwise>
-											</c:choose>
-										</div>
-										<div class="panel-body">
-											<p class="name">
-											<input type="hidden" value="${article.member_num}">
-												<img src="assets/img/uFp_tsTJboUY7kue5XAsGAs28.png"
-													height="20px" width="20px">${article.writer}
-											</p>
-											<p>
-											<c:choose>
-												<c:when test="${article.contents.length() > 60 }">
-													${article.contents.substring(0,60)} ...
-												</c:when>
-												<c:otherwise>
-													${article.contents}
-												</c:otherwise>
-											</c:choose>
-											</p>
-											<div>
-											<div class='like'>
-											<input type="hidden" value="${article.article_num}">
-											<c:choose>
-												<c:when test="${article.isLike == true}">
-												<i class="fa fa-heart"></i>
-												</c:when>
-												<c:otherwise>
-												<i class="fa fa-heart-o"></i>
-												</c:otherwise>
-											</c:choose>
-												<span>${article.like_count}</span></div>, <i
-													class="fa fa-commenting-o"></i> Comment &nbsp; <input
-													type="hidden" id="loginId" value="${sessionScope.id}">
-												<button class="article_num" value="${article.article_num}">상세보기</button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</td>
-					</c:forEach>
-				</tr>
-			</table>
-		</div>
-	</div>
+	<c:forEach var="photo" items="${photoList}">
+			<div class="img">
+				<img src="${photo.filePath}"> <input type="hidden"value="${photo.article_num}">
+			</div>
+		</c:forEach>
+	<input type="hidden" id="loginId" value="${sessionScope.id}"> 
 </body>
 </html>
