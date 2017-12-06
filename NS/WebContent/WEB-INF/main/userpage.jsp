@@ -17,7 +17,7 @@
 <script type="text/javascript">
 	$(function() {
 		$(".photoGallery").click(function(){
-			var iframe = "<iframe src='photoGallery.ns?memberNum="+${sessionScope.memberNum}+"'width='100%' height='600px'></iframe>";
+			var iframe = "<iframe src='photoGallery.ns?memberNum="+${searchUserNum}+"'width='100%' height='600px'></iframe>";
 			$('#articlePage').html(iframe);
 		})
 		var iframe = "<iframe src='single.ns' width='100%' height='600px'></iframe>";
