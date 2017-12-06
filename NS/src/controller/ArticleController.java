@@ -43,6 +43,7 @@ public class ArticleController {
 		ModelAndView mv = new ModelAndView("article");
 		String uploadPath = request.getServletContext().getRealPath("img");
 		File dir = new File(uploadPath);
+		System.out.println(uploadPath);
 		String stringNum = request.getParameter("memberNum");
 		int memberNum = Integer.parseInt(stringNum);
 

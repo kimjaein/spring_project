@@ -88,7 +88,7 @@
 				dataType : 'text',
 				success : function(resultData) {
 					var iframe;
-					iframe = "<iframe src='http://localhost:8888/NS/'></iframe>";
+					iframe = "<iframe src=''></iframe>";
 					$('#mainPage').html(iframe);
 				},
 				error : function() {
@@ -100,7 +100,6 @@
 
 		$('#srchterm').on('keyup', function() {
 			var flagFriend = $(this).val();
-			
 			if(flagFriend == ""){
 				document.getElementById("friend").style.display="none";
 			}else{
@@ -131,7 +130,7 @@
 		$(document).on('mousedown', '#searchUser', function() {
 			var searchUserNum = $(this).val();
 			var iframe;
-			iframe = "<iframe src='http://localhost:8888/NS/userPage.ns?memberNum=" + searchUserNum + "'width='100%' height='500px'></iframe>";
+			iframe = "<iframe src='userPage.ns?memberNum=" + searchUserNum + "'width='100%' height='830px'></iframe>";
 			$('#articlePage').html(iframe);
 			document.getElementById("friend").style.display="none";			
 			return false;
@@ -259,13 +258,11 @@
 										Home</a></li>
 								<li><a href="#postModal" role="button" data-toggle="modal"><i
 										class="glyphicon glyphicon-plus"></i> Post</a></li>
-							
 								<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span id="badgeBtn"><i class="material-icons">notifications_active</i></span></a>
 								<ul class="dropdown-menu" id="badge">
 								</ul>
 							  </li>
-							 				
 								<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span  id="badgeBtn"><i class="fa fa-cog" style="font-size:24px"></i></span></a>
 								<ul class="dropdown-menu" id="badge">
@@ -291,12 +288,9 @@
 					</div>
 				</div>
 				<!-- /main -->
-
 			</div>
 		</div>
 	</div>
-
-
 
 	<!--post modal-->
 	<!-- ±Û ÀÛ¼º form -->
@@ -383,13 +377,12 @@
 			<div class="modal-content">
 				<div class="modal-body">
 					<h1> modal test </h1>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn" data-dismiss="modal">´Ý±â</button>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn" data-dismiss="modal">´Ý±â</button>
+				</div>
 			</div>
 		</div>
 	</div>
-
-</div>
 </body>
 </html>

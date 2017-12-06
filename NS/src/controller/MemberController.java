@@ -48,4 +48,8 @@ public class MemberController {
 		return "iframetest";
 	}
 	
+	@RequestMapping("userPageEx.ns")
+	public String itest() {
+		return "userpage";
+	}
 }
