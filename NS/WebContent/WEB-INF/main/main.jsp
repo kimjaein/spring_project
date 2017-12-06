@@ -256,19 +256,10 @@
 								<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="badge" id="badgeBtn">badge</span></a>
 								<ul class="dropdown-menu" id="badge">
-<!-- 								  <li><a href="">More</a></li> -->
-<!-- 								  <li><a href="">More</a></li> -->
-<!-- 								  <li><a href="">More</a></li> -->
-<!-- 								  <li><a href="">More</a></li> -->
-<!-- 								  <li><a href="">More</a></li> -->
 								</ul>
 							  </li>
 							  </ul>
-							<ul class="nav navbar-nav navbar-right">
-								<li class="dropdown"><a href="#" class="dropdown-toggle"
-									onclick="openNav()"> <i class="glyphicon glyphicon-user"></i></a>
-								</li>
-							</ul>
+
 							
 							<ul class="nav navbar-nav">
 								<li class="dropdown">
@@ -281,7 +272,7 @@
 							  </ul>
 							<ul class="nav navbar-nav navbar-right">
 								<li class="dropdown"><a href="#" class="dropdown-toggle"
-									onclick="openNava()"> <i class="glyphicon glyphicon-user"></i></a>
+									onclick="openNav()"> <i class="glyphicon glyphicon-user"></i></a>
 								</li>
 							</ul>
 						</nav>
