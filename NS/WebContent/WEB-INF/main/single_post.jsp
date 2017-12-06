@@ -75,19 +75,19 @@ $(function(){
 		})
 	}
 	function decreaseLikeCount(article_num,here){
-	$.ajax({
-		type : 'get',
-		url : 'updateLikeCount.ns?article_num=' + article_num+"&task=decrease",
-		dataType : 'json',
-		success : function(data) {
-			
-				here.find('span').text(data);
-				here.find('i').removeClass("fa fa-heart").addClass("fa fa-heart-o");
-		},
-		error : function() {
-		}
-	})
-}
+		$.ajax({
+			type : 'get',
+			url : 'updateLikeCount.ns?article_num=' + article_num+"&task=decrease",
+			dataType : 'json',
+			success : function(data) {
+				
+					here.find('span').text(data);
+					here.find('i').removeClass("fa fa-heart").addClass("fa fa-heart-o");
+			},
+			error : function() {
+			}
+		})
+	}
 	function commentModal(st) {
 		$.ajax({
 					type : 'get',
@@ -199,7 +199,7 @@ $(function(){
 	$(document).scroll(function() {
 		var st = $(this).scrollLeft();
 		var size = $(document).width() - $(window).width();
-		$('#btn').text(size)
+		
 		if (st == size) {
 			next();
 		}
@@ -254,8 +254,8 @@ $(function(){
 							article	+= data['contents']
 						}
 						
-						article	+= "</p>"
-								+ "<p class='like'>"
+						article	+= "</p><div>"
+								+ "<div class='like'>"
 						if(data['isLike']){
 						 article+="<i class='fa fa-heart'></i>"
 						}else{
@@ -263,18 +263,16 @@ $(function(){
 						} 
 								
 						article	+="<span>"+data['like_count']
-								+ "</span>, <i	class='fa fa-commenting-o'></i> Comment"
+								+ "</span></div>, <i	class='fa fa-commenting-o'></i> Comment"
 								+ "<button class=article_num value="+data['article_num']+">상세보기</button>"
-								+ "</p></div></div></div></div></td>"
+								+ "</div></div></div></div></div></td>"
 
 						$('#here').html(article)
 						count = count + 1;
 								$(".article_num").click(function() {
-									alert("dddd")
 									var st = $(this).attr('value')
 									$(".comment").val(st);
 									var id = $("#loginId").val();
-									alert(id);
 									$(".commentId").val(id);
 									commentModal(st)
 									return false;
@@ -403,7 +401,6 @@ $(function(){
 		</tr>
 	</table>
 	<div class="padding">
-		<button id="btn"></button>
 		<div class="full" onmousewheel="horizontalScroll()">
 			<table>
 				<tr>
@@ -471,7 +468,8 @@ $(function(){
 											</c:choose>
 											로그인한아이디 : ${sessionScope.id}
 											</p>
-											<p class='like'>
+											<div>
+											<div class='like'>
 											<c:choose>
 												<c:when test="${article.isLike == true}">
 												<i class="fa fa-heart"></i>
@@ -480,11 +478,11 @@ $(function(){
 												<i class="fa fa-heart-o"></i>
 												</c:otherwise>
 											</c:choose>
-												<span >${article.like_count}</span>, <i
+												<span>${article.like_count}</span></div>, <i
 													class="fa fa-commenting-o"></i> Comment &nbsp; <input
 													type="hidden" id="loginId" value="${sessionScope.id}">
 												<button class="article_num" value="${article.article_num}">상세보기</button>
-											</p>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -493,7 +491,6 @@ $(function(){
 					</c:forEach>
 				</tr>
 			</table>
-			<button id="next">다음</button>
 		</div>
 	</div>
 </body>

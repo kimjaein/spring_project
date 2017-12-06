@@ -235,3 +235,8 @@ img.img-responsive-multi-two {
     float: left;
     margin: 0.5%;
 }
+
+.like{
+	float:left;
+	margin-top: 4px;
+}
