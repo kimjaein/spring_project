@@ -35,11 +35,9 @@ $(function(){
 		var st = "<input type=text class='test'>";
 	})
 	$(".article_num").click(function() {
-		alert("dddd")
 		var st = $(this).attr('value')
 		$(".comment").val(st);
 		var id = $("#loginId").val();
-		alert(id);
 		$(".commentId").val(id);
 		commentModal(st)
 		return false;
@@ -111,8 +109,6 @@ $(function(){
 							for (i = 0; i < count; i++) {
 								imgCount += photoData[i];
 							}
-							alert(imgCount)
-							alert("그림2개이상")
 							imgSlide = '<div class="w3-content w3-display-container">';
 							imgSlide += imgCount;
 							imgSlide += '<button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>'
@@ -122,7 +118,6 @@ $(function(){
 									imgSlide);
 							plusDivs(-1)
 						} else if (count == 1) {
-							alert("그림이 1개")
 							photoData[0] = '';
 							photoData[0] = '<img Class="mySlides" src="'+data[i]+'" width="400" height="300">';
 							$('#commentModal tr').eq(1).find('td').eq(0).html(photoData);
@@ -132,7 +127,7 @@ $(function(){
 						}
 					},
 					error : function() {
-						alert("fail")
+						alert("articleViewPhoto에러")
 					}
 				})
 
@@ -146,18 +141,14 @@ $(function(){
                   var writer = '';
                   writer = data['writer'];
                   var like_count = '';
-                  //like_count += '<div class="like"><i id="like_i" class='fa fa-heart-o'></i>like<span></span></div>' +  data['like_count'];
-                  //                alert($('#commentModal tr').eq(1).find('td').eq(0).text(ContentsData));
                   $('.like').find('span').text(data['like_count'])
                   $('#commentModal tr').eq(2).find('td').eq(0).html(
                         contentsData);
                   $('#commentModal tr').eq(1).find('td').eq(1).html(
                         writer);
-//                   $('#commentModal tr').eq(4).find('td').eq(0).html(
-//                         like_count);
                },
                error : function() {
-                  alert("fail2")
+                  alert("articleViewContents 에러")
                }
             })
 
@@ -188,7 +179,7 @@ $(function(){
 
 					},
 					error : function() {
-						alert("fail2")
+						alert("articleComment 에러")
 					}
 				})
 
@@ -354,7 +345,7 @@ $(function(){
 						})
 					},
 					error : function() {
-						alert("fail2")
+						alert("댓글내용을 입력해주세요")
 					}
 				})
 		$("#commentModal").modal('show');
