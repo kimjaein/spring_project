@@ -14,6 +14,8 @@
         <![endif]-->
 <link href="assets/css/facebook.css" rel="stylesheet">
 <link href="assets/css/myNew.css" rel="stylesheet">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script type="text/javascript">
 	var flag = true;
 
@@ -72,8 +74,13 @@
 	webSocket.close = function(message) {
 
 	};
-
+	var imgflag=2;
 	$(function() {
+		var iframe = "<iframe src='single.ns' width='100%' height='800px'></iframe>";
+		$('#articlePage').html(iframe);
+		
+		
+		
 		$(document).on('click','#btnComment',function() {
 			$.ajax({
 				type : 'post',
@@ -107,13 +114,9 @@
 						if(resultData == ""){
 							document.getElementById("friend").style.display="none";
 						}else{
- 							
-
 							var searchFriendList = "";
 							$.each(resultData, function(index, item){
 							searchFriendList += "<li id='searchUser' value="+item['memberNum'] +">" + item['name']+ "</li><br>";
-//								searchFriendList += "<button id='searchUser' value="+item['memberNum'] +">" + item['name']+ "</button><br>";
-// 								searchFriendList += "<a href='#'>" + item['id']+ "</a><br>";
 								$('#friend-under').html(searchFriendList);
 							})
 							document.getElementById("friend").style.display="block";
@@ -130,7 +133,7 @@
 			var searchUserNum = $(this).val();
 			var iframe;
 			iframe = "<iframe src='http://localhost:8888/NS/userPage.ns?memberNum=" + searchUserNum + "'width='100%' height='500px'></iframe>";
-			$('#mainPage').html(iframe);
+			$('#articlePage').html(iframe);
 			document.getElementById("friend").style.display="none";			
 			return false;
 		})
@@ -151,13 +154,9 @@
 						if(resultData == ""){
 							document.getElementById("friend").style.display="none";
 						}else{
- 							
-
 							var searchFriendList = "";
 							$.each(resultData, function(index, item){
 							searchFriendList += "<li id='searchUser' value="+item['memberNum'] +">" + item['name']+ "</li><br>";
-//								searchFriendList += "<button id='searchUser' value="+item['memberNum'] +">" + item['name']+ "</button><br>";
-// 								searchFriendList += "<a href='#'>" + item['id']+ "</a><br>";
 								$('#friend-under').html(searchFriendList);
 							})
 							document.getElementById("friend").style.display="block";
@@ -198,17 +197,34 @@
 				}
 			})
 		})		
-
+		
+		
+		$('#add').click(function() {
+			$('.imgInp:nth-child(' + imgflag + ')').click();
+			$('.imgInp:nth-child(' + imgflag + ')').on('change', function() {
+				readURL(this)
+			})
+		})
+		
+		function readURL(input) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					var st = $("#imgBox").html();
+					st += "<img id='blah' name='' src="+e.target.result+" alt='your image' width='50' height='50' />"
+					$('#imgBox').html(st);
+				}
+				reader.readAsDataURL(input.files[0]);
+				imgflag = imgflag + 1;
+		}
 	})
 
 	window.onload = function() {
-		var iframe;
-		iframe = "<iframe src='http://localhost:8888/NS/'></iframe>";
-		$('#mainPage').html(iframe);
 		
-		var iframe = "<iframe src='http://localhost:8888/NS/single.do' width='100%' height='500px'></iframe>";
-		$('#articlePage').html(iframe);
+		
 	}
+	
+	
+	
 </script>
 </head>
 
@@ -283,17 +299,7 @@
 					<div id="singlePage"></div>
 					<!-- 아래 div에 iframe (슬라이드)-->
 					<div id="iframe">
-						이름 : ${sessionScope.Name}<br> 멤버번호 :
-						${sessionScope.memberNum}
-						<form>
-							<input id="textMessage" type="text"> <input
-								onclick="sendMessage()" value="Send" type="button">
-						</form>
-
-						<div id="mainPage"></div>
-						<input type="button" id="btnComment">
-						<div id="articlePage"></div>
-						<input type="button" id="btnComment">
+					<div id="articlePage"></div>
 					</div>
 				</div>
 				<!-- /main -->
@@ -313,27 +319,35 @@
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">x</button>
-					Update Status
+					<h2>로그인이름 : ${Name} 아이디 : ${id}</h2>
 				</div>
-				<div class="modal-body">
-					<form class="form center-block">
+				<form class="form center-block" action="upload.ns"
+					enctype="multipart/form-data" method="post">
+					<div class="modal-body">
 						<div class="form-group">
 							<textarea class="form-control input-lg" autofocus=""
-								placeholder="What do you want to share?"></textarea>
+								placeholder="What do you want to share?" name="text"></textarea>
 						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<div>
-						<button class="btn btn-primary btn-sm" data-dismiss="modal"
-							aria-hidden="true">Post</button>
-						<ul class="pull-left list-inline">
-							<li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li>
-							<li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li>
-							<li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li>
-						</ul>
+						<div id="imgBox"></div>
 					</div>
-				</div>
+					<div class="modal-footer">
+						<div>
+							<ul class="pull-left list-inline">
+								<li><i class="fa fa-upload" id="add"></i> <!--해당버튼 그림으로 대체하기 -->
+									<input type='file' class='imgInp' name='photo' style='display:none'/>
+									<input type='file' class='imgInp' name='photo' style='display:none'/>
+									<input type='file' class='imgInp' name='photo' style='display:none'/>
+									<input type='file' class='imgInp' name='photo' style='display:none'/>
+									<input type='file' class='imgInp' name='photo' style='display:none'/>
+									최대5개
+									<input type="hidden"
+									value="${sessionScope.memberNum}" name="memberNum" id="before">
+									<input type="hidden" value="${Name}" name="name"> <input
+									type="submit" value="작성"></li>
+							</ul>
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>

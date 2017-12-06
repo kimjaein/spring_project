@@ -16,7 +16,6 @@
 #next, #btn {
 	position: fixed;
 }
-
 #commentModal {
 	margin: 100px;
 }
@@ -50,11 +49,11 @@ $(function(){
 	$(".like").click(function() {
 		if ($(this).find('i').attr('class') == "fa fa-heart-o") {
 			//update likecount++
-			var article_num = $(this).find('button').attr('value')
+			var article_num = $(this).find('input').attr('value')
 			increaseLikeCount(article_num,$(this));
 		} else {
 			//update likecount--
-			var article_num = $(this).find('button').attr('value')
+			var article_num = $(this).find('input').attr('value')
 			var likecount=decreaseLikeCount(article_num,$(this));
 		}
 	})
@@ -255,7 +254,7 @@ $(function(){
 						}
 						
 						article	+= "</p><div>"
-								+ "<div class='like'>"
+								+ "<div class='like'><input type='hidden' value='"+data['article_num']+"'>"
 						if(data['isLike']){
 						 article+="<i class='fa fa-heart'></i>"
 						}else{
@@ -263,7 +262,7 @@ $(function(){
 						} 
 								
 						article	+="<span>"+data['like_count']
-								+ "</span></div>, <i	class='fa fa-commenting-o'></i> Comment"
+								+ "</span></div>, <i class='fa fa-commenting-o'></i> Comment"
 								+ "<button class=article_num value="+data['article_num']+">상세보기</button>"
 								+ "</div></div></div></div></div></td>"
 
@@ -280,11 +279,11 @@ $(function(){
 								$(".like").click(function() {
 									if ($(this).find('i').attr('class') == "fa fa-heart-o") {
 										//update likecount++
-										var article_num = $(this).find('button').attr('value')
+										var article_num = $(this).find('input').attr('value')
 										increaseLikeCount(article_num,$(this));
 									} else {
 										//update likecount--
-										var article_num = $(this).find('button').attr('value')
+										var article_num = $(this).find('input').attr('value')
 										var likecount=decreaseLikeCount(article_num,$(this));
 									}
 								})
@@ -292,7 +291,6 @@ $(function(){
 					error : function() {
 					}
 				})
-
 	}
 
 	var slideIndex = 1;
@@ -360,6 +358,7 @@ $(function(){
 
 </head>
 <body>
+<!-- 상세보기 modal -->
 	<table id="commentModal" border="1" class="modal fade" tabindex="-1"
 		role="dialog" aria-hidden="true" style="table-layout: fixed">
 		<tr class="comment-content">
@@ -390,7 +389,7 @@ $(function(){
 			</td>
 		</tr>
 		<tr class="comment-content">
-			<td height="20"><div class="like"><i id="like_i" class='fa fa-heart-o'></i><span></span></div></td>
+			<td height="20"><div class="like"><input type="hidden" value="${article.article_num}"><i id="like_i" class='fa fa-heart-o'></i><span></span></div></td>
 			<td height="40"><textarea rows="2" cols="40" id="commentText"></textarea></td>
 			<td rowspan="2" height="20">&nbsp;
 				<button class="comment" onclick="commentAdd()"
@@ -470,6 +469,7 @@ $(function(){
 											</p>
 											<div>
 											<div class='like'>
+											<input type="hidden" value="${article.article_num}">
 											<c:choose>
 												<c:when test="${article.isLike == true}">
 												<i class="fa fa-heart"></i>
