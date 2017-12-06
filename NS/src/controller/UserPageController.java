@@ -1,7 +1,9 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -9,10 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import service.UserPageService;
 import vo.AlarmVO;
 import vo.FriendVO;
+import vo.MemberVO;
 
 @Controller
 public class UserPageController {
@@ -21,7 +25,6 @@ public class UserPageController {
     public void setService(UserPageService service) {
         this.service = service;
     }
-    
     @RequestMapping("friendCheck.ns")
     public void friendCheck(FriendVO friend, AlarmVO alarm, HttpServletRequest request, HttpServletResponse response) {
     	System.out.println("친구나"+friend.getOne_member_num());
@@ -83,6 +86,57 @@ public class UserPageController {
     			}
     		}else {
     			writer.print("deleterequestttt");
+    		}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
+    
+	@RequestMapping("/userPhotoUpload.ns")
+	public ModelAndView upload(MemberVO member, HttpServletRequest req) {
+		ModelAndView mv = new ModelAndView("userpage");
+		System.out.println("사진내번호:"+member.getMemberNum());
+		String uploadPath = req.getServletContext().getRealPath("userPhoto");
+		System.out.println("uploadPath:"+uploadPath);
+		File dir = new File(uploadPath);
+
+		if (!dir.exists()) {
+			dir.mkdir(); // 해당 디렉토리 없으면 생성
+		}
+
+		// 업로드 받은 파일을 아래 이름의 파일로 만들어서
+		// 서버측에 저장시키기
+		String savedName = new Random().nextInt(100) + member.getPhotoFile().getOriginalFilename();
+		System.out.println("savedName:"+savedName);
+		member.setPhoto(savedName);
+		File savedFile = new File(uploadPath + "/" + savedName);
+		mv.addObject("searchUserNum", member.getMemberNum());
+		mv.addObject("imgPath", "userPhoto/" + savedName);
+		// 전달받은 파일 업로드 작업.
+		try {
+			member.getPhotoFile().transferTo(savedFile);
+			
+			int updateResult = service.userPhotoUpdate(member);
+			System.out.println("업로드 결과"+updateResult);
+		} catch (IllegalStateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return mv;
+	}
+	
+    
+    @RequestMapping("userPhoto.ns")
+    public void userPhoto(MemberVO member, HttpServletRequest request, HttpServletResponse response) {
+    	System.out.println(member.getMemberNum());
+    	try {
+    		PrintWriter writer = response.getWriter();
+    		String photo = service.userPhotoSelect(member);
+    		if(photo.length() != 0) {
+    			writer.print(photo);
+    		}else {
+    			writer.println("nono");
     		}
 		} catch (IOException e) {
 			e.printStackTrace();

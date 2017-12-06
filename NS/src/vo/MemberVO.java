@@ -1,5 +1,7 @@
 package vo;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class MemberVO {
 	private int memberNum;
 	private String id;
@@ -9,12 +11,14 @@ public class MemberVO {
 	private int gender;
 	private String address;
 	private String photo;
+	private MultipartFile photoFile;
 	
 	public MemberVO() {
 		
 	}
 
-	public MemberVO(int memberNum, String id, String pw, String name, String birth, int gender, String address, String photo) {
+	public MemberVO(int memberNum, String id, String pw, String name, String birth, int gender, String address,
+			String photo, MultipartFile photoFile) {
 		this.memberNum = memberNum;
 		this.id = id;
 		this.pw = pw;
@@ -23,9 +27,11 @@ public class MemberVO {
 		this.gender = gender;
 		this.address = address;
 		this.photo = photo;
+		this.photoFile = photoFile;
 	}
 
-	public MemberVO(String id, String pw, String name, String birth, int gender, String address, String photo) {
+	public MemberVO(String id, String pw, String name, String birth, int gender, String address, String photo,
+			MultipartFile photoFile) {
 		this.id = id;
 		this.pw = pw;
 		this.name = name;
@@ -33,6 +39,7 @@ public class MemberVO {
 		this.gender = gender;
 		this.address = address;
 		this.photo = photo;
+		this.photoFile = photoFile;
 	}
 
 	public int getMemberNum() {
@@ -99,9 +106,17 @@ public class MemberVO {
 		this.photo = photo;
 	}
 
+	public MultipartFile getPhotoFile() {
+		return photoFile;
+	}
+
+	public void setPhotoFile(MultipartFile photoFile) {
+		this.photoFile = photoFile;
+	}
+
 	@Override
 	public String toString() {
 		return "MemberVO [memberNum=" + memberNum + ", id=" + id + ", pw=" + pw + ", name=" + name + ", birth=" + birth
-				+ ", gender=" + gender + ", address=" + address + ", photo=" + photo + "]";
+				+ ", gender=" + gender + ", address=" + address + ", photo=" + photo + ", photoFile=" + photoFile + "]";
 	}
 }

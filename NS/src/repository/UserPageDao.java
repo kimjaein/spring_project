@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import repository.mapper.UserPageMapper;
 import vo.AlarmVO;
 import vo.FriendVO;
+import vo.MemberVO;
 
 @Component("userpageDao")
 public class UserPageDao {
@@ -36,6 +37,16 @@ public class UserPageDao {
 	public int friendDelete(FriendVO friend) {
 		UserPageMapper mapper = session.getMapper(UserPageMapper.class);
 		return mapper.friendDelete(friend);
+	}
+	
+	public int userPhotoUpdate(MemberVO member) {
+		UserPageMapper mapper = session.getMapper(UserPageMapper.class);
+		return mapper.userPhotoUpdate(member);
+	}
+	
+	public String userPhotoSelect(MemberVO member) {
+		UserPageMapper mapper = session.getMapper(UserPageMapper.class);
+		return mapper.userPhotoSelect(member);
 	}
 	
 }

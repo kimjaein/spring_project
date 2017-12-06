@@ -7,6 +7,7 @@ import repository.UserPageDao;
 import repository.mapper.UserPageMapper;
 import vo.AlarmVO;
 import vo.FriendVO;
+import vo.MemberVO;
 
 @Component
 public class UserPageService {
@@ -30,5 +31,13 @@ public class UserPageService {
 	
 	public int friendDelete(FriendVO friend) {
 		return dao.friendDelete(friend);
+	}
+	
+	public int userPhotoUpdate(MemberVO member) {
+		return dao.userPhotoUpdate(member);
+	}
+	
+	public String userPhotoSelect(MemberVO member) {
+		return dao.userPhotoSelect(member);
 	}
 }
