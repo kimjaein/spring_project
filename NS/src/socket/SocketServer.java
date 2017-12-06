@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Set;
 
 import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
+import javax.json.JsonArray;
+import javax.json.JsonArrayBuilder;
 import javax.json.JsonWriter;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
@@ -113,15 +113,16 @@ public class SocketServer {
 //			listCount++;
 //		}
 //		JsonObject jsonObject = Json.createObjectBuilder().add("friendList", friendList.toString()).add("listCount", listCount).build();
-		JsonObjectBuilder jsonObject = Json.createObjectBuilder();
+//		JsonObjectBuilder jsonObject = Json.createObjectBuilder();
+		JsonArrayBuilder jsonObject = Json.createArrayBuilder();
 		
 		for(String sub :  friendList) {
 			sub = friendList.get(listCount);
-			jsonObject.add("friendList"+listCount, sub);
+			jsonObject.add(sub);
 			listCount++;
 		}
-		jsonObject.add("listCount", listCount);
-		JsonObject totalJson = jsonObject.build();
+//		jsonObject.add("listCount", listCount);
+		JsonArray totalJson = jsonObject.build();
 		
 		StringWriter stringwriter =  new StringWriter();
         try(JsonWriter jsonWriter = Json.createWriter(stringwriter)){

@@ -57,11 +57,9 @@
 		}else{
 			var onlineFriendList = "";
 			var jsonData = JSON.parse(message.data);
-			if(jsonData.listCount != 0){
-				for(i = 0; i<jsonData.listCount; i++){
-					var friendNum = "friendList"+i;
-					alert(jsonData.friendList0);
-// 					onlineFriendList += "<a href='#'>"+ jsonData. +"</a>";
+			if(jsonData.length != 0){
+				for(i = 0; i<jsonData.length; i++){
+					onlineFriendList += "<a href='#'>"+ jsonData[i] +"</a>";
 				}
 			}else{
 				onlineFriendList += "<a href='#'>접속한 친구가 없습니다.</a>"
@@ -240,7 +238,6 @@
 										id="srchterm" type="text" autocomplete="off">
 									<div class="dropdownsearch-content" id="friend">
 										<ul id="friend-under">
-										
 										</ul>
 									</div>
 									<div class="input-group-btn">
@@ -270,6 +267,21 @@
 							<ul class="nav navbar-nav navbar-right">
 								<li class="dropdown"><a href="#" class="dropdown-toggle"
 									onclick="openNav()"> <i class="glyphicon glyphicon-user"></i></a>
+								</li>
+							</ul>
+							
+							<ul class="nav navbar-nav">
+								<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="badge" id="badgeBtn">config</span></a>
+								<ul class="dropdown-menu" id="badge">
+								  <li><a href="">마이페이지</a></li>
+								  <li><a href="/NS/">로그아웃</a></li>
+								</ul>
+							  </li>
+							  </ul>
+							<ul class="nav navbar-nav navbar-right">
+								<li class="dropdown"><a href="#" class="dropdown-toggle"
+									onclick="openNava()"> <i class="glyphicon glyphicon-user"></i></a>
 								</li>
 							</ul>
 						</nav>
@@ -371,5 +383,20 @@
 											});
 						});
 	</script>
+	
+	
+	<div class="modal" id="testModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-body">
+					<h1> modal test </h1>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn" data-dismiss="modal">닫기</button>
+			</div>
+		</div>
+	</div>
+
+</div>
 </body>
 </html>
