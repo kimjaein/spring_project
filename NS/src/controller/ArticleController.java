@@ -100,14 +100,14 @@ public class ArticleController {
 	@RequestMapping("single.ns")
 	public ModelAndView singlePage(HttpSession session) {
 		int memberNum = (int) session.getAttribute("memberNum");
-		List<ArticleVO> articleList = service.selectArticleList(memberNum);
+		List<ArticleVO> articleList = service.selectArticleListWithFriends(memberNum);
 		ModelAndView mv = new ModelAndView("single_post");
 		mv.addObject("articleList", articleList);
 		return mv;
 	}
 	@RequestMapping("userSingle.ns")
 	public ModelAndView userSinglePage(int memberNum) {
-		List<ArticleVO> articleList = service.selectArticleListWithFriends(memberNum);
+		List<ArticleVO> articleList = service.selectArticleList(memberNum);
 		ModelAndView mv = new ModelAndView("single_post");
 		mv.addObject("articleList", articleList);
 		return mv;

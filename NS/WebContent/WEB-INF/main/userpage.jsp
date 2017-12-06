@@ -20,13 +20,13 @@
 			var iframe = "<iframe src='photoGallery.ns?memberNum="+${searchUserNum}+"'width='100%' height='600px'></iframe>";
 			$('#articlePage').html(iframe);
 		})
-		var iframe = "<iframe src='single.ns' width='100%' height='600px'></iframe>";
+		var iframe = "<iframe src='userSingle.ns?memberNum="+${searchUserNum}+"' width='100%' height='600px'></iframe>";
 		$('#articlePage').html(iframe);
 		
 		friendStatus();
 		userPhoto();
 		$('#friendList').click(function(){
-			var iframe = "<iframe src='friendList.ns' width='100%' height='600px'></iframe>";
+			var iframe = "<iframe src='friendList.ns?memberNum="+${searchUserNum}+"' width='100%' height='600px'></iframe>";
 			$('#articlePage').html(iframe);
 		})
 		function friendStatus (){
@@ -164,7 +164,7 @@
                           		<input type="file" name="photoFile">
                           	</form>
 						</div>
-				<span class="site-name"><b>Roland</b> Maruntelu</span>
+				<span class="site-name"><b>${member.name}</b></span>
 				
 			</div>
 
