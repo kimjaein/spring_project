@@ -69,7 +69,7 @@
 			}
 			$('#mySidenav').html(onlineFriendList);
 		}
-	};
+	}
 	
 	//웹소켓 종료
 	webSocket.close = function(message) {
@@ -78,7 +78,7 @@
 	var imgflag=2;
 	
 	function home(){
-		var iframe = "<iframe src='single.ns' width='100%' height='800px' id='innerFrame'></iframe>";
+		var iframe = "<iframe src='userSingle.ns' width='100%' height='800px' id='innerFrame'></iframe>";
 		$('#articlePage').html(iframe);
 	}
 	
