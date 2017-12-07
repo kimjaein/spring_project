@@ -151,7 +151,11 @@ public class UserPageController {
     	ModelAndView mv = new ModelAndView("myFriendList");
     	
     	List<MemberVO> friendList = service.selectFriendList(memberNum);
-    	
+    	for(int i=0; i < friendList.size() ;i++) {
+    		if(friendList.get(i).getMemberNum() ==  memberNum) {
+    			friendList.remove(i);
+    		}
+    	}
     	mv.addObject("friendList",friendList);
     	return mv;
     }
