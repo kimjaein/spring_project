@@ -14,6 +14,7 @@
         <![endif]-->
 <link href="assets/css/facebook.css" rel="stylesheet">
 <link href="assets/css/myNew.css" rel="stylesheet">
+<link href="assets/css/userProfilePage.css" rel="stylesheet">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -29,6 +30,9 @@
 			document.getElementById("mySidenav").style.width = "0";
 			flag = true;
 		}
+	}
+	function set(){
+		
 	}
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -187,7 +191,7 @@
 						badgeList += "<li><a>알림 정보가 없습니다.</a></li>";
 					}else{
 						$.each(resultData, function(index, item){
-							badgeList += "<li><a>"+item['to_member_num']+"님이 친구신청하였습니다.</a></li>";
+							badgeList += "<li><a>"+item['name']+"님이 친구신청하였습니다.</a></li>";
 						})
 					}
 						$('#badge').html(badgeList);
@@ -282,7 +286,7 @@
 								<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span  id="badgeBtn"><i class="fa fa-cog" style="font-size:24px"></i></span></a>
 								<ul class="dropdown-menu" id="badge">
-								  <li><a href="#setModal" role="button" data-toggle="modal">설정</a></li>
+								  <li><a href="#setModal" role="button" data-toggle="modal" onclick="set()">설정</a></li>
 								  <li><a href="/NS/">로그아웃</a></li>
 								</ul>
 							  </li>
@@ -352,9 +356,7 @@
 	<!-- 설정창 -->
 	<div id="setModal" class="modal fade" tabindex="-1" role="dialog"
 		aria-hidden="true">
-			<form action="join.ns" method="post"
-							class="column col-sm-6 col-xs-6">
-				<div id="login-box">
+				<div id="set-box">
 					<div class="right">
 						<h1>Sign up</h1>
 <!-- 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">닫기</button> -->
@@ -366,10 +368,9 @@
 								placeholder="birth (ex.19920722)" class="signUpText"> <input type="radio"
 								id="gender" class="gender" value="1">남 <input type="radio" id="gender1" class="gender" value="2">여
 							<input type="text" id="address" placeholder="address"class="signUpText">
-							<input type="button" name="setSubmit" value="수정하기" id="signUp"/>
+							<input type="button" id="setSubmit" value="수정하기" id="signUp"/>
 					</div>
 				</div>
-			</form>
 	</div>
 	<!-- sidebar 접속한친구리스트 이 div 내부에 <a href="#">친구1</a> 형태로 뿌리면 됨-->
 	<div id="mySidenav" class="sidenav">
