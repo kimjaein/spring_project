@@ -185,6 +185,7 @@
 			var iframe;
 			iframe = "<iframe src='userPage.ns?memberNum=" + searchUserNum + "'width='100%' height='830px'></iframe>";
 			$('#articlePage').html(iframe);
+			$('#footerPage').html(" ");
 			document.getElementById("friend").style.display="none";			
 			return false;
 		})
@@ -272,6 +273,7 @@
 		
 		
 	})
+	
 	function innerFrame(member_num){
 			iframe = "<iframe src='userPage.ns?memberNum=" + member_num + "'width='100%' height='830px'></iframe>";
 			$('#articlePage').html(iframe);
