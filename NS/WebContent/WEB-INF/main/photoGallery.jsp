@@ -191,103 +191,6 @@ $(function(){
 		else if (event.wheelDelta >= 120)
 			window.scrollBy(-40, 0);
 	}
-	$(document).scroll(function() {
-		var st = $(this).scrollLeft();
-		var size = $(document).width() - $(window).width();
-		
-		if (st == size) {
-			next();
-		}
-	})
-	var count = 6;
-	function next() {
-		var article = $('#here').html()
-		$.ajax({
-					type : 'get',
-					url : 'moreArticle.ns?count=' + count,
-					dataType : 'json',
-					success : function(data) {
-						article += "<td> <div class='row' ><div class='article'>"
-								+ "<div class='panel panel-default'><div class='panel-thumbnail'>"
-						/////////////////////////////////for 문으로 여러개 뽑기
-						var listSize=0;
-						var classStr="";
-						for (i in data['photoList']) {
-							listSize++;
-						}
-						if(listSize == 0){
-							article += "<img src='assets/img/150x150.gif' class='img-responsive'>"
-						}else{
-							if(listSize==1){
-								classStr="img-responsive";
-							}else if(listSize ==2){
-								classStr="img-responsive-multi-two";
-							}else if(listSize > 2){
-								classStr="img-responsive-multi";
-							}
-							
-							var list = data['photoList'];
-							for (item in list) {
-								article += "<img src='"+ list[item].filePath +"' class='"+classStr+"'>"
-								if(item == 3){
-									break;
-								}
-							}
-						}
-						///////////////////////////////////////////////////
-						article += "</div>"
-								+ "<div class='panel-body'>"
-								+ "<p class='name'>"
-								+ "<img src='assets/img/uFp_tsTJboUY7kue5XAsGAs28.png'"
-									+"height='20px' width='20px'>"
-								+ data['writer']
-								+ "</p>"
-								+ "<p>"
-						if(data['contents'].length > 60){
-							article	+= data['contents'].substr(0,60) +"..."
-						}else{
-							article	+= data['contents']
-						}
-						
-						article	+= "</p><div>"
-								+ "<div class='like'><input type='hidden' value='"+data['article_num']+"'>"
-						if(data['isLike']){
-						 article+="<i class='fa fa-heart'></i>"
-						}else{
-							 article+="<i class='fa fa-heart-o'></i>"
-						} 
-								
-						article	+="<span>"+data['like_count']
-								+ "</span></div>, <i class='fa fa-commenting-o'></i> Comment"
-								+ "<button class=article_num value="+data['article_num']+">상세보기</button>"
-								+ "</div></div></div></div></div></td>"
-
-						$('#here').html(article)
-						count = count + 1;
-								$(".article_num").click(function() {
-									var st = $(this).attr('value')
-									$(".comment").val(st);
-									var id = $("#loginId").val();
-									$(".commentId").val(id);
-									commentModal(st)
-									return false;
-								})
-								$(".like").click(function() {
-									if ($(this).find('i').attr('class') == "fa fa-heart-o") {
-										//update likecount++
-										var article_num = $(this).find('input').attr('value')
-										increaseLikeCount(article_num,$(this));
-									} else {
-										//update likecount--
-										var article_num = $(this).find('input').attr('value')
-										var likecount=decreaseLikeCount(article_num,$(this));
-									}
-								})
-					},
-					error : function() {
-					}
-				})
-	}
 
 	var slideIndex = 1;
 	showDivs(slideIndex);
@@ -397,10 +300,16 @@ $(function(){
 		</tr>
 	</table>
 	<c:forEach var="photo" items="${photoList}">
-			<div class="img">
-				<img src="${photo.filePath}"> <input type="hidden"value="${photo.article_num}">
-			</div>
-		</c:forEach>
-	<input type="hidden" id="loginId" value="${sessionScope.id}"> 
+         <c:choose>
+            <c:when test="${empty photo.filePath}">
+            </c:when>
+            <c:when test="${not empty photo.filePath}">
+         <div class="img">
+               <img src="${photo.filePath}"> <input type="hidden"value="${photo.article_num}">
+         </div>
+            </c:when>   
+         </c:choose>
+      </c:forEach>
+   <input type="hidden" id="loginId" value="${sessionScope.id}"> 
 </body>
 </html>
