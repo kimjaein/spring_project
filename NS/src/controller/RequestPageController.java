@@ -47,44 +47,44 @@ public class RequestPageController {
 	@RequestMapping("requestPage.ns")
 	public ModelAndView requestPage(String memberNum) {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("requestList", requestList);
+//		mv.addObject("requestList", requestList);
 		mv.setViewName("requestpage");
 		return mv;
 	}
 
-    @RequestMapping("requestAccept.ns")
-    public void requestAccept(FriendVO friend, HttpServletRequest request, HttpServletResponse response) {
-    	friend.getOne_member_num();
-    	friend.
-    	try {
-    		PrintWriter writer = response.getWriter();
-    		
-    		if(service.alarmCheck(alarm) == 0) {
-    			if(service.alarmInsert(alarm) > 0) {
-    				writer.print(1);
-    			}
-    		}else {
-    			writer.print("insertrequestttt");
-    		}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-    }
-    
-    @RequestMapping("requestBlock.ns")
-    public void friendDelete(FriendVO friend, HttpServletRequest request, HttpServletResponse response) {
-    	try {
-    		PrintWriter writer = response.getWriter();
-    		
-    		if(service.friendCheck(friend) != 0) {
-    			if(service.friendDelete(friend) > 0) {
-    				writer.print("deleteOK");
-    			}
-    		}else {
-    			writer.print("deleterequestttt");
-    		}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-    }
+//    @RequestMapping("requestAccept.ns")
+//    public void requestAccept(FriendVO friend, HttpServletRequest request, HttpServletResponse response) {
+//    	friend.getOne_member_num();
+////    	friend.
+//    	try {
+//    		PrintWriter writer = response.getWriter();
+//    		
+//    		if(service.alarmCheck(alarm) == 0) {
+//    			if(service.alarmInsert(alarm) > 0) {
+//    				writer.print(1);
+//    			}
+//    		}else {
+//    			writer.print("insertrequestttt");
+//    		}
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//    }
+//    
+//    @RequestMapping("requestBlock.ns")
+//    public void friendDelete(FriendVO friend, HttpServletRequest request, HttpServletResponse response) {
+//    	try {
+//    		PrintWriter writer = response.getWriter();
+//    		
+//    		if(service.friendCheck(friend) != 0) {
+//    			if(service.friendDelete(friend) > 0) {
+//    				writer.print("deleteOK");
+//    			}
+//    		}else {
+//    			writer.print("deleterequestttt");
+//    		}
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//    }
 }
