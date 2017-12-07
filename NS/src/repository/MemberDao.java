@@ -4,6 +4,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.google.gson.JsonElement;
+
 import repository.mapper.MemberMapper;
 import vo.MemberVO;
 
@@ -33,4 +35,17 @@ public class MemberDao {
 	                session.getMapper(MemberMapper.class);
 	        return mapper.insertFriend(memberNum);
 	}
+
+	public MemberVO selectUserInfo(int memberNum) {
+		MemberMapper mapper = 
+                session.getMapper(MemberMapper.class);
+		return mapper.selectUserInfo(memberNum);
+	}
+
+	public int updateUserInfo(MemberVO member) {
+		MemberMapper mapper = 
+                session.getMapper(MemberMapper.class);
+		return mapper.updateUserInfo(member);
+	}
+
 }

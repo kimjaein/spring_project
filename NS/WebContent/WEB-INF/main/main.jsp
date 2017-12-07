@@ -31,12 +31,55 @@
 			flag = true;
 		}
 	}
-	function set(){
-		
-	}
+
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript">
+	function set(){
+		var membernum = $(".setClass").attr('value');
+		var name = '';
+		var pw = '';
+		var address = '';
+ 		$.ajax({
+			type : 'post',
+			url : 'set.ns',
+			data : 'membernum='+membernum,
+			dataType : 'json',
+			success : function(data) {
+				name = $('#name').val(data['name']);
+				pw = $('#pw').val(data['pw']);
+				address = $('#address').val(data['address']);
+			},
+			error : function() {
+				alert('set 에러');
+			}	
+	
+		})
+		$('#setSubmit').click(function(){
+			name = $('#name').val();
+			pw = $('#pw').val();
+			address = $('#address').val();
+			$.ajax({
+				type : 'post',
+				url : 'setInfo.ns',
+				data : {
+					membernum:membernum,
+					name:name,
+					pw:pw,
+					address:address
+					},
+				dataType : 'json',
+				success : function(data) {
+					for(i=0; i<1; i++){
+					alert("수정이 완료되었습니다.")
+					}
+					$("#setModal").modal('hide');
+				},error : function() {
+					alert("setSubmit에러");
+				}
+			})
+		})
+	}
 	//WebSocketEx는 프로젝트 이름
 	//websocket 클래스 이름
 	var webSocket = new WebSocket("ws://localhost:8888/NS/ws");
@@ -286,7 +329,10 @@
 								<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span  id="badgeBtn"><i class="fa fa-cog" style="font-size:24px"></i></span></a>
 								<ul class="dropdown-menu" id="badge">
-								  <li><a href="#setModal" role="button" data-toggle="modal" onclick="set()">설정</a></li>
+								  <li><a href="#setModal" role="button" data-toggle="modal" onclick="set()">설정
+								  	  <input type="hidden" class="setClass" value="${sessionScope.memberNum}">
+								  	  </a>
+								  </li>
 								  <li><a href="/NS/">로그아웃</a></li>
 								</ul>
 							  </li>
@@ -358,17 +404,14 @@
 		aria-hidden="true">
 				<div id="set-box">
 					<div class="right">
-						<h1>Sign up</h1>
-<!-- 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">닫기</button> -->
-							<input type="text" id="id" placeholder="E-mail" class="signUpText"/> <input
-								type="text" id="name" placeholder="Username" class="signUpText"/> <input
-								type="password" id="pw" placeholder="Password" class="signUpText"/> <input
-								type="password" id="pwsub" placeholder="Retype password" class="signUpText"/>
-							<input type="text" id="birth"
-								placeholder="birth (ex.19920722)" class="signUpText"> <input type="radio"
-								id="gender" class="gender" value="1">남 <input type="radio" id="gender1" class="gender" value="2">여
-							<input type="text" id="address" placeholder="address"class="signUpText">
-							<input type="button" id="setSubmit" value="수정하기" id="signUp"/>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-hidden="true">Close</button>
+						<h1>개인정보수정</h1>
+							이름 : <input type="text" id="name" placeholder="Username" class="signUpText"/> 
+							비밀번호 : <input type="password" id="pw" placeholder="Password" class="signUpText"/> 
+							비밀번호확인 : <input type="password" id="pwsub" placeholder="Retype password" class="signUpText"/>
+							주소 : <input type="text" id="address" placeholder="address"class="signUpText">
+							<input type="button" id="setSubmit" value="수정하기"/>
 					</div>
 				</div>
 	</div>

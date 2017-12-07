@@ -19,4 +19,12 @@
 		INSERT INTO FRIEND(ONE_MEMBER_NUM,Other_MEMBER_NUM)
         VALUES(#{memberNum},#{memberNum})
 	</insert>
+	
+	<select id="selectUserInfo" resultType="MemberVO" parameterType="int">
+		SELECT * FROM MEMBER WHERE MEMBER_NUM = #{memberNum}	
+	</select>
+	
+	<update id="updateUserInfo" parameterType="MemberVO">
+		UPDATE MEMBER SET NAME=#{name},PW=#{pw},address=#{address} WHERE MEMBER_NUM = #{memberNum}
+	</update>
 </mapper>

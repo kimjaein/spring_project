@@ -26,6 +26,7 @@ import service.ArticleService;
 import vo.ArticlePhotoVO;
 import vo.ArticleVO;
 import vo.CommentVO;
+import vo.MemberVO;
 
 @Controller
 public class ArticleController {
@@ -203,7 +204,6 @@ public class ArticleController {
 		}else{
 			str= service.updateLikeCount(article_num,-1,memberNum);
 		}
-		
 		PrintWriter writer;
 		try {
 			writer = response.getWriter();
@@ -217,5 +217,5 @@ public class ArticleController {
 		}
 		
 	}
-
+	
 }

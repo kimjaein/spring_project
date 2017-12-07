@@ -1,5 +1,10 @@
 package controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.google.gson.Gson;
 
 import service.MemberService;
 import vo.MemberVO;
@@ -52,4 +59,34 @@ public class MemberController {
 	public String itest() {
 		return "userpage";
 	}
+	
+	@RequestMapping(value="set.ns",method=RequestMethod.POST)
+	public void set(HttpServletResponse response,MemberVO member,HttpServletRequest request) throws IOException {
+		String memberstNum  = request.getParameter("membernum");
+		int memberNum = Integer.parseInt(memberstNum);
+		member = service.selectUserInfo(memberNum);
+		PrintWriter writer;
+		response.setContentType("text/json;charset=euc-kr");
+		writer = response.getWriter();
+		Gson gson = new Gson();
+		writer.println(gson.toJson(member));
+		
+	}
+	
+	@RequestMapping(value="setInfo.ns",method=RequestMethod.POST)
+	public void setInfo(HttpServletResponse response,MemberVO member,HttpServletRequest request) throws IOException {
+		String memberstNum  = request.getParameter("membernum");
+		int memberNum = Integer.parseInt(memberstNum);
+		member.setMemberNum(memberNum);
+		int result = 0;
+		result = service.updateUserInfo(member);
+		member = service.selectUserInfo(memberNum);
+		PrintWriter writer;
+		response.setContentType("text/json;charset=euc-kr");
+		writer = response.getWriter();
+		Gson gson = new Gson();
+		writer.println(gson.toJson(member));
+		
+	}
+
 }

@@ -3,6 +3,8 @@ package service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.google.gson.JsonElement;
+
 import repository.MemberDao;
 import vo.MemberVO;
 
@@ -25,4 +27,14 @@ public class MemberService {
     public MemberVO memberLogin(String id, String pw) {
     	return dao.memberLogin(id, pw);
     }
+
+	public MemberVO selectUserInfo(int memberNum) {
+		// TODO Auto-generated method stub
+		return dao.selectUserInfo(memberNum);
+	}
+
+	public int updateUserInfo(MemberVO member) {
+		return dao.updateUserInfo(member);
+	}
+
 }
