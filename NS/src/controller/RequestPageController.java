@@ -34,57 +34,44 @@ public class RequestPageController {
 	public void setService(requestPageService service) {
 		this.service = service;
 	}
-    @RequestMapping("requestList.ns")
-    public ModelAndView requestList(int memberNum) {
-    	ModelAndView mv = new ModelAndView("requestpage");
-    	
-    	List<MemberVO> requestList = service.requestList(memberNum);
-    	
-    	mv.addObject("requestList",requestList);
-    	return mv;
-    }
-    
-	@RequestMapping("requestPage.ns")
-	public ModelAndView requestPage(String memberNum) {
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("requestList", requestList);
-		mv.setViewName("requestpage");
+
+	@RequestMapping("requestList.ns")
+	public ModelAndView requestList(int memberNum) {
+		ModelAndView mv = new ModelAndView("requestpage");
+		List<MemberVO> friendList = service.requestList(memberNum);
+		System.out.println(friendList);
+		mv.addObject("friendList", friendList);
 		return mv;
 	}
-
-    @RequestMapping("requestAccept.ns")
-    public void requestAccept(FriendVO friend, HttpServletRequest request, HttpServletResponse response) {
-    	friend.getOne_member_num();
-    	friend.
+	@RequestMapping("friendRefuse.ns")
+	public void friendRefuse(AlarmVO alarm, HttpServletRequest request, HttpServletResponse response) {
     	try {
     		PrintWriter writer = response.getWriter();
     		
-    		if(service.alarmCheck(alarm) == 0) {
-    			if(service.alarmInsert(alarm) > 0) {
-    				writer.print(1);
-    			}
+    		if(service.alarmDelete(alarm) != 0) {
+    			writer.print(1);
     		}else {
-    			writer.print("insertrequestttt");
+    			writer.print(0);
     		}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-    }
-    
-    @RequestMapping("requestBlock.ns")
-    public void friendDelete(FriendVO friend, HttpServletRequest request, HttpServletResponse response) {
+	}
+	
+	@RequestMapping("friendAccept.ns")
+	public void friendAccept(AlarmVO alarm, HttpServletRequest request, HttpServletResponse response) {
     	try {
     		PrintWriter writer = response.getWriter();
     		
-    		if(service.friendCheck(friend) != 0) {
-    			if(service.friendDelete(friend) > 0) {
-    				writer.print("deleteOK");
-    			}
+    		if(service.alarmDelete(alarm) != 0) {
+    			service.friendInsert(alarm);
+    			service.friendInsertsub(alarm);
+    			writer.print(1);
     		}else {
-    			writer.print("deleterequestttt");
+    			writer.print(0);
     		}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-    }
+	}
 }
