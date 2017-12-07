@@ -30,7 +30,6 @@ public class HeaderController {
 		@RequestMapping("searchfriend.ns")
 		public void searchfriend(String search, HttpServletRequest request, HttpServletResponse response) {
 			List<MemberVO> searchFriendList = service.searchFriendList(search);
-			response.setContentType("text/json;charset=euc-kr");
 			try {
 				PrintWriter writer = response.getWriter();
 				Gson gson = new Gson();

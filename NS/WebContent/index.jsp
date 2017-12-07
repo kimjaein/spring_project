@@ -50,7 +50,7 @@
 											<td><input type="text" name="id" placeholder="이메일 입력">
 											</td>
 											<td>비밀번호</td>
-											<td><input type="password" name="pw" placeholder="이메일 입력">
+											<td><input type="text" name="pw" placeholder="이메일 입력">
 											</td>
 											<td><input type="submit" value="로그인"></td>
 										</tr>
