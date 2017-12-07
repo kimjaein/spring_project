@@ -38,6 +38,12 @@ public class ArticleController {
 		this.service = service;
 	}
 
+	@RequestMapping("snowFox.ns")
+	public String snowFox() {
+		System.out.println("snowFox");
+		return "snowFox";
+	}
+	
 	@RequestMapping("/upload.ns")
 	public ModelAndView upload(HttpServletRequest request, ArticlePhotoVO photo, ArticleVO article) {
 		// main.jsp·Î º¯°æ

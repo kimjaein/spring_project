@@ -124,7 +124,7 @@
 	var imgflag=2;
 	
 	function home(){
-		var iframe = "<iframe src='single.ns' width='100%' height='800px' id='innerFrame'></iframe>";
+		var iframe = "<iframe src='single.ns' width='100%' height='600px' id='innerFrame'></iframe>";
 		$('#articlePage').html(iframe);
 	}
 	
@@ -351,9 +351,14 @@
 					<!-- 아래 div에 iframe (슬라이드)-->
 					<div id="iframe">
 					<div id="articlePage"></div>
+					<!--pooter영역 -->
+					<div id="pooterPage">
+					<iframe src='snowFox.ns' width='100%' height='23
+					0px'></iframe>
 					</div>
 				</div>
-				<!-- /main -->
+			</div>
+									<!-- /main -->
 			</div>
 		</div>
 	</div>
