@@ -124,6 +124,10 @@
 		})
 		
 	})
+	
+	function innerFrame(member_num){
+		parent.innerFrame(member_num);
+	}
 
 </script>
 </head>

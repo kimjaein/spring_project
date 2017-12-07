@@ -95,4 +95,9 @@ public class ArticleDao {
 		ArticleMapper mapper = session.getMapper(ArticleMapper.class);
 		return mapper.selectArticleListWithFriends(memberNum);
 	}
+
+	public ArticleVO selectArticlewithFriend(int count, int memberNum) {
+		ArticleMapper mapper = session.getMapper(ArticleMapper.class);
+		return mapper.selectArticlewithFriend(memberNum,count);
+	}
 }

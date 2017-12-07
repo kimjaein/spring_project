@@ -26,8 +26,8 @@
 		SELECT PHOTO FROM MEMBER WHERE MEMBER_NUM=#{memberNum}
 	</select>
 	
-	<select id="selectFriendList" resultType="MemberVO">
-		SELECT ID,NAME,BIRTH,GENDER,ADDRESS,PHOTO FROM MEMBER WHERE MEMBER_NUM IN (SELECT OTHER_MEMBER_NUM FROM FRIEND WHERE ONE_MEMBER_NUM = #{memberNum})
+	<select id="selectFriendList" resultMap="memberResultMap">
+		SELECT ID,NAME,BIRTH,GENDER,ADDRESS,PHOTO,MEMBER_NUM FROM MEMBER WHERE MEMBER_NUM IN (SELECT OTHER_MEMBER_NUM FROM FRIEND WHERE ONE_MEMBER_NUM = #{memberNum})
 	</select>
 	
 	<select id="photoGallery" parameterType="int" resultMap="photoResultMap">
@@ -37,5 +37,8 @@
 	<resultMap type="ArticlePhotoVO" id="photoResultMap">
         <result column="photo" property="filePath"/>
     </resultMap>
-	
+    
+	<resultMap type="MemberVO" id="memberResultMap">
+        <result column="member_num" property="memberNum"/>
+    </resultMap>
 </mapper>

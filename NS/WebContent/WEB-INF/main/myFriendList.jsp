@@ -12,12 +12,22 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript">
+$(function(){
+	
 function horizontalScroll() {
 	if (event.wheelDelta <= -120)
 		window.scrollBy(40, 0);
 	else if (event.wheelDelta >= 120)
 		window.scrollBy(-40, 0);
 }
+
+$('.name').click(function(){
+	var member_num = $(this).find('input').attr('value')
+	parent.innerFrame(member_num);
+})
+	
+})
+
 </script>
 </head>
 <body>
@@ -31,7 +41,7 @@ function horizontalScroll() {
 					<!-- SIDEBAR USERPIC -->
 					<div class="profile-userpic">
 					<c:choose>
-						<c:when test="${friend.photo.length() < 5  }">
+						<c:when test="${friend.photo.length() < 5 }">
 						<img src="assets/img/uFp_tsTJboUY7kue5XAsGAs28.png"
 							class="img-responsive" alt="">
 						</c:when>
@@ -45,14 +55,11 @@ function horizontalScroll() {
 					<!-- END SIDEBAR USERPIC -->
 					<!-- SIDEBAR USER TITLE -->
 					<div class="profile-usertitle">
-						<div class="profile-usertitle-name">${friend.name}</div>
+						<div class="name profile-usertitle-name" >${friend.name}
+							<input type="hidden" value="${friend.memberNum}">
+						</div>
 						<div class="profile-usertitle-job">${friend.id}</div>
 					</div>
-					<!-- END SIDEBAR USER TITLE -->
-					<!-- SIDEBAR BUTTONS -->
-
-					<!-- END SIDEBAR BUTTONS -->
-					<!-- SIDEBAR MENU -->
 					<div class="profile-usermenu">
 						<ul class="nav">
 							<li class="active"><a> <i

@@ -38,4 +38,6 @@ public interface ArticleMapper {
 	public int selectLoginIdisLike(@Param("article_num")int article_num,@Param("memberNum")int memberNum);
 
 	public List<ArticleVO> selectArticleListWithFriends(int memberNum);
+
+	public ArticleVO selectArticlewithFriend(@Param("memberNum")int memberNum,@Param("count")int count);
 }

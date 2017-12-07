@@ -43,6 +43,10 @@
     	select article_num,contents,writer,like_count,Write_Time,member_num from article where member_num=#{memberNum} order by write_time desc limit #{count},1
     </select>
     
+     <select id="selectArticlewithFriend" resultType="ArticleVO">
+    	select article_num,contents,writer,like_count,Write_Time,member_num from article where member_num in (select other_member_num from friend where one_member_num = #{memberNum}) order by write_time desc limit #{count},1
+    </select>
+    
     <update id="updateLikeCount" parameterType="Map">
     	UPDATE ARTICLE
 		SET 
@@ -68,6 +72,6 @@
     </select>
     
     <select id="selectArticleListWithFriends" parameterType="int" resultType="ArticleVO">
-		select article_num,contents,writer,like_count,Write_Time,member_num from article where member_num in (select other_member_num from friend where one_member_num = #{memberNum}) limit 0,10
+		select article_num,contents,writer,like_count,Write_Time,member_num from article where member_num in (select other_member_num from friend where one_member_num = #{memberNum}) order by write_time desc limit 0,10
 	</select>
 </mapper>

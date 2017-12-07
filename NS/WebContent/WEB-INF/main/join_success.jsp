@@ -6,7 +6,7 @@
 <script type="text/javascript">
 window.onload = function(){
 	alert('가입 완료!');
-	location.href="http://localhost:8888/NS/";
+	location.href="/NS";
 }
 </script>
 </head>

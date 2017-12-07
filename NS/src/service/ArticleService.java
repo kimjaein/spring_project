@@ -112,4 +112,16 @@ public class ArticleService {
 		}
 		return articleList;
 	}
+
+	public ArticleVO selectArticlewithFriend(int count, int memberNum) {
+		ArticleVO article = dao.selectArticlewithFriend(count, memberNum);
+		
+		article.setPhotoList(dao.selectArticlePhoto(article.getArticle_num()));
+		if(dao.selectLoginIdisLike(article.getArticle_num(), memberNum)==1) {
+			article.setLike(true);
+		}else {
+			article.setLike(false);
+		}
+		return article;
+	}
 }

@@ -201,10 +201,21 @@ $(function(){
 	})
 	var count = 6;
 	function next() {
+		var task = $('#task').val();
+		
+		var str 
+		if(task == 'user'){
+			var memberNum = $('#useMemberNum').val();
+			str = "moreArticle.ns?memberNum="+memberNum+"&"
+		}else if(task == "main"){
+			
+			str = "moreArticlewithFriend.ns?" 
+		}
 		var article = $('#here').html()
+		
 		$.ajax({
 					type : 'get',
-					url : 'moreArticle.ns?count=' + count,
+					url : str + 'count=' + count,
 					dataType : 'json',
 					success : function(data) {
 						article += "<td> <div class='row' ><div class='article'>"
@@ -216,7 +227,7 @@ $(function(){
 							listSize++;
 						}
 						if(listSize == 0){
-							article += "<img src='assets/img/150x150.gif' class='img-responsive'>"
+							article += "<img src='assets/img/bg_5.jpg' class='img-responsive'>"
 						}else{
 							if(listSize==1){
 								classStr="img-responsive";
@@ -238,6 +249,7 @@ $(function(){
 						article += "</div>"
 								+ "<div class='panel-body'>"
 								+ "<p class='name'>"
+								+"<input type='hidden' value="+data['member_num']+">"
 								+ "<img src='assets/img/uFp_tsTJboUY7kue5XAsGAs28.png'"
 									+"height='20px' width='20px'>"
 								+ data['writer']
@@ -283,6 +295,10 @@ $(function(){
 										var likecount=decreaseLikeCount(article_num,$(this));
 									}
 								})
+								$('.name').click(function(){
+									var member_num = $(this).find('input').attr('value')
+									parent.innerFrame(member_num);
+		})
 					},
 					error : function() {
 					}
@@ -354,6 +370,9 @@ $(function(){
 
 </head>
 <body>
+<input type="hidden" id="task" value="${task}">
+<input type="hidden" id="UseMemberNum" value="${memberNum}">
+
 <!-- 상세보기 modal -->
 	<table id="commentModal" border="1" class="modal fade" tabindex="-1"
 		role="dialog" aria-hidden="true" style="table-layout: fixed">
@@ -407,7 +426,7 @@ $(function(){
 										<div class="panel-thumbnail">
 											<c:choose>
 												<c:when test="${article.photoList.size() == 0}">
-													<img src="assets/img/150x150.gif" class="img-responsive"
+													<img src="assets/img/bg_5.jpg" class="img-responsive"
 															width="600" height="50">
 												</c:when>
 												<c:when test="${article.photoList.size() > 1}">
