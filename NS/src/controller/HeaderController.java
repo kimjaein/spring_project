@@ -51,7 +51,7 @@ public class HeaderController {
 		
 		@RequestMapping("badgeList.ns")
 		public void badgeList(int memberNum, HttpServletRequest request, HttpServletResponse response) {
-			List<AlarmVO> list = service.badgeList(memberNum);
+			List<MemberVO> list = service.badgeList(memberNum);
 			try {
 				PrintWriter writer = response.getWriter();
 				Gson gson = new Gson();

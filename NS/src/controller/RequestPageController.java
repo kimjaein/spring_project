@@ -62,19 +62,19 @@ public class RequestPageController {
 		return mv;
 	}
 
-    @RequestMapping("userPhoto.ns")
-    public void userPhoto(MemberVO member, HttpServletRequest request, HttpServletResponse response) {
-    	System.out.println(member.getMemberNum());
-    	try {
-    		PrintWriter writer = response.getWriter();
-    		String photo = service.userPhotoSelect(member);
-    		if(photo.length() != 0) {
-    			writer.print(photo);
-    		}else {
-    			writer.print("no");
-    		}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-    }
+//    @RequestMapping("userPhoto.ns")
+//    public void userPhoto(MemberVO member, HttpServletRequest request, HttpServletResponse response) {
+//    	System.out.println(member.getMemberNum());
+//    	try {
+//    		PrintWriter writer = response.getWriter();
+//    		String photo = service.userPhotoSelect(member);
+//    		if(photo.length() != 0) {
+//    			writer.print(photo);
+//    		}else {
+//    			writer.print("no");
+//    		}
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//    }
 }

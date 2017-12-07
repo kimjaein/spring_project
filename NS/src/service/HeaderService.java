@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import repository.HeaderDao;
-import vo.AlarmVO;
 import vo.MemberVO;
 
 @Component
@@ -22,7 +21,7 @@ public class HeaderService {
     	return dao.searchFriendList(search);
     }
     
-    public List<AlarmVO> badgeList(@Param("memberNum")int memberNum) {
+    public List<MemberVO> badgeList(@Param("memberNum")int memberNum) {
     	return dao.badgeList(memberNum);
     }
 
