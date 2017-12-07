@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="repository.mapper.RequestPageMapper">
-	<select id="requestList" parameterType="int" resultMap="memberResultMap">
-    	SELECT * FROM MEMBER WHERE MEMBER_NUM IN (SELECT TO_MEMBER_NUM FROM ALARM WHERE FROM_MEMBER_NUM=${memberNum})
-	</select>
-	
-	<delete id="alarmDelete" parameterType="AlarmVO">
-		DELETE FROM ALARM WHERE TO_MEMBER_NUM=${to_member_num} AND FROM_MEMBER_NUM=${from_member_num}
-	</delete>	
-	
-	<insert id="friendInsert" parameterType="AlarmVO">
-		INSERT INTO FRIEND(ONE_MEMBER_NUM, OTHER_MEMBER_NUM) VALUES(${to_member_num}, ${from_member_num})
-	</insert>
-	
-	<insert id="friendInsertsub" parameterType="AlarmVO">
-		INSERT INTO FRIEND(ONE_MEMBER_NUM, OTHER_MEMBER_NUM) VALUES(${from_member_num}, ${to_member_num})
-	</insert>
-	
-	<resultMap type="MemberVO" id="memberResultMap">
+   <select id="requestList" parameterType="int" resultMap="memberResultMap">
+       SELECT * FROM MEMBER WHERE MEMBER_NUM IN (SELECT TO_MEMBER_NUM FROM ALARM WHERE FROM_MEMBER_NUM=${memberNum})
+   </select>
+   
+   <delete id="alarmDelete" parameterType="AlarmVO">
+      DELETE FROM ALARM WHERE TO_MEMBER_NUM=${to_member_num} AND FROM_MEMBER_NUM=${from_member_num}
+   </delete>   
+   
+   <insert id="friendInsert" parameterType="AlarmVO">
+      INSERT INTO FRIEND(ONE_MEMBER_NUM, OTHER_MEMBER_NUM) VALUES(${to_member_num}, ${from_member_num})
+   </insert>
+   
+   <insert id="friendInsertsub" parameterType="AlarmVO">
+      INSERT INTO FRIEND(ONE_MEMBER_NUM, OTHER_MEMBER_NUM) VALUES(${from_member_num}, ${to_member_num})
+   </insert>
+   
+   <resultMap type="MemberVO" id="memberResultMap">
         <result column="member_num" property="memberNum"/>
     </resultMap>
 </mapper>

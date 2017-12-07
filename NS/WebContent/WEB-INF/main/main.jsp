@@ -126,6 +126,8 @@
 	function home(){
 		var iframe = "<iframe src='single.ns' width='100%' height='600px' id='innerFrame'></iframe>";
 		$('#articlePage').html(iframe);
+		var foxFrame = "<iframe src='snowFox.ns' width='100%' height='230px'></iframe>"
+			$('#footerPage').html(foxFrame);
 	}
 	
 	$(function() {
@@ -234,7 +236,7 @@
 						badgeList += "<li><a>알림 정보가 없습니다.</a></li>";
 					}else{
 						$.each(resultData, function(index, item){
-		                     badgeList += "<li><a id='badgeItem'>"+item['name']+"님이 친구신청하였습니다.</a></li>";
+							badgeList += "<li><a>"+item['name']+"님이 친구신청하였습니다.</a></li>";
 						})
 					}
 						$('#badge').html(badgeList);
@@ -243,12 +245,8 @@
 					alert('ajax 요청 실패');
 				}
 			})
-		})	
+		})		
 		
-		$(document).on('click','#badgeItem',function() {
-         var badgeitem = "<iframe src='requestList.ns?memberNum=" + ${memberNum} + "'width='100%' height='830px'></iframe>";
-         $('#articlePage').html(badgeitem);
-      	})
 		
 		$('#add').click(function() {
 			$('.imgInp:nth-child(' + imgflag + ')').click();
@@ -273,6 +271,7 @@
 	function innerFrame(member_num){
 			iframe = "<iframe src='userPage.ns?memberNum=" + member_num + "'width='100%' height='830px'></iframe>";
 			$('#articlePage').html(iframe);
+			$('#footerPage').html(" ");
 		}
 	
 	function inputEnterCheck(e) {
@@ -356,8 +355,8 @@
 					<div id="iframe">
 					<div id="articlePage"></div>
 					<!--pooter영역 -->
-					<div id="pooterPage">
-					<iframe src='snowFox.ns' width='100%' height='230px'></iframe>
+					<div id="footerPage">
+					
 					</div>
 				</div>
 			</div>

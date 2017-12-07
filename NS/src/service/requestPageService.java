@@ -21,18 +21,18 @@ public class requestPageService {
         this.dao = dao;
     }
     public List<MemberVO> requestList(@Param("memberNum")int memberNum) {
-    	return dao.requestList(memberNum);
+       return dao.requestList(memberNum);
     }  
     
     public int alarmDelete(AlarmVO alarm) {
-    	return dao.alarmDelete(alarm);
+       return dao.alarmDelete(alarm);
     }
     
     public int friendInsert(AlarmVO alarm) {
-    	return dao.friendInsert(alarm);
+       return dao.friendInsert(alarm);
     }
     
     public int friendInsertsub(AlarmVO alarm) {
-    	return dao.friendInsertsub(alarm);
+       return dao.friendInsertsub(alarm);
     }
 }

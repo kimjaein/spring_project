@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+   pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -14,50 +14,50 @@
 <script type="text/javascript">
 
 
-	$(document).on('click','#friendAccept',function() {
-		var accept = $(this).val();
-		
-		$.ajax({
-			type : 'post',
-			url : 'friendAccept.ns',
-			data : 'from_member_num=' + ${sessionScope.memberNum} + '&to_member_num=' + accept,
-			dataType : 'text',
-			success : function(resultData) {
-				if(resultData == 1){
-					location.reload(true);
-				}
-			},
-			error : function() {
-				alert('ajax 요청 실패');
-			}		
-		})	
-		
-	})
-	
-	$(document).on('click','#friendRefuse',function() {
-		var accept = $(this).val();
-		
-		$.ajax({
-			type : 'post',
-			url : 'friendRefuse.ns',
-			data : 'from_member_num=' + ${sessionScope.memberNum} + '&to_member_num=' + accept,
-			dataType : 'text',
-			success : function(resultData) {
-				if(resultData == 1){
-					location.reload(true);
-				}
-			},
-			error : function() {
-				alert('ajax 요청 실패');
-			}		
-		})	
-	})
+   $(document).on('click','#friendAccept',function() {
+      var accept = $(this).val();
+      
+      $.ajax({
+         type : 'post',
+         url : 'friendAccept.ns',
+         data : 'from_member_num=' + ${sessionScope.memberNum} + '&to_member_num=' + accept,
+         dataType : 'text',
+         success : function(resultData) {
+            if(resultData == 1){
+               location.reload(true);
+            }
+         },
+         error : function() {
+            alert('ajax 요청 실패');
+         }      
+      })   
+      
+   })
+   
+   $(document).on('click','#friendRefuse',function() {
+      var accept = $(this).val();
+      
+      $.ajax({
+         type : 'post',
+         url : 'friendRefuse.ns',
+         data : 'from_member_num=' + ${sessionScope.memberNum} + '&to_member_num=' + accept,
+         dataType : 'text',
+         success : function(resultData) {
+            if(resultData == 1){
+               location.reload(true);
+            }
+         },
+         error : function() {
+            alert('ajax 요청 실패');
+         }      
+      })   
+   })
 
 function horizontalScroll() {
-	if (event.wheelDelta <= -120)
-		window.scrollBy(40, 0);
-	else if (event.wheelDelta >= 120)
-		window.scrollBy(-40, 0);
+   if (event.wheelDelta <= -120)
+      window.scrollBy(40, 0);
+   else if (event.wheelDelta >= 120)
+      window.scrollBy(-40, 0);
 }
 </script>
 </head>
