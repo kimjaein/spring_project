@@ -40,13 +40,10 @@
 					var photoBtn = "";
 					if(resultData == 'friendDelete'){
 						friendStatus += "<a id='friendBtn'>模备昏力<input type='hidden' value='"+resultData+"'></a>";
-// 						friendStatus += "<a id='friendBtn' value='"+resultData+"'>模备昏力</a>";
 					}else if(resultData == 'friendRequest'){
 						friendStatus += "<a id='friendBtn'>夸没吝<input type='hidden' value='"+resultData+"'></a>";
-// 						friendStatus += "<a id='friendBtn' value='"+resultData+"'>夸没吝</a>";
 					}else if(resultData == 'friendInsert'){
 						friendStatus += "<a id='friendBtn'>模备眠啊<input type='hidden' value='"+resultData+"'></a>";
-// 						friendStatus += "<a id='friendBtn' value='"+resultData+"'>模备眠啊</a>";
 					}else{
 						photoBtn += '<i id="icon" class="fa fa-camera" style="font-size:24px"></i>';
 					}
@@ -82,7 +79,6 @@
 		}
 		
 		$(document).on('click','#friendBtn',function(){
-// 			var friendVal = $(this).val();
 			var friendVal = $(this).find("input").attr('value');
 			if(friendVal == 'friendInsert'){
 				$.ajax({
