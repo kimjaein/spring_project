@@ -103,12 +103,13 @@ public class ArticleController {
 		}
 		return mv;
 	}
-
 	@RequestMapping("single.ns")
 	public ModelAndView singlePage(HttpSession session) {
 		int memberNum = (int) session.getAttribute("memberNum");
 		List<ArticleVO> articleList = service.selectArticleListWithFriends(memberNum);
 		ModelAndView mv = new ModelAndView("single_post");
+		mv.addObject("memberNum",memberNum);
+		mv.addObject("task","main");
 		mv.addObject("articleList", articleList);
 		return mv;
 	}
@@ -116,6 +117,8 @@ public class ArticleController {
 	public ModelAndView userSinglePage(int memberNum) {
 		List<ArticleVO> articleList = service.selectArticleList(memberNum);
 		ModelAndView mv = new ModelAndView("single_post");
+		mv.addObject("memberNum",memberNum);
+		mv.addObject("task","user");
 		mv.addObject("articleList", articleList);
 		return mv;
 	}
@@ -180,25 +183,46 @@ public class ArticleController {
 	      }
 	   }
 	
-	@RequestMapping("moreArticle.ns")
-	public void getMoreArticle(int count,HttpServletResponse response,HttpSession session) {
-		int memberNum = (int) session.getAttribute("memberNum");
-		System.out.println(memberNum+ " : "+count);
-		ArticleVO article =service.selectArticle(count,memberNum);
-		
-		PrintWriter writer;
-		try {
-			writer = response.getWriter();
-			Gson gson = new Gson();
+	   @RequestMapping("moreArticle.ns")
+		public void getMoreArticle(int count,int memberNum, HttpServletResponse response) {
 			
-			writer.println(gson.toJson(article));
-			System.out.println(gson.toJson(article));
 			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			ArticleVO article =service.selectArticle(count,memberNum);
+			
+			PrintWriter writer;
+			try {
+				response.setContentType("text/json;charset=euc-kr");
+				writer = response.getWriter();
+				Gson gson = new Gson();
+				writer.println(gson.toJson(article));
+				System.out.println(gson.toJson(article));
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-	}
+		
+		@RequestMapping("moreArticlewithFriend.ns")
+		public void moreArticlewithFriend(int count,HttpServletResponse response,HttpSession session) {
+			int memberNum = (int) session.getAttribute("memberNum");
+			System.out.println(memberNum+ " : "+count);
+			ArticleVO article =service.selectArticlewithFriend(count,memberNum);
+			
+			PrintWriter writer;
+			try {
+				  response.setContentType("text/json;charset=euc-kr");
+				writer = response.getWriter();
+				Gson gson = new Gson();
+				
+				writer.println(gson.toJson(article));
+				System.out.println(gson.toJson(article));
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	
 	@RequestMapping("updateLikeCount.ns")
 	public void updateLikeCount(int article_num,String task,HttpServletResponse response,HttpSession session) {
