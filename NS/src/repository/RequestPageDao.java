@@ -17,23 +17,30 @@ import vo.MemberVO;
 @Component("requestpageDao")
 public class RequestPageDao {
 
-	@Autowired
-	private SqlSessionTemplate session;
+   @Autowired
+   private SqlSessionTemplate session;
 
-	public void setSession(SqlSessionTemplate session) {
-		this.session = session;
-	}
-	
+   public void setSession(SqlSessionTemplate session) {
+      this.session = session;
+   }
+   
     public List<MemberVO> requestList(@Param("memberNum")int memberNum) {
-    	RequestPageMapper mapper = session.getMapper(RequestPageMapper.class);
+       RequestPageMapper mapper = session.getMapper(RequestPageMapper.class);
         return mapper.requestList(memberNum);
     }
-	public int requestAccept(FriendVO friend) {
-		RequestPageMapper mapper = session.getMapper(RequestPageMapper.class);
-		return mapper.requestAccept(friend);
-	}
-	public int requestBlock(AlarmVO alarm) {
-		RequestPageMapper mapper = session.getMapper(RequestPageMapper.class);
-		return mapper.requestBlock(alarm);
-	}
+    
+    public int alarmDelete(AlarmVO alarm) {
+       RequestPageMapper mapper = session.getMapper(RequestPageMapper.class);
+        return mapper.alarmDelete(alarm);
+    }
+    
+    public int friendInsert(AlarmVO alarm) {
+       RequestPageMapper mapper = session.getMapper(RequestPageMapper.class);
+        return mapper.friendInsert(alarm);
+    }
+    
+    public int friendInsertsub(AlarmVO alarm) {
+       RequestPageMapper mapper = session.getMapper(RequestPageMapper.class);
+        return mapper.friendInsertsub(alarm);
+    }
 }

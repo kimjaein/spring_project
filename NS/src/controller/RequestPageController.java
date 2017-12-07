@@ -28,63 +28,50 @@ import vo.MemberVO;
 @Controller
 public class RequestPageController {
 
-	@Autowired
-	private requestPageService service;
+   @Autowired
+   private requestPageService service;
 
-	public void setService(requestPageService service) {
-		this.service = service;
-	}
-    @RequestMapping("requestList.ns")
-    public ModelAndView requestList(int memberNum) {
-    	ModelAndView mv = new ModelAndView("requestpage");
-    	
-    	List<MemberVO> requestList = service.requestList(memberNum);
-    	
-    	mv.addObject("requestList",requestList);
-    	return mv;
-    }
-    
-	@RequestMapping("requestPage.ns")
-	public ModelAndView requestPage(String memberNum) {
-		ModelAndView mv = new ModelAndView();
-//		mv.addObject("requestList", requestList);
-		mv.setViewName("requestpage");
-		return mv;
-	}
+   public void setService(requestPageService service) {
+      this.service = service;
+   }
 
-//    @RequestMapping("requestAccept.ns")
-//    public void requestAccept(FriendVO friend, HttpServletRequest request, HttpServletResponse response) {
-//    	friend.getOne_member_num();
-////    	friend.
-//    	try {
-//    		PrintWriter writer = response.getWriter();
-//    		
-//    		if(service.alarmCheck(alarm) == 0) {
-//    			if(service.alarmInsert(alarm) > 0) {
-//    				writer.print(1);
-//    			}
-//    		}else {
-//    			writer.print("insertrequestttt");
-//    		}
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//    }
-//    
-//    @RequestMapping("requestBlock.ns")
-//    public void friendDelete(FriendVO friend, HttpServletRequest request, HttpServletResponse response) {
-//    	try {
-//    		PrintWriter writer = response.getWriter();
-//    		
-//    		if(service.friendCheck(friend) != 0) {
-//    			if(service.friendDelete(friend) > 0) {
-//    				writer.print("deleteOK");
-//    			}
-//    		}else {
-//    			writer.print("deleterequestttt");
-//    		}
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//    }
+   @RequestMapping("requestList.ns")
+   public ModelAndView requestList(int memberNum) {
+      ModelAndView mv = new ModelAndView("requestpage");
+      List<MemberVO> friendList = service.requestList(memberNum);
+      System.out.println(friendList);
+      mv.addObject("friendList", friendList);
+      return mv;
+   }
+   @RequestMapping("friendRefuse.ns")
+   public void friendRefuse(AlarmVO alarm, HttpServletRequest request, HttpServletResponse response) {
+       try {
+          PrintWriter writer = response.getWriter();
+          
+          if(service.alarmDelete(alarm) != 0) {
+             writer.print(1);
+          }else {
+             writer.print(0);
+          }
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
+   }
+   
+   @RequestMapping("friendAccept.ns")
+   public void friendAccept(AlarmVO alarm, HttpServletRequest request, HttpServletResponse response) {
+       try {
+          PrintWriter writer = response.getWriter();
+          
+          if(service.alarmDelete(alarm) != 0) {
+             service.friendInsert(alarm);
+             service.friendInsertsub(alarm);
+             writer.print(1);
+          }else {
+             writer.print(0);
+          }
+      } catch (IOException e) {
+         e.printStackTrace();
+      }
+   }
 }
