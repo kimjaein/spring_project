@@ -434,8 +434,8 @@ img {
 
 .img-responsive {
 	display: block;
-	height: 99%;
-	width: 99%;
+	height: 400px;
+    width: 534px;
 	margin:0.5%
 }
 .panel-thumbnail {

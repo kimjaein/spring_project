@@ -100,7 +100,7 @@ $(function(){
 						var count = 0;
 						var imgCount = '';
 						for (i in data) {
-							photoData[count] = '<img Class="mySlides" src="'
+							photoData[count] = '<img id="photoSize" Class="mySlides" src="'
 									+ data[i] + '"style="width:100%">';
 							//1번째tr안에 0번째td에 html적용
 							count++;
@@ -119,7 +119,7 @@ $(function(){
 							plusDivs(-1)
 						} else if (count == 1) {
 							photoData[0] = '';
-							photoData[0] = '<img Class="mySlides" src="'+data[i]+'" width="400" height="300">';
+							photoData[0] = '<img id="photoSize" Class="mySlides" src="'+data[i]+'" width="400" height="300">';
 							$('#commentModal tr').eq(1).find('td').eq(0).html(photoData);
 						} else {
 							var img = '<h2>첨부사진 없음</h2>';

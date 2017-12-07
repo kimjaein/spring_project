@@ -220,8 +220,8 @@ img.img-responsive-multi-two:last-child{
 }
 img.img-responsive-multi ,img.img-responsive-multi-more {
     display: block;
-    height: auto;
-    max-width: 49%;
+    height: 200px;
+    width: 265px;
     float: left;
     margin: 0.5%;
 }
@@ -238,8 +238,8 @@ p.responsive-multi-more{
 }
 img.img-responsive-multi-two {
     display: block;
-    height: 100%;
-    max-width: 49%;
+    height: 405px;
+    width: 265px;
     float: left;
     margin: 0.5%;
 }
@@ -543,4 +543,8 @@ td.friend-one {
 
 #set-box{
 	background-color: white;
+}
+#photoSize{
+	height:400px;
+	width:500px;
 }
