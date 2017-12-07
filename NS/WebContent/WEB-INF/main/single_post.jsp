@@ -398,10 +398,6 @@ $(function(){
 	<div class="padding">
 		<div class="full" onmousewheel="horizontalScroll()">
 			<table>
-				<tr>
-					<td>¸â¹ö¹øÈ£ : ${sessionScope.memberNum}
-					<td>
-				</tr>
 				<tr id="here">
 					<c:forEach var="article" items="${articleList}">
 						<td>

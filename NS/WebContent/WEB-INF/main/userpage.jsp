@@ -129,7 +129,6 @@
 </script>
 </head>
 <body>
-	<div id="friendDiv"></div>
 	<header id="header">
 		<div class="slider">
 			<div id="carousel-example-generic" class="carousel slide"
@@ -174,7 +173,7 @@
 					<li><a href="#"><i class="fa fa-home"></i> HOME</a></li>
 					<li><a href="#" class="photoGallery"><i class="fa fa-photo"></i>사진첩</a></li>
 					<li><a id="friendList">친구리스트</a></li>
-					<li><a id="friendDiv">Link</a></li>
+					<li id="friendDiv"><a >Link</a></li>
 				</ul>
 
 				<ul class="nav  navbar-nav navbar-right">
