@@ -126,6 +126,8 @@
 	function home(){
 		var iframe = "<iframe src='single.ns' width='100%' height='600px' id='innerFrame'></iframe>";
 		$('#articlePage').html(iframe);
+		var foxFrame = "<iframe src='snowFox.ns' width='100%' height='230px'></iframe>"
+			$('#footerPage').html(foxFrame);
 	}
 	
 	$(function() {
@@ -269,6 +271,7 @@
 	function innerFrame(member_num){
 			iframe = "<iframe src='userPage.ns?memberNum=" + member_num + "'width='100%' height='830px'></iframe>";
 			$('#articlePage').html(iframe);
+			$('#footerPage').html(" ");
 		}
 	
 	function inputEnterCheck(e) {
@@ -352,8 +355,8 @@
 					<div id="iframe">
 					<div id="articlePage"></div>
 					<!--pooter¿µ¿ª -->
-					<div id="pooterPage">
-					<iframe src='snowFox.ns' width='100%' height='230px'></iframe>
+					<div id="footerPage">
+					
 					</div>
 				</div>
 			</div>
