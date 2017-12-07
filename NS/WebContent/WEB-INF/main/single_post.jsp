@@ -167,7 +167,7 @@ $(function(){
 													+ '</td>';
 											comment += '<td valign="top" style="word-break:break-all">'
 													+ item['content'] + '</td>';
-											comment += '<td>'
+											comment += '<td width="200">'
 													+ item['write_date']
 													+ '</td>';
 											comment += '</div>'
@@ -334,7 +334,7 @@ $(function(){
 											+ '</td>';
 									comment += '<td valign="top" style="word-break:break-all">'
 											+ item['content'] + '</td>';
-									comment += '<td>'
+									comment += '<td width="200">'
 											+ item['write_date']
 											+ '</td>';
 									comment += '</div>'
