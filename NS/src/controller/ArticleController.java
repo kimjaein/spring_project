@@ -141,8 +141,6 @@ public class ArticleController {
 	@RequestMapping(value = "articleComment.ns", method = RequestMethod.GET)
 	   public void articleCommentView(int article_num,HttpServletResponse response) throws IOException {
 	      List<CommentVO> commentList = service.commentSelect(article_num);
-	      System.out.println("----------´ñ±Û¸®½ºÆ®-----------------");
-	      System.out.println(commentList);
 	      
 	      response.setContentType("text/json;charset=euc-kr");
 	      PrintWriter writer = response.getWriter();

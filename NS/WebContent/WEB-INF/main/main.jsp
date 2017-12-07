@@ -30,7 +30,6 @@
 			flag = true;
 		}
 	}
-	
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <script type="text/javascript">
@@ -47,16 +46,16 @@
 	};
 	
 	function sendMessage(Msg) {
-		var message = document.getElementById("textMessage");
-// 		var message = Msg;
-// 		webSocket.send(message);
-		webSocket.send(message.value);
+// 		var message = document.getElementById("textMessage");
+		var message = Msg;
+		webSocket.send(message);
+// 		webSocket.send(message.value);
 		message.value = "";
 	}
 	
 	webSocket.onmessage = function(message){
 		if(message.data == 'alarm'){
-			alert("요청이 왔습니다.");
+			alert("친구추가 요청이 왔습니다.");
 		}else{
 			var onlineFriendList = "";
 			var jsonData = JSON.parse(message.data);
@@ -283,7 +282,7 @@
 								<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span  id="badgeBtn"><i class="fa fa-cog" style="font-size:24px"></i></span></a>
 								<ul class="dropdown-menu" id="badge">
-								  <li><a href="">마이페이지</a></li>
+								  <li><a href="#setModal" role="button" data-toggle="modal">설정</a></li>
 								  <li><a href="/NS/">로그아웃</a></li>
 								</ul>
 							  </li>
@@ -350,8 +349,38 @@
 			</div>
 		</div>
 	</div>
-	<!-- 테스트용 -->
-	
+	<!-- 설정창 -->
+	<div id="setModal" class="modal fade" tabindex="-1" role="dialog"
+		aria-hidden="true">
+		<div class="box">
+					<div id="join">
+						<div class="column col-sm-6 col-xs-6">
+							
+						</div>
+						<form action="join.ns" method="post"
+							class="column col-sm-6 col-xs-6">
+						<div id="login-box">
+								<div class="right">
+									<h1>Sign up</h1>
+
+									<input type="text" name="id" placeholder="E-mail" class="signUpText"/> <input
+										type="text" name="name" placeholder="Username" class="signUpText"/> <input
+										type="password" name="pw" placeholder="Password" class="signUpText"/> <input
+										type="password" name="pwsub" placeholder="Retype password" class="signUpText"/>
+									<input type="text" name="birth"
+										placeholder="birth (ex.19920722)" class="signUpText"> <input type="radio"
+										name="gender" class="gender" value="1">남 <input type="radio" name="gender" class="gender" value="2">여
+									<input type="text" name="address" placeholder="address"class="signUpText">
+
+									<input type="submit" name="signup_submit" value="Sign me up" id="signUp"/>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+			</div>
+	</div>
 	<!-- sidebar 접속한친구리스트 이 div 내부에 <a href="#">친구1</a> 형태로 뿌리면 됨-->
 	<div id="mySidenav" class="sidenav">
 <!-- 		<a href="#">친구1</a> -->

@@ -3,10 +3,14 @@
 <html>
 <head>
 <title>Insert title here</title>
+<script type="text/javascript">
+window.onload = function(){
+	alert('가입 완료!');
+	location.href="http://localhost:8888/NS/";
+}
+</script>
 </head>
 <body>
-	멤버 결과 : ${memberNum} 
-	<br>
-	회원가입 성공
+
 </body>
 </html>
