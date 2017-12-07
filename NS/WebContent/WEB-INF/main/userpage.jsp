@@ -158,7 +158,7 @@
 				<a class="navbar-brand2" href="#">
 <!-- 				<img id="profileImg" class="img-responsive" src="assets/img/bg_4.jpg"> -->
 				</a>
-					<i id="icon" class="fa fa-camera" style="font-size:24px"></i>
+<!-- 					<i id="icon" class="fa fa-camera" style="font-size:24px"></i> -->
 						<div id="userPhotoUploadArea">
 							<form action="userPhotoUpload.ns" method="post" enctype="multipart/form-data" name="userPhotoForm">
                           		<input type="hidden" name="memberNum" value="${sessionScope.memberNum}">
