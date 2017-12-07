@@ -353,8 +353,7 @@
 					<div id="articlePage"></div>
 					<!--pooter¿µ¿ª -->
 					<div id="pooterPage">
-					<iframe src='snowFox.ns' width='100%' height='23
-					0px'></iframe>
+					<iframe src='snowFox.ns' width='100%' height='230px'></iframe>
 					</div>
 				</div>
 			</div>
