@@ -25,33 +25,33 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import service.SocketService;
 import vo.MemberVO;
 
-@ServerEndpoint(value="/ws")
+@ServerEndpoint(value = "/ws")
 public class SocketServer {
 	public SocketServer() {
 		SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext(this);
-		System.out.println("socket server 持失切");
+		// System.out.println("socket server 持失切");
 	}
-	
+
 	@Autowired
 	private SocketService service;
 
 	public void setService(SocketService service) {
-		System.out.println("set service");
+		// System.out.println("set service");
 		this.service = service;
 	}
-	
+
 	private static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
-	
+
 	@OnOpen
 	public void Open(Session session) {
-		System.out.println("New client @"+session.getId());
+		System.out.println("New client @" + session.getId());
 		clients.add(session);
 	}
-	
+
 	@OnMessage
 	public void Message(Session session, String msg) {
-		String memberNum = (String)session.getUserProperties().get("memberNum");
-		if(memberNum == null) {
+		String memberNum = (String) session.getUserProperties().get("memberNum");
+		if (memberNum == null) {
 			session.getUserProperties().put("memberNum", msg);
 			try {
 				session.getBasicRemote().sendText("memberNum OKOKOK");
@@ -59,15 +59,15 @@ public class SocketServer {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else if(msg.equals("list")) {
+		} else if (msg.equals("list")) {
 			int getMemberNum = Integer.parseInt((String) session.getUserProperties().get("memberNum"));
 			int memberCount = 0;
 			List<String> onlineMemberList = new ArrayList<>();
 			List<MemberVO> MemberList = service.friendNameList(getMemberNum);
-			System.out.println("select 衣引 " + MemberList);
-			for(Session ss : clients) {
-				for(MemberVO m : MemberList) {
-					if(m.getMemberNum() == Integer.parseInt((String) ss.getUserProperties().get("memberNum"))) {
+//			System.out.println("select 衣引 " + MemberList);
+			for (Session ss : clients) {
+				for (MemberVO m : MemberList) {
+					if (m.getMemberNum() == Integer.parseInt((String) ss.getUserProperties().get("memberNum"))) {
 						onlineMemberList.add(memberCount, m.getName());
 						memberCount++;
 					}
@@ -79,11 +79,11 @@ public class SocketServer {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}else {
-		System.out.println(session.getUserProperties().get("memberNum") + ":::" + msg);
+		} else {
+//			System.out.println(session.getUserProperties().get("memberNum") + ":::" + msg);
 			try {
-				for(Session s : clients) {
-					if(s.getUserProperties().get("memberNum").equals(msg)) {
+				for (Session s : clients) {
+					if (s.getUserProperties().get("memberNum").equals(msg)) {
 						s.getBasicRemote().sendText("alarm");
 					}
 				}
@@ -92,42 +92,43 @@ public class SocketServer {
 			}
 		}
 	}
-	
-	
+
 	@OnError
 	public void Error(Throwable t) {
 		t.printStackTrace();
 	}
-	
+
 	@OnClose
 	public void Close(Session session) {
 		System.out.println("Client disconnected @" + session.getId());
 		clients.remove(session);
 	}
-	
-	public String buildJsonData(List<String> friendList){
+
+	public String buildJsonData(List<String> friendList) {
 		int listCount = 0;
-//		String listData = "";
-//		for(String sub :  friendList) {
-//			listData += friendList.get(listCount);
-//			listCount++;
-//		}
-//		JsonObject jsonObject = Json.createObjectBuilder().add("friendList", friendList.toString()).add("listCount", listCount).build();
-//		JsonObjectBuilder jsonObject = Json.createObjectBuilder();
+		// String listData = "";
+		// for(String sub : friendList) {
+		// listData += friendList.get(listCount);
+		// listCount++;
+		// }
+		// JsonObject jsonObject = Json.createObjectBuilder().add("friendList",
+		// friendList.toString()).add("listCount", listCount).build();
+		// JsonObjectBuilder jsonObject = Json.createObjectBuilder();
 		JsonArrayBuilder jsonObject = Json.createArrayBuilder();
-		
-		for(String sub :  friendList) {
+
+		for (String sub : friendList) {
 			sub = friendList.get(listCount);
 			jsonObject.add(sub);
 			listCount++;
 		}
-//		jsonObject.add("listCount", listCount);
+		// jsonObject.add("listCount", listCount);
 		JsonArray totalJson = jsonObject.build();
-		
-		StringWriter stringwriter =  new StringWriter();
-        try(JsonWriter jsonWriter = Json.createWriter(stringwriter)){
-                jsonWriter.write(totalJson);
-        };
-        return stringwriter.toString();
-    }
+
+		StringWriter stringwriter = new StringWriter();
+		try (JsonWriter jsonWriter = Json.createWriter(stringwriter)) {
+			jsonWriter.write(totalJson);
+		}
+		;
+		return stringwriter.toString();
+	}
 }

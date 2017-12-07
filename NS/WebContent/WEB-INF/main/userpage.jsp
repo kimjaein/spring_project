@@ -39,11 +39,14 @@
 					var friendStatus = "";
 					var photoBtn = "";
 					if(resultData == 'friendDelete'){
-						friendStatus += "<a id='friendBtn' value='"+resultData+"'>친구삭제</a>";
+						friendStatus += "<a id='friendBtn'>친구삭제<input type='hidden' value='"+resultData+"'></a>";
+// 						friendStatus += "<a id='friendBtn' value='"+resultData+"'>친구삭제</a>";
 					}else if(resultData == 'friendRequest'){
-						friendStatus += "<a id='friendBtn' value='"+resultData+"'>요청중</a>";
+						friendStatus += "<a id='friendBtn'>요청중<input type='hidden' value='"+resultData+"'></a>";
+// 						friendStatus += "<a id='friendBtn' value='"+resultData+"'>요청중</a>";
 					}else if(resultData == 'friendInsert'){
-						friendStatus += "<a id='friendBtn' value='"+resultData+"'>친구추가</a>";
+						friendStatus += "<a id='friendBtn'>친구추가<input type='hidden' value='"+resultData+"'></a>";
+// 						friendStatus += "<a id='friendBtn' value='"+resultData+"'>친구추가</a>";
 					}else{
 						photoBtn += '<i id="icon" class="fa fa-camera" style="font-size:24px"></i>';
 					}
@@ -79,8 +82,8 @@
 		}
 		
 		$(document).on('click','#friendBtn',function(){
-			var friendVal = $(this).val();
-			
+// 			var friendVal = $(this).val();
+			var friendVal = $(this).find("input").attr('value');
 			if(friendVal == 'friendInsert'){
 				$.ajax({
 					type : 'post',
@@ -104,7 +107,7 @@
 					data : 'one_member_num=' + ${sessionScope.memberNum} + '&other_member_num=' + ${searchUserNum},
 					dataType : 'text',
 					success : function(resultData) {
-						alert(resultData);
+// 						alert(resultData);
 						friendStatus ();
 					},
 					error : function() {
@@ -112,7 +115,7 @@
 					}		
 				})
 			}else if(friendVal == 'friendRequest'){
-				alert("요청중입니다. 이게 필요한가? 다른 좋은거없나?");
+				alert("요청중입니다.");
 			}
 		})
 		
@@ -152,7 +155,6 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				
 				<a class="navbar-brand2" href="#">
 <!-- 				<img id="profileImg" class="img-responsive" src="assets/img/bg_4.jpg"> -->
 				</a>

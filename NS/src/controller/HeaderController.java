@@ -33,7 +33,7 @@ public class HeaderController {
 			try {
 				PrintWriter writer = response.getWriter();
 				Gson gson = new Gson();
-				System.out.println(gson.toJson(searchFriendList));
+//				System.out.println(gson.toJson(searchFriendList));
 				writer.print(gson.toJson(searchFriendList));
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -55,7 +55,7 @@ public class HeaderController {
 			try {
 				PrintWriter writer = response.getWriter();
 				Gson gson = new Gson();
-				System.out.println(gson.toJson(list));
+//				System.out.println(gson.toJson(list));
 				writer.print(gson.toJson(list));
 			} catch (IOException e) {
 				e.printStackTrace();

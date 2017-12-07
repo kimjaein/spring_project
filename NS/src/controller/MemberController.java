@@ -21,12 +21,12 @@ public class MemberController {
 	
 	@RequestMapping(value="join.ns", method=RequestMethod.POST)
 	public ModelAndView join(MemberVO member) {
-		System.out.println(member.getId());
-		System.out.println(member.getPw());
+//		System.out.println(member.getId());
+//		System.out.println(member.getPw());
 		
 		ModelAndView mv = new ModelAndView();
 		int memberNum = service.memberJoin(member);
-		System.out.println("¸â¹ö¹øÈ£"+memberNum);
+//		System.out.println("¸â¹ö¹øÈ£"+memberNum);
 		mv.addObject("memberNum", memberNum);
 		mv.setViewName("join_success");
 		

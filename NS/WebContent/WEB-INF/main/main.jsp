@@ -225,6 +225,13 @@
 			$('#articlePage').html(iframe);
 		}
 	
+	function inputEnterCheck(e) {
+	    if(e.keyCode == 13) {
+	        return false;
+	    } else {
+	        return true;
+	    }
+	}
 </script>
 </head>
 
@@ -251,16 +258,16 @@
 								<div class="input-group input-group-sm"
 									style="max-width: 360px;">
 									<input class="form-control" placeholder="Search"
-										id="srchterm" type="text" autocomplete="off">
+										id="srchterm" type="text" autocomplete="off" onkeypress="return inputEnterCheck(event)">
 									<div class="dropdownsearch-content" id="friend">
 										<ul id="friend-under">
 										</ul>
 									</div>
-									<div class="input-group-btn">
-										<button class="btn btn-default" type="submit">
-											<i class="glyphicon glyphicon-search"></i>
-										</button>
-									</div>
+<!-- 									<div class="input-group-btn"> -->
+<!-- 										<button class="btn btn-default"> -->
+<!-- 											<i class="glyphicon glyphicon-search"></i> -->
+<!-- 										</button> -->
+<!-- 									</div> -->
 								</div>
 							</form>
 							<ul class="nav navbar-nav">

@@ -11,7 +11,7 @@ import vo.MemberVO;
 @Component
 public class SocketService {
 	public SocketService() {
-		System.out.println("socket service 持失切");
+//		System.out.println("socket service 持失切");
 	}
 	
 	@Autowired

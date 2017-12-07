@@ -30,12 +30,12 @@ public class UserPageController {
     }
     @RequestMapping("friendCheck.ns")
     public void friendCheck(FriendVO friend, AlarmVO alarm, HttpServletRequest request, HttpServletResponse response) {
-    	System.out.println("친구나"+friend.getOne_member_num());
-    	System.out.println("친구너"+friend.getOther_member_num());
+//    	System.out.println("친구나"+friend.getOne_member_num());
+//    	System.out.println("친구너"+friend.getOther_member_num());
     	alarm.setTo_member_num(friend.getOne_member_num());
     	alarm.setFrom_member_num(friend.getOther_member_num());
-    	System.out.println("알람나"+alarm.getTo_member_num());
-    	System.out.println("알람나"+alarm.getFrom_member_num());
+//    	System.out.println("알람나"+alarm.getTo_member_num());
+//    	System.out.println("알람나"+alarm.getFrom_member_num());
     	
     	try {
     		PrintWriter writer = response.getWriter();
@@ -98,9 +98,9 @@ public class UserPageController {
 	@RequestMapping("/userPhotoUpload.ns")
 	public ModelAndView upload(MemberVO member, HttpServletRequest req) {
 		ModelAndView mv = new ModelAndView("userpage");
-		System.out.println("사진내번호:"+member.getMemberNum());
+//		System.out.println("사진내번호:"+member.getMemberNum());
 		String uploadPath = req.getServletContext().getRealPath("userPhoto");
-		System.out.println("uploadPath:"+uploadPath);
+//		System.out.println("uploadPath:"+uploadPath);
 		File dir = new File(uploadPath);
 
 		if (!dir.exists()) {
@@ -110,7 +110,7 @@ public class UserPageController {
 		// 업로드 받은 파일을 아래 이름의 파일로 만들어서
 		// 서버측에 저장시키기
 		String savedName = new Random().nextInt(100) + member.getPhotoFile().getOriginalFilename();
-		System.out.println("savedName:"+savedName);
+//		System.out.println("savedName:"+savedName);
 		member.setPhoto(savedName);
 		File savedFile = new File(uploadPath + "/" + savedName);
 		mv.addObject("searchUserNum", member.getMemberNum());
@@ -120,7 +120,7 @@ public class UserPageController {
 			member.getPhotoFile().transferTo(savedFile);
 			
 			int updateResult = service.userPhotoUpdate(member);
-			System.out.println("업로드 결과"+updateResult);
+//			System.out.println("업로드 결과"+updateResult);
 		} catch (IllegalStateException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -132,7 +132,7 @@ public class UserPageController {
     
     @RequestMapping("userPhoto.ns")
     public void userPhoto(MemberVO member, HttpServletRequest request, HttpServletResponse response) {
-    	System.out.println(member.getMemberNum());
+//    	System.out.println(member.getMemberNum());
     	try {
     		PrintWriter writer = response.getWriter();
     		String photo = service.userPhotoSelect(member);
@@ -162,7 +162,7 @@ public class UserPageController {
   		String member_num = request.getParameter("memberNum");
   		int memberNum = Integer.parseInt(member_num);
   		List<ArticlePhotoVO> vo = service.photoGallery(memberNum);
-  		System.out.println("asdasdasasdasdasd"+vo);
+//  		System.out.println("asdasdasasdasdasd"+vo);
   		
   		mv.addObject("photoList",vo);
   		return mv;
