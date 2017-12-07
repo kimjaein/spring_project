@@ -34,47 +34,57 @@ public class RequestPageController {
 	public void setService(requestPageService service) {
 		this.service = service;
 	}
-
-	@RequestMapping("requestCheck.ns")
-	public void requestCheck(AlarmVO alarm, HttpServletRequest request, HttpServletResponse response) {
-		try {
-			PrintWriter writer = response.getWriter();
-
-			if (service.requestCheck(alarm) != 0) {
-				if (service.requestCheck(alarm) > 0) {
-					writer.print("delete");
-				}
-			} else {
-				writer.print("add");
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	@RequestMapping("requestList.ns")
-	public ModelAndView requestList(int memberNum) {
-		ModelAndView mv = new ModelAndView("myrequestList");
-
-		List<MemberVO> requestList = service.requestList(memberNum);
-
+    @RequestMapping("requestList.ns")
+    public ModelAndView requestList(int memberNum) {
+    	ModelAndView mv = new ModelAndView("requestpage");
+    	
+    	List<MemberVO> requestList = service.requestList(memberNum);
+    	
+    	mv.addObject("requestList",requestList);
+    	return mv;
+    }
+    
+	@RequestMapping("requestPage.ns")
+	public ModelAndView requestPage(String memberNum) {
+		ModelAndView mv = new ModelAndView();
 		mv.addObject("requestList", requestList);
+		mv.setViewName("requestpage");
 		return mv;
 	}
 
-//    @RequestMapping("userPhoto.ns")
-//    public void userPhoto(MemberVO member, HttpServletRequest request, HttpServletResponse response) {
-//    	System.out.println(member.getMemberNum());
-//    	try {
-//    		PrintWriter writer = response.getWriter();
-//    		String photo = service.userPhotoSelect(member);
-//    		if(photo.length() != 0) {
-//    			writer.print(photo);
-//    		}else {
-//    			writer.print("no");
-//    		}
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//    }
+    @RequestMapping("requestAccept.ns")
+    public void requestAccept(FriendVO friend, HttpServletRequest request, HttpServletResponse response) {
+    	friend.getOne_member_num();
+    	friend.
+    	try {
+    		PrintWriter writer = response.getWriter();
+    		
+    		if(service.alarmCheck(alarm) == 0) {
+    			if(service.alarmInsert(alarm) > 0) {
+    				writer.print(1);
+    			}
+    		}else {
+    			writer.print("insertrequestttt");
+    		}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
+    
+    @RequestMapping("requestBlock.ns")
+    public void friendDelete(FriendVO friend, HttpServletRequest request, HttpServletResponse response) {
+    	try {
+    		PrintWriter writer = response.getWriter();
+    		
+    		if(service.friendCheck(friend) != 0) {
+    			if(service.friendDelete(friend) > 0) {
+    				writer.print("deleteOK");
+    			}
+    		}else {
+    			writer.print("deleterequestttt");
+    		}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
 }

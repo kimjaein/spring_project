@@ -2,14 +2,17 @@ package repository.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import vo.AlarmVO;
+import vo.ArticlePhotoVO;
+import vo.FriendVO;
 import vo.MemberVO;
 
 	public interface RequestPageMapper {
-		public int requestCheck(AlarmVO alarm);
-		public int requestAccept(AlarmVO alarm);
-		public String requestPhotoSelect(MemberVO member);
-		public List<MemberVO> requestList(int memberNum);
+		public List<MemberVO> requestList(@Param("memberNum")int memberNum);
+		public int requestAccept(FriendVO alarm);
+		public int requestBlock(AlarmVO alarm);
 }
 
 

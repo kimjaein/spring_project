@@ -76,9 +76,9 @@
 										type="password" name="pwsub" placeholder="Retype password" class="signUpText"/>
 									<input type="text" name="birth"
 										placeholder="birth (ex.19920722)" class="signUpText"> <input type="radio"
-										name="gender" class="gender" value="1" checked="checked">남 
-									<input type="radio" name="gender" class="gender" value="2">여
+										name="gender" class="gender" value="1" checked="checked">남 <input type="radio" name="gender" class="gender" value="2">여
 									<input type="text" name="address" placeholder="address"class="signUpText">
+
 									<input type="submit" name="signup_submit" value="Sign me up" id="signUp"/>
 								</div>
 							</div>

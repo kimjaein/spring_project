@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="repository.mapper.UserPageMapper">
-	<select id="requestCheck" parameterType="AlarmVO" resultType="int">
-		SELECT COUNT(*) FROM ALARM WHERE (TO_MEMBER_NUM=${to_member_num} AND
-		FROM_MEMBER_NUM=${from_member_num} AND TYPE=1) OR
-		(TO_MEMBER_NUM=${from_member_num} AND FROM_MEMBER_NUM=${to_member_num}
-		AND TYPE=1)
-	</select>
-	<select id="requestAccept" parameterType="AlarmVO" resultType="int">
-		SELECT FROM_MEMBER_NUM FROM ALARM WHERE MEMBER_NUM=#{memberNum}
-	</select>
-	<select id="requestList" resultType="MemberVO">
-		SELECT NAME, PHOTO FROM MEMBER WHERE MEMBER_NUM IN (SELECT FROM_MEMBER_NUM FROM ALARM WHERE OTHER_MEMBER_NUM = #{memberNum})
-	</select>
 
+	<select id="requestList" resultType="MemberVO">
+    	SELECT NAME FROM MEMBER WHERE MEMBER_NUM IN (SELECT FROM_MEMBER_NUM FROM ALARM WHERE TO_MEMBER_NUM=${memberNum})
+	</select>
+	<select id="requestAccept" parameterType="FriendVO" resultType="int">
+		SELECT COUNT(*) FROM FRIEND WHERE ONE_MEMBER_NUM=${one_member_num}
+	</select>
+	<select id="requestBlock" parameterType="AlarmVO" resultType="int">
+		DELETE FROM COUNT(*) FROM ALARM WHERE FROM_MEMBER_NUM=${from_member_num) AND TO_MEMBER_NUM=${to_member_num}
+	</select>
 </mapper>
