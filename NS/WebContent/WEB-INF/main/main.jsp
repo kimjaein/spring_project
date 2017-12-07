@@ -234,7 +234,7 @@
 						badgeList += "<li><a>알림 정보가 없습니다.</a></li>";
 					}else{
 						$.each(resultData, function(index, item){
-		                     badgeList += "<li><a id='badgeItem'>"+item['name']+"님이 친구신청하였습니다.</a></li>";
+							badgeList += "<li><a>"+item['name']+"님이 친구신청하였습니다.</a></li>";
 						})
 					}
 						$('#badge').html(badgeList);
@@ -243,12 +243,8 @@
 					alert('ajax 요청 실패');
 				}
 			})
-		})	
+		})		
 		
-		$(document).on('click','#badgeItem',function() {
-         var badgeitem = "<iframe src='requestList.ns?memberNum=" + ${memberNum} + "'width='100%' height='830px'></iframe>";
-         $('#articlePage').html(badgeitem);
-      	})
 		
 		$('#add').click(function() {
 			$('.imgInp:nth-child(' + imgflag + ')').click();

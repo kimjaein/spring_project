@@ -14,44 +14,6 @@
 <script type="text/javascript">
 
 
-	$(document).on('click','#friendAccept',function() {
-		var accept = $(this).val();
-		
-		$.ajax({
-			type : 'post',
-			url : 'friendAccept.ns',
-			data : 'from_member_num=' + ${sessionScope.memberNum} + '&to_member_num=' + accept,
-			dataType : 'text',
-			success : function(resultData) {
-				if(resultData == 1){
-					location.reload(true);
-				}
-			},
-			error : function() {
-				alert('ajax 요청 실패');
-			}		
-		})	
-		
-	})
-	
-	$(document).on('click','#friendRefuse',function() {
-		var accept = $(this).val();
-		
-		$.ajax({
-			type : 'post',
-			url : 'friendRefuse.ns',
-			data : 'from_member_num=' + ${sessionScope.memberNum} + '&to_member_num=' + accept,
-			dataType : 'text',
-			success : function(resultData) {
-				if(resultData == 1){
-					location.reload(true);
-				}
-			},
-			error : function() {
-				alert('ajax 요청 실패');
-			}		
-		})	
-	})
 
 function horizontalScroll() {
 	if (event.wheelDelta <= -120)
@@ -63,45 +25,43 @@ function horizontalScroll() {
 </head>
 <body>
 <table onmousewheel="horizontalScroll()">
-      <tr class="friendList">
-         <c:forEach var="friend" items="${friendList}">
-            <td class="friend-one">
-               <div class="profile-sidebar">
-                  <!-- SIDEBAR USERPIC -->
-                  <div class="profile-userpic">
-                     <c:choose>
-                        <c:when test="${friend.photo.length() < 5  }">
-                           <img src="assets/img/uFp_tsTJboUY7kue5XAsGAs28.png" class="img-responsive" alt="">
-                        </c:when>
-                        <c:otherwise>
-                           <img src="userPhoto/${friend.photo}" class="img-responsive" alt="">
-                        </c:otherwise>
-                     </c:choose>
+	<tr class="requestList">
+	
+	<c:forEach var="request" items="${requestList}">
 
+<div class="request-list">
+	<div class="row">
+        <div class="span12">
+    		<ul class="thumbnails">
+                <li class="span5 clearfix">
+                  <div class="thumbnail clearfix">
+                   	<c:choose>
+                   		<c:when test="${request.photo.length() < 5  }">
+                    <img src="http://placehold.it/320x200" alt="" class="pull-left span2 clearfix" style='margin-right:10px'>
+                   		<c:otherwise >
+                   		</c:when>
+                   	<img src="" alt="userPhoto/${friend.photo}" class="pull-left span2 clearfix" style='margin-right:10px'>
+                   		</c:otherwise>
+                   	</c:choose>
+                   	
+                    <div class="caption" class="pull-left">
+                      <a href="http://bootsnipp.com/" class="btn btn-primary icon  pull-right">수락</a>
+                    <div class="caption" class="pull-left">
+                      <a href="http://bootsnipp.com/" class="btn btn-primary icon  pull-right">거절</a>
+                      <h4>      
+                      <a href="#" >${friend.name}</a>
+                    </div>
                   </div>
-                  <!-- END SIDEBAR USERPIC -->
-                  <!-- SIDEBAR USER TITLE -->
-                  <div class="profile-usertitle">
-                     <div class="name profile-usertitle-name">${friend.name}
-                        <input type="hidden" value="${friend.memberNum}">
-                     </div>
-                     <div class="profile-usertitle-job">${friend.id}</div>
-                  </div>
-                  <!-- END SIDEBAR USER TITLE -->
-                  <!-- SIDEBAR BUTTONS -->
-                  <div class="profile-userbuttons">
-                     <button type="button" class="btn btn-success btn-sm" id="friendAccept" value="${friend.memberNum}">accept</button>
-                     <button type="button" class="btn btn-danger btn-sm" id="friendRefuse" value="${friend.memberNum}">refuse</button>
-                  </div>
+                </li>
+            </ul>
+        </div>
+	</div>
+</div>
+	
+	
+	</c:forEach>
 
-                  <!-- END SIDEBAR BUTTONS -->
-                  <!-- SIDEBAR MENU -->
-                  
-                  <!-- END MENU -->
-               </div>
-            </td>
-         </c:forEach>
-      </tr>
-   </table>
+		</tr>
+	</table>
 </body>
 </html>

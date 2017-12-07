@@ -23,16 +23,10 @@ public class requestPageService {
     public List<MemberVO> requestList(@Param("memberNum")int memberNum) {
     	return dao.requestList(memberNum);
     }  
-    
-    public int alarmDelete(AlarmVO alarm) {
-    	return dao.alarmDelete(alarm);
-    }
-    
-    public int friendInsert(AlarmVO alarm) {
-    	return dao.friendInsert(alarm);
-    }
-    
-    public int friendInsertsub(AlarmVO alarm) {
-    	return dao.friendInsertsub(alarm);
-    }
+	public int requestAccept(FriendVO friend) {
+		return dao.requestAccept(friend);
+	}
+	public int requestBlock(AlarmVO alarm) {
+		return dao.requestBlock(alarm);
+	}
 }

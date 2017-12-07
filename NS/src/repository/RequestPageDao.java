@@ -28,19 +28,12 @@ public class RequestPageDao {
     	RequestPageMapper mapper = session.getMapper(RequestPageMapper.class);
         return mapper.requestList(memberNum);
     }
-    
-    public int alarmDelete(AlarmVO alarm) {
-    	RequestPageMapper mapper = session.getMapper(RequestPageMapper.class);
-        return mapper.alarmDelete(alarm);
-    }
-    
-    public int friendInsert(AlarmVO alarm) {
-    	RequestPageMapper mapper = session.getMapper(RequestPageMapper.class);
-        return mapper.friendInsert(alarm);
-    }
-    
-    public int friendInsertsub(AlarmVO alarm) {
-    	RequestPageMapper mapper = session.getMapper(RequestPageMapper.class);
-        return mapper.friendInsertsub(alarm);
-    }
+	public int requestAccept(FriendVO friend) {
+		RequestPageMapper mapper = session.getMapper(RequestPageMapper.class);
+		return mapper.requestAccept(friend);
+	}
+	public int requestBlock(AlarmVO alarm) {
+		RequestPageMapper mapper = session.getMapper(RequestPageMapper.class);
+		return mapper.requestBlock(alarm);
+	}
 }
