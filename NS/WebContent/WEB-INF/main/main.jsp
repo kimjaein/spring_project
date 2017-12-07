@@ -82,7 +82,7 @@
 	}
 	//WebSocketEx는 프로젝트 이름
 	//websocket 클래스 이름
-	var webSocket = new WebSocket("ws://localhost:8888/NS/ws");
+	var webSocket = new WebSocket("ws://70.12.115.77:8888/NS/ws");
 	//웹 소켓이 연결되었을 때 호출되는 이벤트
 	webSocket.onopen = function(message) {
 		webSocket.send(${sessionScope.memberNum});
@@ -378,7 +378,7 @@
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"
 						aria-hidden="true">x</button>
-					<h2>로그인이름 : ${Name} 아이디 : ${id}</h2>
+					<h2> 아이디 : ${id}</h2>
 				</div>
 				<form class="form center-block" action="upload.ns"
 					enctype="multipart/form-data" method="post">
@@ -461,7 +461,6 @@
 											});
 						});
 	</script>
-	
 	
 	<div class="modal" id="testModal" tabindex="-1" role="dialog">
 		<div class="modal-dialog modal-sm">
