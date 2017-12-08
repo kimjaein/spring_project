@@ -31,6 +31,7 @@ public class HeaderController {
 		public void searchfriend(String search, HttpServletRequest request, HttpServletResponse response) {
 			List<MemberVO> searchFriendList = service.searchFriendList(search);
 			try {
+				response.setContentType("text/json;charset=euc-kr");
 				PrintWriter writer = response.getWriter();
 				Gson gson = new Gson();
 //				System.out.println(gson.toJson(searchFriendList));
@@ -53,6 +54,7 @@ public class HeaderController {
 		public void badgeList(int memberNum, HttpServletRequest request, HttpServletResponse response) {
 			List<MemberVO> list = service.badgeList(memberNum);
 			try {
+				response.setContentType("text/json;charset=euc-kr");
 				PrintWriter writer = response.getWriter();
 				Gson gson = new Gson();
 //				System.out.println(gson.toJson(list));

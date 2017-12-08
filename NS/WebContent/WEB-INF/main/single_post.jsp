@@ -491,7 +491,7 @@ $(function(){
 											</c:choose>
 												<span>${article.like_count}</span></div>, <i
 													class="fa fa-commenting-o"></i> Comment &nbsp; <input
-													type="hidden" id="loginId" value="${sessionScope.id}">
+													type="hidden" id="loginId" value="${sessionScope.Name}">
 												<button class="article_num" value="${article.article_num}">상세보기</button>
 											</div>
 										</div>
