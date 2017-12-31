@@ -347,7 +347,6 @@
 							  </li>
 							  </ul>
 							<ul class="nav navbar-nav navbar-right">
-								<li>${sessionScope.Name}</li>
 								<li class="dropdown"><a href="#" class="dropdown-toggle"
 									onclick="openNav()"> <i class="material-icons" style="font-size:28px">people</i></a>
 								</li>
